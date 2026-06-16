@@ -1,8 +1,10 @@
 import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcryptjs'
+import { config } from 'dotenv'
+config()
 
 const prisma = new PrismaClient({
-  datasources: { db: { url: 'mongodb://localhost:27017/majesty-compucare' } }
+  datasources: { db: { url: process.env.DATABASE_URL } }
 })
 
 async function main() {

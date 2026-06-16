@@ -6,15 +6,15 @@ const globalForPrisma = globalThis as unknown as {
 
 let prismaInstance: PrismaClient | null = null
 
-try {
-  if (process.env.DATABASE_URL) {
+if (process.env.DATABASE_URL) {
+  try {
     prismaInstance = globalForPrisma.prisma ?? new PrismaClient()
-    if (process.env.NODE_ENV !== 'production') {
-      globalForPrisma.prisma = prismaInstance
-    }
+    globalForPrisma.prisma = prismaInstance
+  } catch (error) {
+    console.error('Failed to initialize Prisma:', error)
   }
-} catch (error) {
-  console.warn('Failed to initialize Prisma:', error)
+} else {
+  console.warn('DATABASE_URL is not set — database features will be unavailable.')
 }
 
 export const prisma = prismaInstance
