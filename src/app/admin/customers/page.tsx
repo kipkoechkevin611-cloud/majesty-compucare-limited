@@ -1,15 +1,11 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
 import { Search, Mail, Phone, MapPin, Calendar, ShoppingCart, Users } from 'lucide-react'
 import Link from 'next/link'
 import Loading from '@/components/Loading'
 
 export default function AdminCustomersPage() {
-  const { data: session, status } = useSession()
-  const router = useRouter()
   const [searchQuery, setSearchQuery] = useState('')
   const [customers, setCustomers] = useState<any[]>([])
   const [pagination, setPagination] = useState<any>(null)
@@ -33,14 +29,10 @@ export default function AdminCustomersPage() {
   }
 
   useEffect(() => {
-    if (status === 'authenticated' && session?.user?.role === 'ADMIN') fetchCustomers()
-  }, [status, session, searchQuery])
+    fetchCustomers()
+  }, [searchQuery])
 
-  if (status === 'loading' || loading) return <Loading />
-  if (status === 'unauthenticated' || session?.user?.role !== 'ADMIN') {
-    router.push('/admin')
-    return null
-  }
+  if (loading) return <Loading />
 
   const totalSpentAll = customers.reduce((sum, c) => sum + (c.totalSpent || 0), 0)
   const avgValue = customers.length > 0 ? Math.round(totalSpentAll / customers.length) : 0

@@ -1,26 +1,14 @@
 'use client'
 
 import { useState } from 'react'
-import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
 import { Search, AlertTriangle, Package, TrendingUp, TrendingDown, Plus, Minus } from 'lucide-react'
 import Link from 'next/link'
 import Loading from '@/components/Loading'
 
 export default function AdminInventoryPage() {
-  const { data: session, status } = useSession()
-  const router = useRouter()
   const [searchQuery, setSearchQuery] = useState('')
   const [stockFilter, setStockFilter] = useState('all')
 
-  if (status === 'loading') {
-    return <Loading />
-  }
-
-  if (status === 'unauthenticated' || session?.user?.role !== 'ADMIN') {
-    router.push('/admin')
-    return null
-  }
 
   const mockInventory = [
     { id: 1, name: 'HP Laptop 15.6"', category: 'laptops', stock: 15, minStock: 5, maxStock: 50, status: 'In Stock', lastRestocked: '2024-01-10' },

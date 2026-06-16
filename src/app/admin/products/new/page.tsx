@@ -1,14 +1,12 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { ArrowLeft, Save, X, Upload, Plus } from 'lucide-react'
 import Link from 'next/link'
 import Loading from '@/components/Loading'
 
 export default function NewProductPage() {
-  const { data: session, status } = useSession()
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
@@ -42,12 +40,8 @@ export default function NewProductPage() {
   }
 
   useEffect(() => {
-    if (status === 'unauthenticated' || session?.user?.role !== 'ADMIN') {
-      router.push('/admin')
-      return
-    }
     fetchCategories()
-  }, [status, session, router])
+  }, [])
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files

@@ -1,15 +1,11 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
 import { Plus, Edit, Trash2, Search, Package, Filter, ChevronLeft, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import Loading from '@/components/Loading'
 
 export default function AdminProductsPage() {
-  const { data: session, status } = useSession()
-  const router = useRouter()
   const [searchQuery, setSearchQuery] = useState('')
   const [categoryFilter, setCategoryFilter] = useState('')
   const [statusFilter, setStatusFilter] = useState('')
@@ -46,10 +42,8 @@ export default function AdminProductsPage() {
   }
 
   useEffect(() => {
-    if (status === 'authenticated' && session?.user?.role === 'ADMIN') {
-      fetchProducts()
-    }
-  }, [status, session, searchQuery, categoryFilter, statusFilter, page])
+    fetchProducts()
+  }, [searchQuery, categoryFilter, statusFilter, page])
 
   const handleDelete = async (product: any) => {
     setSelectedProduct(product)
@@ -91,13 +85,8 @@ export default function AdminProductsPage() {
     }
   }
 
-  if (status === 'loading' || loading) {
+  if (loading) {
     return <Loading />
-  }
-
-  if (status === 'unauthenticated' || session?.user?.role !== 'ADMIN') {
-    router.push('/admin')
-    return null
   }
 
   return (

@@ -1,15 +1,11 @@
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
-import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
 import { BarChart3, TrendingUp, DollarSign, ShoppingCart, Package, Users, Calendar, Download } from 'lucide-react'
 import Link from 'next/link'
 import Loading from '@/components/Loading'
 
 export default function AdminAnalyticsPage() {
-  const { data: session, status } = useSession()
-  const router = useRouter()
   const [timeRange, setTimeRange] = useState('30')
   const [loading, setLoading] = useState(true)
   const [summary, setSummary] = useState<{ totalRevenue: number; totalOrders: number; avgOrderValue: number } | null>(null)
@@ -19,7 +15,6 @@ export default function AdminAnalyticsPage() {
   const [recentActivity, setRecentActivity] = useState<Array<{ type: string; message: string; time: string }>>([])
 
   useEffect(() => {
-    if (status !== 'authenticated' || session?.user?.role !== 'ADMIN') return
     const controller = new AbortController()
     async function load() {
       setLoading(true)
@@ -41,16 +36,9 @@ export default function AdminAnalyticsPage() {
     }
     load()
     return () => controller.abort()
-  }, [status, session, timeRange])
+  }, [timeRange])
 
-  if (status === 'loading') {
-    return <Loading />
-  }
-
-  if (status === 'unauthenticated' || session?.user?.role !== 'ADMIN') {
-    router.push('/admin')
-    return null
-  }
+  if (loading) return <Loading />
 
   const stats = summary ? [
     { label: 'Total Revenue', value: `KES ${summary.totalRevenue.toLocaleString()}`, change: '', icon: DollarSign, color: 'green' },

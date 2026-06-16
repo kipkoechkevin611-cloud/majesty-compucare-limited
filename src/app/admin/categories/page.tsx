@@ -1,15 +1,11 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
 import { Plus, Edit, Trash2, Package } from 'lucide-react'
 import Link from 'next/link'
 import Loading from '@/components/Loading'
 
 export default function AdminCategoriesPage() {
-  const { data: session, status } = useSession()
-  const router = useRouter()
   const [categories, setCategories] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [showAddModal, setShowAddModal] = useState(false)
@@ -33,10 +29,8 @@ export default function AdminCategoriesPage() {
   }
 
   useEffect(() => {
-    if (status === 'authenticated' && session?.user?.role === 'ADMIN') {
-      fetchCategories()
-    }
-  }, [status, session])
+    fetchCategories()
+  }, [])
 
   const handleAddCategory = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -87,13 +81,8 @@ export default function AdminCategoriesPage() {
     }
   }
 
-  if (status === 'loading' || loading) {
+  if (loading) {
     return <Loading />
-  }
-
-  if (status === 'unauthenticated' || session?.user?.role !== 'ADMIN') {
-    router.push('/admin')
-    return null
   }
 
   return (

@@ -1,14 +1,12 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useSession } from 'next-auth/react'
 import { useRouter, useParams } from 'next/navigation'
 import { ArrowLeft, Save, X, Upload } from 'lucide-react'
 import Link from 'next/link'
 import Loading from '@/components/Loading'
 
 export default function EditProductPage() {
-  const { data: session, status } = useSession()
   const router = useRouter()
   const params = useParams()
   const [loading, setLoading] = useState(true)
@@ -32,15 +30,11 @@ export default function EditProductPage() {
   const [uploadError, setUploadError] = useState<string | null>(null)
 
   useEffect(() => {
-    if (status === 'unauthenticated' || session?.user?.role !== 'ADMIN') {
-      router.push('/admin')
-      return
-    }
     if (params.id) {
       fetchProduct()
       fetchCategories()
     }
-  }, [status, session, router, params.id])
+  }, [params.id])
 
   const fetchProduct = async () => {
     try {

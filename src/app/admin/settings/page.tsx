@@ -1,15 +1,11 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
 import { Save, Store, Mail, Phone, MapPin, DollarSign, Truck, Shield, Globe, Search, Bell, CreditCard } from 'lucide-react'
 import Link from 'next/link'
 import Loading from '@/components/Loading'
 
 export default function AdminSettingsPage() {
-  const { data: session, status } = useSession()
-  const router = useRouter()
   const [activeTab, setActiveTab] = useState('general')
   const [saving, setSaving] = useState(false)
   const [saveMessage, setSaveMessage] = useState('')
@@ -55,10 +51,8 @@ export default function AdminSettingsPage() {
   }
 
   useEffect(() => {
-    if (status === 'authenticated' && session?.user?.role === 'ADMIN') {
-      fetchSettings()
-    }
-  }, [status, session])
+    fetchSettings()
+  }, [])
 
   const handleSave = async () => {
     setSaving(true)
@@ -100,11 +94,6 @@ export default function AdminSettingsPage() {
     }))
   }
 
-  if (status === 'loading') return <Loading />
-  if (status === 'unauthenticated' || session?.user?.role !== 'ADMIN') {
-    router.push('/admin')
-    return null
-  }
 
   const tabs = [
     { id: 'general', label: 'General', icon: Store },

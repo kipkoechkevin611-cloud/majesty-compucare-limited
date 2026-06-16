@@ -1,8 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
 import { Search, Filter, Eye, Package, CheckCircle, XCircle, Clock, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
 import Loading from '@/components/Loading'
@@ -18,8 +16,6 @@ const STATUS_COLORS: Record<string, string> = {
 }
 
 export default function AdminOrdersPage() {
-  const { data: session, status } = useSession()
-  const router = useRouter()
   const [searchQuery, setSearchQuery] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
   const [orders, setOrders] = useState<any[]>([])
@@ -48,8 +44,8 @@ export default function AdminOrdersPage() {
   }
 
   useEffect(() => {
-    if (status === 'authenticated' && session?.user?.role === 'ADMIN') fetchOrders()
-  }, [status, session, searchQuery, statusFilter])
+    fetchOrders()
+  }, [searchQuery, statusFilter])
 
   const updateOrderStatus = async (orderId: string, newStatus: string) => {
     setUpdatingId(orderId)
@@ -67,11 +63,7 @@ export default function AdminOrdersPage() {
     }
   }
 
-  if (status === 'loading' || loading) return <Loading />
-  if (status === 'unauthenticated' || session?.user?.role !== 'ADMIN') {
-    router.push('/admin')
-    return null
-  }
+  if (loading) return <Loading />
 
   const countFor = (s: string) => statusCounts.find((c: any) => c.status === s)?._count?.status || 0
   const total = pagination?.total || 0
