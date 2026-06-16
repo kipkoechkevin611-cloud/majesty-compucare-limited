@@ -154,7 +154,7 @@ export default function EditProductPage() {
     }
   }
 
-  if (status === 'loading' || loading) {
+  if (loading) {
     return <Loading />
   }
 

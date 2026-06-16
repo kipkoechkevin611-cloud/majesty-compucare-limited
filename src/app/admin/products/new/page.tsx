@@ -121,7 +121,7 @@ export default function NewProductPage() {
     }
   }
 
-  if (status === 'loading' || loading) {
+  if (loading) {
     return <Loading />
   }
 
