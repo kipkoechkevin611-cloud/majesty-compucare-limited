@@ -16,8 +16,9 @@ export default function Footer() {
                 <p className="text-[10px]" style={{fontFamily:'Fira Code,monospace',color:'var(--accent-green)'}}>// Tech Partner Since 2014</p>
               </div>
             </div>
+            <p className="text-xs italic mb-1 font-semibold" style={{color:'var(--accent-blue)',fontFamily:'Montserrat,sans-serif'}}>&ldquo;Reliable Tech Solutions for Everyday Needs.&rdquo;</p>
             <p className="text-sm leading-relaxed mb-5" style={{color:'var(--text-low)'}}>
-              Specializing in computer sales, IT solutions, CCTV security, networking, and technology support services in Nakuru.
+              Trusted ICT solutions provider in Nakuru — specializing in computer sales, repairs, CCTV, networking, and IT support.
             </p>
             <div className="flex flex-wrap gap-2">
               {['Facebook','Twitter','Instagram','LinkedIn'].map(s => (
@@ -38,7 +39,7 @@ export default function Footer() {
                 <li key={href}>
                   <Link href={href} className="text-sm transition flex items-center gap-2 group" style={{color:'var(--text-low)'}}>
                     <span className="w-0 group-hover:w-3 h-px transition-all duration-200" style={{background:'var(--accent-green)'}} />
-                    <span className="group-hover:text-[#F0F2F5] transition-colors">{label}</span>
+                    <span className="group-hover:text-slate-900 transition-colors">{label}</span>
                   </Link>
                 </li>
               ))}
@@ -53,16 +54,18 @@ export default function Footer() {
             <ul className="space-y-2.5">
               {[
                 ['/products?category=laptops','Laptops & Desktops'],
-                ['/products?category=printers','Printers'],
-                ['/products?category=cctv','CCTV Cameras'],
+                ['/products?category=printers','Printers (Epson, Canon, HP)'],
+                ['/products?category=cctv-systems','CCTV & Security'],
                 ['/products?category=networking','Networking Equipment'],
-                ['/products?category=accessories','Accessories'],
+                ['/products?category=accessories','Monitors & Accessories'],
+                ['/products?category=phone-accessories','Phone Accessories'],
                 ['/products?category=stationery','Office Stationery'],
+                ['/products?category=toners-ink','Toners & Ink'],
               ].map(([href, label]) => (
                 <li key={href}>
                   <Link href={href} className="text-sm transition flex items-center gap-2 group" style={{color:'var(--text-low)'}}>
                     <span className="w-0 group-hover:w-3 h-px transition-all duration-200" style={{background:'var(--accent-green)'}} />
-                    <span className="group-hover:text-[#F0F2F5] transition-colors">{label}</span>
+                    <span className="group-hover:text-slate-900 transition-colors">{label}</span>
                   </Link>
                 </li>
               ))}
@@ -88,7 +91,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 flex-shrink-0" style={{color:'var(--accent-blue)'}} />
-                <a href="mailto:sales.compucare111@gmail.com" className="text-sm transition hover:text-[#F0F2F5]" style={{color:'var(--text-low)'}}>
+                <a href="mailto:sales.compucare111@gmail.com" className="text-sm transition hover:text-slate-900" style={{color:'var(--text-low)'}}>
                   sales.compucare111@gmail.com
                 </a>
               </li>

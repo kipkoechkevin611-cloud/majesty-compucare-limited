@@ -25,14 +25,14 @@ async function main() {
 
   // Seed categories
   const categories = [
-    { name: 'Laptops', slug: 'laptops', description: 'Laptop computers and notebooks' },
-    { name: 'Desktops', slug: 'desktops', description: 'Desktop computers and towers' },
-    { name: 'Printers', slug: 'printers', description: 'Printers and scanners' },
-    { name: 'CCTV Systems', slug: 'cctv-systems', description: 'Security cameras and surveillance systems' },
-    { name: 'Networking', slug: 'networking', description: 'Network equipment and accessories' },
-    { name: 'Accessories', slug: 'accessories', description: 'Computer accessories and peripherals' },
-    { name: 'Software', slug: 'software', description: 'Software and licenses' },
-    { name: 'Electronics', slug: 'electronics', description: 'Electronic devices and components' },
+    { name: 'Laptops & Desktops', slug: 'laptops', description: 'Laptops, desktop computers, and notebooks' },
+    { name: 'Printers', slug: 'printers', description: 'Epson, Canon, HP printers and scanners' },
+    { name: 'CCTV & Security', slug: 'cctv-systems', description: 'CCTV cameras and security surveillance systems' },
+    { name: 'Monitors & Accessories', slug: 'accessories', description: 'Monitors, keyboards, mice, and computer accessories' },
+    { name: 'Networking', slug: 'networking', description: 'Routers, switches, and networking equipment' },
+    { name: 'Phone Accessories', slug: 'phone-accessories', description: 'Chargers, headsets, smartwatches, and phone accessories' },
+    { name: 'Office Stationery', slug: 'stationery', description: 'Office stationery and supplies' },
+    { name: 'Toners & Ink', slug: 'toners-ink', description: 'Toners and ink cartridges for printers' },
   ]
 
   for (const cat of categories) {

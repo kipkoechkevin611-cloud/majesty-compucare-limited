@@ -1,4 +1,4 @@
-import { Award, Users, Target, CheckCircle, MapPin, Phone, Mail } from 'lucide-react'
+import { Award, Users, Target, CheckCircle, MapPin, Phone, Mail, Monitor, Printer, Video, Wifi, Smartphone, Package, Wrench, Shield, Database, HardDrive, MessageCircle } from 'lucide-react'
 
 export default function AboutPage() {
   const stats = [
@@ -24,6 +24,25 @@ export default function AboutPage() {
     { icon: Mail,   label: 'Email',    value: 'sales.compucare111@gmail.com' },
   ]
 
+  const products = [
+    { icon: Monitor,    label: 'Laptops & Desktop Computers' },
+    { icon: Printer,    label: 'Printers (Epson, Canon, HP)' },
+    { icon: Video,      label: 'CCTV Cameras & Security Systems' },
+    { icon: Monitor,    label: 'Monitors & Computer Accessories' },
+    { icon: Wifi,       label: 'Networking Equipment (Routers, Switches)' },
+    { icon: Smartphone, label: 'Phone Accessories (Chargers, Headsets, Smartwatches)' },
+    { icon: Package,    label: 'Office Stationery' },
+    { icon: Package,    label: 'Toners & Ink Cartridges' },
+  ]
+  const services = [
+    { icon: Wrench,    label: 'Computer & Laptop Repair' },
+    { icon: Printer,   label: 'Printer Repair & Maintenance' },
+    { icon: Video,     label: 'CCTV Installation & Maintenance' },
+    { icon: HardDrive, label: 'Software Installation & Troubleshooting' },
+    { icon: Wifi,      label: 'Network Setup & Support' },
+    { icon: Database,  label: 'Data Backup & System Optimization' },
+  ]
+
   return (
     <div className="flex flex-col" style={{background:'var(--bg-primary)'}}>
 
@@ -35,8 +54,11 @@ export default function AboutPage() {
           <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-4" style={{fontFamily:'Montserrat,sans-serif'}}>
             About <span style={{color:'var(--accent-blue)'}}>Majesty</span> Compucare
           </h1>
-          <p className="text-lg max-w-3xl mx-auto" style={{color:'var(--text-low)'}}>
-            Your trusted technology partner in Kenya, delivering quality IT solutions since 2014
+          <p className="text-xl font-semibold max-w-2xl mx-auto mb-3" style={{color:'var(--accent-blue)',fontFamily:'Montserrat,sans-serif'}}>
+            &ldquo;Reliable Tech Solutions for Everyday Needs.&rdquo;
+          </p>
+          <p className="text-base max-w-3xl mx-auto" style={{color:'var(--text-low)'}}>
+            Trusted ICT solutions provider based in Nakuru — serving businesses, institutions, and individuals since 2014
           </p>
         </div>
       </section>
@@ -49,9 +71,9 @@ export default function AboutPage() {
               <p className="section-label mb-3">// OUR_STORY</p>
               <h2 className="text-3xl font-black text-slate-900 mb-6" style={{fontFamily:'Montserrat,sans-serif'}}>Our Story</h2>
               {[
-                'Majesty Compucare Limited was established with a vision to provide cutting-edge technology solutions to businesses and individuals across Kenya. Founded by Brian Bartoo, our company has grown from a small computer repair shop to a comprehensive IT solutions provider.',
-                'Located in Nyakinyua Building, Kangei, Nakuru, we have built a reputation for excellence, reliability, and customer satisfaction. Our team of certified technicians and IT professionals are dedicated to delivering top-notch services and products.',
-                'We believe in building long-term relationships with our clients by understanding their unique needs and providing customized solutions that drive growth and efficiency.',
+                'Majesty Compucare Limited is a trusted ICT solutions provider based in Nakuru, specializing in the sale, repair, and maintenance of computers, printers, and office equipment.',
+                'We are committed to delivering reliable technology solutions, quality products, and exceptional customer service to businesses, institutions, and individuals across Kenya.',
+                'Located in Nyakinyua Building, Kangei, Nakuru, our team of certified technicians and IT professionals are dedicated to providing the best tech experience — fast, genuine, and trusted.',
               ].map((p, i) => (
                 <p key={i} className="mb-4 text-sm leading-relaxed" style={{color:'var(--text-low)'}}>{p}</p>
               ))}
@@ -109,6 +131,46 @@ export default function AboutPage() {
                 <p className="text-xs leading-relaxed" style={{color:'var(--text-low)'}}>{v.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Products & Services */}
+      <section className="py-16" style={{background:'var(--bg-surface2)'}}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-10">
+
+            {/* Products */}
+            <div className="rounded-xl p-8 bg-white shadow-sm border border-blue-100">
+              <p className="section-label mb-2">// WHAT_WE_SELL</p>
+              <h2 className="text-2xl font-black text-slate-900 mb-6" style={{fontFamily:'Montserrat,sans-serif'}}>Our Products</h2>
+              <ul className="space-y-3">
+                {products.map(({icon:Icon, label}) => (
+                  <li key={label} className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{background:'rgba(0,102,204,0.1)'}}>
+                      <Icon className="w-4 h-4" style={{color:'var(--accent-blue)'}} />
+                    </div>
+                    <span className="text-sm text-slate-700">{label}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Services */}
+            <div className="rounded-xl p-8 bg-white shadow-sm border border-green-100">
+              <p className="section-label mb-2">// WHAT_WE_DO</p>
+              <h2 className="text-2xl font-black text-slate-900 mb-6" style={{fontFamily:'Montserrat,sans-serif'}}>Our Services</h2>
+              <ul className="space-y-3">
+                {services.map(({icon:Icon, label}) => (
+                  <li key={label} className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{background:'rgba(22,163,74,0.1)'}}>
+                      <Icon className="w-4 h-4" style={{color:'var(--accent-green)'}} />
+                    </div>
+                    <span className="text-sm text-slate-700">{label}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
