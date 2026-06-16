@@ -1,15 +1,10 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
 import { TrendingUp, DollarSign, ShoppingBag, AlertTriangle, Package, Users } from 'lucide-react'
 import Link from 'next/link'
-import Loading from '@/components/Loading'
 
 export default function AdminDashboardPage() {
-  const { data: session, status } = useSession()
-  const router = useRouter()
   const [stats, setStats] = useState<any>(null)
   const [loading, setLoading] = useState(true)
 
@@ -28,23 +23,11 @@ export default function AdminDashboardPage() {
   }
 
   useEffect(() => {
-    if (status === 'authenticated' && session?.user?.role === 'ADMIN') {
-      fetchStats()
-    }
-  }, [status, session])
+    fetchStats()
+  }, [])
 
-  if (status === 'loading' || loading) {
-    return <Loading />
-  }
-
-  if (status === 'unauthenticated' || !session) {
-    router.push('/login')
-    return <Loading />
-  }
-
-  if (session.user?.role !== 'ADMIN') {
-    router.push('/login')
-    return <Loading />
+  if (loading) {
+    return <div className="flex items-center justify-center h-64"><div className="text-gray-500">Loading...</div></div>
   }
 
   const statsData = stats ? [

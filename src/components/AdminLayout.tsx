@@ -1,10 +1,9 @@
 'use client'
 
-import { useSession, signOut } from 'next-auth/react'
-import { useRouter, usePathname } from 'next/navigation'
+import { signOut } from 'next-auth/react'
+import { usePathname } from 'next/navigation'
 import { LayoutDashboard, Package, ShoppingCart, Users, Settings, BarChart3, LogOut, Folder } from 'lucide-react'
 import Link from 'next/link'
-import Loading from './Loading'
 
 const navItems = [
   { id: 'overview', label: 'Overview', icon: LayoutDashboard, href: '/admin' },
@@ -17,23 +16,7 @@ const navItems = [
 ]
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  const { data: session, status } = useSession()
-  const router = useRouter()
   const pathname = usePathname()
-
-  if (status === 'loading') {
-    return <Loading />
-  }
-
-  if (status === 'unauthenticated' || !session) {
-    router.push('/login')
-    return <Loading />
-  }
-
-  if (session.user?.role !== 'ADMIN') {
-    router.push('/login')
-    return <Loading />
-  }
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
@@ -44,8 +27,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <Link href="/admin" className="text-2xl font-bold text-gray-900 hover:text-blue-600 transition">Admin Dashboard</Link>
           </div>
           <div className="flex items-center space-x-4">
-            <span className="text-gray-600">{session?.user?.name}</span>
-            <button onClick={() => signOut()} className="text-red-600 hover:text-red-700 flex items-center space-x-2">
+            <button onClick={() => signOut({ callbackUrl: '/login' })} className="text-red-600 hover:text-red-700 flex items-center space-x-2">
               <LogOut className="w-5 h-5" />
               <span>Sign Out</span>
             </button>

@@ -6,17 +6,6 @@ export default withAuth(
     const { pathname } = req.nextUrl
     const token = req.nextauth.token
 
-    // Admin routes: non-admins get a 404, not a login redirect
-    // This hides the existence of the admin panel from non-admins
-    if (pathname.startsWith('/admin') || pathname.startsWith('/api/admin')) {
-      if (!token || token.role !== 'ADMIN') {
-        if (pathname.startsWith('/api/')) {
-          return NextResponse.json({ error: 'Not found' }, { status: 404 })
-        }
-        return NextResponse.rewrite(new URL('/not-found', req.url))
-      }
-    }
-
     return NextResponse.next()
   },
   {
@@ -41,9 +30,9 @@ export default withAuth(
           return true
         }
 
-        // Admin routes — must be authenticated (role checked in middleware fn above)
+        // Admin routes — open, no auth required
         if (pathname.startsWith('/admin') || pathname.startsWith('/api/admin')) {
-          return !!token
+          return true
         }
 
         // Dashboard requires authentication
