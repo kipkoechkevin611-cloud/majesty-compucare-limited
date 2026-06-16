@@ -1,22 +1,28 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { TrendingUp, DollarSign, ShoppingBag, AlertTriangle, Package, Users } from 'lucide-react'
+import { TrendingUp, DollarSign, ShoppingBag, AlertTriangle, Package, Users, RefreshCw } from 'lucide-react'
 import Link from 'next/link'
 
 export default function AdminDashboardPage() {
   const [stats, setStats] = useState<any>(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   const fetchStats = async () => {
+    setLoading(true)
+    setError(false)
     try {
       const response = await fetch('/api/admin/stats')
       if (response.ok) {
         const data = await response.json()
         setStats(data)
+      } else {
+        setError(true)
       }
-    } catch (error) {
-      console.error('Error fetching stats:', error)
+    } catch (err) {
+      console.error('Error fetching stats:', err)
+      setError(true)
     } finally {
       setLoading(false)
     }
@@ -26,22 +32,36 @@ export default function AdminDashboardPage() {
     fetchStats()
   }, [])
 
-  if (loading) {
-    return <div className="flex items-center justify-center h-64"><div className="text-gray-500">Loading...</div></div>
-  }
-
-  const statsData = stats ? [
-    { label: 'Total Revenue', value: `KES ${(stats.totalRevenue || 0).toLocaleString()}`, change: '+12%', icon: DollarSign, color: 'green' },
-    { label: 'Total Orders', value: stats.totalOrders || 0, change: '+8%', icon: ShoppingBag, color: 'blue' },
-    { label: 'Total Products', value: stats.totalProducts || 0, change: '+3%', icon: Package, color: 'purple' },
-    { label: 'Total Customers', value: stats.totalCustomers || 0, change: '+15%', icon: Users, color: 'orange' },
-  ] : []
+  const statsData = [
+    { label: 'Total Revenue', value: loading ? '—' : `KES ${(stats?.totalRevenue || 0).toLocaleString()}`, change: '+12%', icon: DollarSign, color: 'green' },
+    { label: 'Total Orders', value: loading ? '—' : (stats?.totalOrders || 0), change: '+8%', icon: ShoppingBag, color: 'blue' },
+    { label: 'Total Products', value: loading ? '—' : (stats?.totalProducts || 0), change: '+3%', icon: Package, color: 'purple' },
+    { label: 'Total Customers', value: loading ? '—' : (stats?.totalCustomers || 0), change: '+15%', icon: Users, color: 'orange' },
+  ]
 
   const recentOrders = stats?.recentOrders || []
 
   return (
     <div>
-      <h2 className="text-3xl font-bold text-gray-900 mb-8">Dashboard Overview</h2>
+      <div className="flex items-center justify-between mb-8">
+        <h2 className="text-3xl font-bold text-gray-900">Dashboard Overview</h2>
+        <button onClick={fetchStats} disabled={loading}
+          className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-blue-50 text-blue-600 hover:bg-blue-100 transition disabled:opacity-50">
+          <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+          Refresh
+        </button>
+      </div>
+
+      {/* Error Banner */}
+      {error && (
+        <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-6 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <AlertTriangle className="w-5 h-5 text-red-500 flex-shrink-0" />
+            <p className="text-red-800 text-sm">Could not connect to database. Check MongoDB Atlas Network Access (allow <strong>0.0.0.0/0</strong>).</p>
+          </div>
+          <button onClick={fetchStats} className="text-sm text-red-600 font-semibold hover:underline ml-4">Retry</button>
+        </div>
+      )}
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -58,7 +78,10 @@ export default function AdminDashboardPage() {
                   {stat.change}
                 </span>
               </div>
-              <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
+              {loading
+                ? <div className="h-8 w-24 bg-gray-200 rounded animate-pulse mb-1" />
+                : <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
+              }
               <p className="text-gray-600 text-sm">{stat.label}</p>
             </div>
           )
