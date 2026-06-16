@@ -5,7 +5,6 @@ import { useRouter, usePathname } from 'next/navigation'
 import { LayoutDashboard, Package, ShoppingCart, Users, Settings, BarChart3, LogOut, Folder } from 'lucide-react'
 import Link from 'next/link'
 import Loading from './Loading'
-import { notFound } from 'next/navigation'
 
 const navItems = [
   { id: 'overview', label: 'Overview', icon: LayoutDashboard, href: '/admin' },
@@ -26,13 +25,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     return <Loading />
   }
 
-  if (status === 'unauthenticated') {
+  if (status === 'unauthenticated' || !session) {
     router.push('/login')
-    return null
+    return <Loading />
   }
 
-  if (session?.user?.role !== 'ADMIN') {
-    notFound()
+  if (session.user?.role !== 'ADMIN') {
+    router.push('/login')
+    return <Loading />
   }
 
   return (

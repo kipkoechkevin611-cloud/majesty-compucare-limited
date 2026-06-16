@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation'
 import { TrendingUp, DollarSign, ShoppingBag, AlertTriangle, Package, Users } from 'lucide-react'
 import Link from 'next/link'
 import Loading from '@/components/Loading'
-import { notFound } from 'next/navigation'
 
 export default function AdminDashboardPage() {
   const { data: session, status } = useSession()
@@ -38,13 +37,14 @@ export default function AdminDashboardPage() {
     return <Loading />
   }
 
-  if (status === 'unauthenticated') {
+  if (status === 'unauthenticated' || !session) {
     router.push('/login')
-    return null
+    return <Loading />
   }
 
-  if (session?.user?.role !== 'ADMIN') {
-    notFound()
+  if (session.user?.role !== 'ADMIN') {
+    router.push('/login')
+    return <Loading />
   }
 
   const statsData = stats ? [
