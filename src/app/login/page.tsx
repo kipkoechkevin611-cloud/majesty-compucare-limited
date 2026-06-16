@@ -51,7 +51,7 @@ export default function LoginPage() {
       <div className="max-w-md w-full">
         <div className="text-center mb-8">
           <p className="section-label mb-3">// ACCESS_PORTAL</p>
-          <h1 className="text-4xl font-black text-[#F0F2F5]" style={{fontFamily:'Montserrat,sans-serif'}}>Welcome Back</h1>
+          <h1 className="text-4xl font-black text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>Welcome Back</h1>
           <p className="mt-2" style={{color:'var(--text-low)'}}>Sign in to your account</p>
         </div>
 
@@ -74,7 +74,7 @@ export default function LoginPage() {
                   type="email" id="email" required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full pl-10 pr-4 py-3 rounded-lg text-sm text-[#F0F2F5] outline-none transition"
+                  className="w-full pl-10 pr-4 py-3 rounded-lg text-sm text-slate-900 outline-none transition"
                   style={{background:'rgba(0,123,255,0.06)',border:'1px solid rgba(0,123,255,0.2)'}}
                   placeholder="you@example.com"
                 />
@@ -91,7 +91,7 @@ export default function LoginPage() {
                   type="password" id="password" required
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                  className="w-full pl-10 pr-4 py-3 rounded-lg text-sm text-[#F0F2F5] outline-none transition"
+                  className="w-full pl-10 pr-4 py-3 rounded-lg text-sm text-slate-900 outline-none transition"
                   style={{background:'rgba(0,123,255,0.06)',border:'1px solid rgba(0,123,255,0.2)'}}
                   placeholder="••••••••"
                 />

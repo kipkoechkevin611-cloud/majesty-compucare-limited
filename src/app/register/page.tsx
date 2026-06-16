@@ -77,7 +77,7 @@ export default function RegisterPage() {
       <div className="max-w-md w-full">
         <div className="text-center mb-8">
           <p className="section-label mb-3">// NEW_USER</p>
-          <h1 className="text-4xl font-black text-[#F0F2F5]" style={{fontFamily:'Montserrat,sans-serif'}}>Create Account</h1>
+          <h1 className="text-4xl font-black text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>Create Account</h1>
           <p className="mt-2" style={{color:'var(--text-low)'}}>Join Majesty Compucare Limited</p>
         </div>
 
@@ -108,7 +108,7 @@ export default function RegisterPage() {
                     type={type} id={id} required
                     value={(formData as any)[key]}
                     onChange={(e) => setFormData({ ...formData, [key]: e.target.value })}
-                    className="w-full pl-10 pr-4 py-3 rounded-lg text-sm text-[#F0F2F5] outline-none transition"
+                    className="w-full pl-10 pr-4 py-3 rounded-lg text-sm text-slate-900 outline-none transition"
                     style={inputStyle}
                     placeholder={placeholder}
                   />

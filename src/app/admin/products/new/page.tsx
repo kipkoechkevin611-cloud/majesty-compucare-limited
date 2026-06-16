@@ -29,9 +29,9 @@ export default function NewProductPage() {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch('/api/categories')
-      if (response.ok) {
-        const data = await response.json()
+      const res = await fetch('/api/admin/categories')
+      if (res.ok) {
+        const data = await res.json()
         setCategories(data || [])
       }
     } catch (error) {
@@ -197,6 +197,7 @@ export default function NewProductPage() {
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-400"
                   >
                     <option value="">Select category</option>
+                    {categories.length === 0 && <option disabled>No categories found — add via Categories page</option>}
                     {categories.map((cat) => (
                       <option key={cat.id} value={cat.id}>
                         {cat.name}

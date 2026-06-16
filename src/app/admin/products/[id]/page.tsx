@@ -66,7 +66,7 @@ export default function EditProductPage() {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch('/api/categories')
+      const response = await fetch('/api/admin/categories')
       if (response.ok) {
         const data = await response.json()
         setCategories(data || [])

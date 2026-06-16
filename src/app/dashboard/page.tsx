@@ -59,7 +59,7 @@ export default function DashboardPage() {
           </div>
           <div>
             <p className="section-label mb-1">// DASHBOARD</p>
-            <h1 className="text-2xl font-black text-[#F0F2F5]" style={{fontFamily:'Montserrat,sans-serif'}}>Welcome back, {session.user?.name || 'there'}!</h1>
+            <h1 className="text-2xl font-black text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>Welcome back, {session.user?.name || 'there'}!</h1>
             <p className="text-sm mt-0.5" style={{color:'var(--text-low)',fontFamily:'Fira Code,monospace'}}>{session.user?.email}</p>
           </div>
         </div>
@@ -78,7 +78,7 @@ export default function DashboardPage() {
                       {initial}
                     </div>
                     <div className="min-w-0">
-                      <p className="font-bold text-[#F0F2F5] truncate text-sm" style={{fontFamily:'Montserrat,sans-serif'}}>{session.user?.name || 'Customer'}</p>
+                      <p className="font-bold text-slate-900 truncate text-sm" style={{fontFamily:'Montserrat,sans-serif'}}>{session.user?.name || 'Customer'}</p>
                       <p className="text-[10px] truncate" style={{color:'var(--text-low)',fontFamily:'Fira Code,monospace'}}>{session.user?.email}</p>
                     </div>
                   </div>
@@ -131,7 +131,7 @@ export default function DashboardPage() {
                         <div key={order.id} className="rounded-xl p-5 transition" style={{border:'1px solid rgba(0,123,255,0.15)',background:'rgba(0,123,255,0.03)'}}>
                           <div className="flex items-start justify-between mb-3">
                             <div>
-                              <p className="font-bold text-[#F0F2F5]" style={{fontFamily:'Fira Code,monospace'}}>{order.orderNumber}</p>
+                              <p className="font-bold text-slate-900" style={{fontFamily:'Fira Code,monospace'}}>{order.orderNumber}</p>
                               <p className="text-xs mt-0.5" style={{color:'var(--text-low)'}}>{new Date(order.createdAt).toLocaleDateString('en-KE', { day: 'numeric', month: 'short', year: 'numeric' })}</p>
                             </div>
                             <span className="text-xs font-bold px-3 py-1 rounded-full" style={{background:(statusColors[order.status]||statusColors.PENDING).bg,color:(statusColors[order.status]||statusColors.PENDING).color}}>
@@ -158,7 +158,7 @@ export default function DashboardPage() {
                   ) : (
                     <div className="text-center py-16">
                       <ShoppingBag className="w-16 h-16 mx-auto mb-4" style={{color:'rgba(0,123,255,0.2)'}} />
-                      <p className="font-bold text-[#F0F2F5]" style={{fontFamily:'Montserrat,sans-serif'}}>No orders yet</p>
+                      <p className="font-bold text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>No orders yet</p>
                       <p className="text-sm mt-1 mb-6" style={{color:'var(--text-low)'}}>Your order history will appear here</p>
                       <Link href="/products" className="btn-primary inline-flex items-center gap-2 px-6 py-3 text-sm">
                         <ShoppingCart className="w-4 h-4" /> Start Shopping
@@ -176,7 +176,7 @@ export default function DashboardPage() {
                     <div className="grid md:grid-cols-2 gap-5">
                       <div>
                         <label className="block text-xs font-semibold mb-1.5 uppercase tracking-wider" style={{color:'var(--text-low)',fontFamily:'Fira Code,monospace'}}>Full Name</label>
-                        <input type="text" defaultValue={session.user?.name || ''} className="w-full px-4 py-3 rounded-lg text-sm text-[#F0F2F5] outline-none" style={inputStyle} />
+                        <input type="text" defaultValue={session.user?.name || ''} className="w-full px-4 py-3 rounded-lg text-sm text-slate-900 outline-none" style={inputStyle} />
                       </div>
                       <div>
                         <label className="block text-xs font-semibold mb-1.5 uppercase tracking-wider" style={{color:'var(--text-low)',fontFamily:'Fira Code,monospace'}}>Email</label>
@@ -185,7 +185,7 @@ export default function DashboardPage() {
                     </div>
                     <div>
                       <label className="block text-xs font-semibold mb-1.5 uppercase tracking-wider" style={{color:'var(--text-low)',fontFamily:'Fira Code,monospace'}}>Phone Number</label>
-                      <input type="tel" placeholder="07XX XXX XXX" className="w-full px-4 py-3 rounded-lg text-sm text-[#F0F2F5] outline-none" style={inputStyle} />
+                      <input type="tel" placeholder="07XX XXX XXX" className="w-full px-4 py-3 rounded-lg text-sm text-slate-900 outline-none" style={inputStyle} />
                     </div>
                     <button type="submit" className="btn-primary px-6 py-3 text-sm">Save Changes</button>
                   </form>
@@ -198,7 +198,7 @@ export default function DashboardPage() {
                   <p className="section-label mb-5">// ADDRESSES</p>
                   <div className="text-center py-16">
                     <MapPin className="w-16 h-16 mx-auto mb-4" style={{color:'rgba(0,123,255,0.2)'}} />
-                    <p className="font-bold text-[#F0F2F5]" style={{fontFamily:'Montserrat,sans-serif'}}>No saved addresses</p>
+                    <p className="font-bold text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>No saved addresses</p>
                     <p className="text-sm mt-1 mb-6" style={{color:'var(--text-low)'}}>Addresses you save at checkout will appear here</p>
                     <Link href="/products" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-bold text-sm transition" style={{border:'1px solid var(--accent-blue)',color:'var(--accent-blue)'}}>
                       Browse Products

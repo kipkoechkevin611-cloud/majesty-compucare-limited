@@ -84,7 +84,7 @@ export default function ProductsPage() {
         <div className="absolute inset-0 radial-glow" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="section-label mb-3">// PRODUCTS</p>
-          <h1 className="text-4xl md:text-5xl font-black text-[#F0F2F5] mb-3" style={{fontFamily:'Montserrat,sans-serif'}}>Our Products</h1>
+          <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-3" style={{fontFamily:'Montserrat,sans-serif'}}>Our Products</h1>
           <p className="text-lg max-w-3xl" style={{color:'var(--text-low)'}}>Browse our wide range of quality technology products for home and business</p>
         </div>
       </section>
@@ -97,7 +97,7 @@ export default function ProductsPage() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" style={{color:'var(--accent-blue)'}} />
               <input type="text" placeholder="Search products..." value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 rounded-lg text-sm text-[#F0F2F5] outline-none"
+                className="w-full pl-10 pr-4 py-2.5 rounded-lg text-sm text-slate-900 outline-none"
                 style={{background:'rgba(0,123,255,0.06)',border:'1px solid rgba(0,123,255,0.2)'}} />
             </div>
             <button onClick={() => setShowFilters(!showFilters)}
@@ -190,7 +190,7 @@ export default function ProductsPage() {
                   </div>
                   <div className="p-4">
                     <p className="text-[10px] sm:text-xs font-semibold mb-1" style={{color:'var(--accent-blue)',fontFamily:'Fira Code,monospace'}}>{product.category?.name}</p>
-                    <h3 className="font-bold text-sm md:text-base text-[#F0F2F5] mb-2 line-clamp-2" style={{fontFamily:'Montserrat,sans-serif'}}>
+                    <h3 className="font-bold text-sm md:text-base text-slate-900 mb-2 line-clamp-2" style={{fontFamily:'Montserrat,sans-serif'}}>
                       {product.name}
                     </h3>
                     <div className="flex items-center gap-2 mb-3">
@@ -227,7 +227,7 @@ export default function ProductsPage() {
           ) : (
             <div className="text-center py-16">
               <Package className="w-16 h-16 mx-auto mb-4" style={{color:'rgba(0,123,255,0.15)'}} />
-              <h3 className="text-lg font-black text-[#F0F2F5] mb-2" style={{fontFamily:'Montserrat,sans-serif'}}>No products found</h3>
+              <h3 className="text-lg font-black text-slate-900 mb-2" style={{fontFamily:'Montserrat,sans-serif'}}>No products found</h3>
               <p className="text-sm" style={{color:'var(--text-low)'}}>Try adjusting your search or filter criteria</p>
             </div>
           )}

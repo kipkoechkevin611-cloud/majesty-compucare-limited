@@ -41,7 +41,7 @@ export default function ContactPage() {
     }
   }
 
-  const inputCls = "w-full px-4 py-3 rounded-lg text-sm text-[#F0F2F5] outline-none transition"
+  const inputCls = "w-full px-4 py-3 rounded-lg text-sm text-slate-900 outline-none transition"
   const inputSty = {background:'rgba(0,123,255,0.06)',border:'1px solid rgba(0,123,255,0.2)'}
   const labelCls = "block text-xs font-semibold mb-2 uppercase tracking-wider"
   const labelSty = {color:'var(--text-low)',fontFamily:'Fira Code,monospace'}
@@ -53,7 +53,7 @@ export default function ContactPage() {
         <div className="absolute inset-0 radial-glow" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="section-label mb-4">// CONTACT_US</p>
-          <h1 className="text-4xl md:text-5xl font-black text-[#F0F2F5] mb-4" style={{fontFamily:'Montserrat,sans-serif'}}>Contact Us</h1>
+          <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-4" style={{fontFamily:'Montserrat,sans-serif'}}>Contact Us</h1>
           <p className="text-lg max-w-3xl mx-auto" style={{color:'var(--text-low)'}}>
             Get in touch with us for any inquiries, support, or to discuss your technology needs
           </p>
@@ -68,7 +68,7 @@ export default function ContactPage() {
             <div className="lg:col-span-1 space-y-6">
               <div>
                 <p className="section-label mb-3">// GET_IN_TOUCH</p>
-                <h2 className="text-xl font-black text-[#F0F2F5] mb-3" style={{fontFamily:'Montserrat,sans-serif'}}>Get In Touch</h2>
+                <h2 className="text-xl font-black text-slate-900 mb-3" style={{fontFamily:'Montserrat,sans-serif'}}>Get In Touch</h2>
                 <p className="text-sm leading-relaxed" style={{color:'var(--text-low)'}}>
                   Have questions or need assistance? We're here to help. Reach out to us through any of the following channels.
                 </p>
@@ -165,13 +165,13 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <p className="section-label mb-3">// FIND_US</p>
-            <h2 className="text-3xl font-black text-[#F0F2F5]" style={{fontFamily:'Montserrat,sans-serif'}}>Find Us</h2>
+            <h2 className="text-3xl font-black text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>Find Us</h2>
             <p className="mt-2 text-sm" style={{color:'var(--text-low)'}}>Visit our store in Nakuru for in-person assistance</p>
           </div>
           <div className="rounded-xl overflow-hidden h-64 sm:h-72 lg:h-80 flex items-center justify-center" style={{background:'rgba(0,123,255,0.05)',border:'1px solid rgba(0,123,255,0.15)'}}>
             <div className="text-center">
               <MapPin className="w-14 h-14 mx-auto mb-3" style={{color:'rgba(0,123,255,0.3)'}} />
-              <p className="font-bold text-[#F0F2F5]" style={{fontFamily:'Montserrat,sans-serif'}}>Map Integration</p>
+              <p className="font-bold text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>Map Integration</p>
               <p className="text-sm mt-1" style={{color:'var(--text-low)',fontFamily:'Fira Code,monospace'}}>Nyakinyua Building, Kangei, Nakuru, Kenya</p>
             </div>
           </div>
@@ -182,7 +182,7 @@ export default function ContactPage() {
       <section className="py-12 sm:py-16" style={{borderTop:'1px solid rgba(0,255,0,0.15)'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="section-label mb-4">// WHATSAPP</p>
-          <h2 className="text-3xl font-black text-[#F0F2F5] mb-4" style={{fontFamily:'Montserrat,sans-serif'}}>Chat with us on WhatsApp</h2>
+          <h2 className="text-3xl font-black text-slate-900 mb-4" style={{fontFamily:'Montserrat,sans-serif'}}>Chat with us on WhatsApp</h2>
           <p className="mb-8 max-w-2xl mx-auto text-sm" style={{color:'var(--text-low)'}}>
             Get instant responses to your questions. Our team is available on WhatsApp to assist you.
           </p>

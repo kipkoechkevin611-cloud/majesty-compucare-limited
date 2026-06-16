@@ -65,7 +65,7 @@ export default function ServicesPage() {
         <div className="absolute inset-0 radial-glow" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="section-label mb-4">// OUR_SERVICES</p>
-          <h1 className="text-4xl md:text-5xl font-black text-[#F0F2F5] mb-4" style={{fontFamily:'Montserrat,sans-serif'}}>Our Services</h1>
+          <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-4" style={{fontFamily:'Montserrat,sans-serif'}}>Our Services</h1>
           <p className="text-lg max-w-3xl mx-auto" style={{color:'var(--text-low)'}}>
             Comprehensive IT solutions to keep your business and personal technology running smoothly
           </p>
@@ -81,7 +81,7 @@ export default function ServicesPage() {
                 <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-4" style={{background:'rgba(0,123,255,0.12)',border:'1px solid rgba(0,123,255,0.25)'}}>
                   <service.icon className="w-6 h-6" style={{color:'var(--accent-blue)'}} />
                 </div>
-                <h3 className="text-base font-black text-[#F0F2F5] mb-2" style={{fontFamily:'Montserrat,sans-serif'}}>{service.title}</h3>
+                <h3 className="text-base font-black text-slate-900 mb-2" style={{fontFamily:'Montserrat,sans-serif'}}>{service.title}</h3>
                 <p className="text-sm leading-relaxed mb-4" style={{color:'var(--text-low)'}}>{service.description}</p>
                 <ul className="space-y-1.5">
                   {service.features.map((feature, i) => (
@@ -102,7 +102,7 @@ export default function ServicesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="section-label mb-3">// WHY_US</p>
-            <h2 className="text-3xl font-black text-[#F0F2F5]" style={{fontFamily:'Montserrat,sans-serif'}}>Why Choose Our Services</h2>
+            <h2 className="text-3xl font-black text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>Why Choose Our Services</h2>
             <p className="mt-2 text-sm" style={{color:'var(--text-low)'}}>We deliver excellence in every aspect of our service delivery</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
@@ -116,7 +116,7 @@ export default function ServicesPage() {
                 <div className="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4" style={{background:'rgba(0,255,0,0.08)',border:'1px solid rgba(0,255,0,0.2)'}}>
                   <f.icon className="w-7 h-7" style={{color:'var(--accent-green)'}} />
                 </div>
-                <h3 className="text-sm font-black text-[#F0F2F5] mb-1" style={{fontFamily:'Montserrat,sans-serif'}}>{f.title}</h3>
+                <h3 className="text-sm font-black text-slate-900 mb-1" style={{fontFamily:'Montserrat,sans-serif'}}>{f.title}</h3>
                 <p className="text-xs" style={{color:'var(--text-low)'}}>{f.desc}</p>
               </div>
             ))}
@@ -129,7 +129,7 @@ export default function ServicesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="section-label mb-3">// PROCESS</p>
-            <h2 className="text-3xl font-black text-[#F0F2F5]" style={{fontFamily:'Montserrat,sans-serif'}}>Our Service Process</h2>
+            <h2 className="text-3xl font-black text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>Our Service Process</h2>
             <p className="mt-2 text-sm" style={{color:'var(--text-low)'}}>Simple and efficient process to get your technology working</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
@@ -143,7 +143,7 @@ export default function ServicesPage() {
                 <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-black" style={{background:'var(--accent-blue)',color:'#fff',boxShadow:'0 0 18px rgba(0,123,255,0.4)',fontFamily:'Fira Code,monospace'}}>
                   {item.step}
                 </div>
-                <h3 className="text-sm font-black text-[#F0F2F5] mb-1" style={{fontFamily:'Montserrat,sans-serif'}}>{item.title}</h3>
+                <h3 className="text-sm font-black text-slate-900 mb-1" style={{fontFamily:'Montserrat,sans-serif'}}>{item.title}</h3>
                 <p className="text-xs" style={{color:'var(--text-low)'}}>{item.desc}</p>
                 {i < 3 && <div className="hidden md:block absolute top-8 left-full w-full h-px -translate-x-1/2" style={{background:'rgba(0,123,255,0.2)'}} />}
               </div>
@@ -156,7 +156,7 @@ export default function ServicesPage() {
       <section className="py-12 sm:py-16" style={{background:'var(--bg-surface2)',borderTop:'1px solid rgba(0,123,255,0.15)'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="section-label mb-4">// CONTACT</p>
-          <h2 className="text-3xl font-black text-[#F0F2F5] mb-4" style={{fontFamily:'Montserrat,sans-serif'}}>Need IT Services?</h2>
+          <h2 className="text-3xl font-black text-slate-900 mb-4" style={{fontFamily:'Montserrat,sans-serif'}}>Need IT Services?</h2>
           <p className="mb-8 max-w-2xl mx-auto text-sm" style={{color:'var(--text-low)'}}>
             Contact us today for professional IT solutions. Our team is ready to help you with all your technology needs.
           </p>

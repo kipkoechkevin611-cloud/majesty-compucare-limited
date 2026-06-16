@@ -11,7 +11,7 @@ export default function CartPage() {
     return (
       <div className="flex flex-col items-center justify-center py-24 min-h-[60vh]" style={{background:'var(--bg-primary)'}}>
         <ShoppingBag className="w-20 h-20 mb-5" style={{color:'rgba(0,123,255,0.25)'}} />
-        <h2 className="text-2xl font-black text-[#F0F2F5] mb-2" style={{fontFamily:'Montserrat,sans-serif'}}>Your cart is empty</h2>
+        <h2 className="text-2xl font-black text-slate-900 mb-2" style={{fontFamily:'Montserrat,sans-serif'}}>Your cart is empty</h2>
         <p className="mb-8" style={{color:'var(--text-low)'}}>Add some products to get started</p>
         <Link href="/products" className="btn-primary inline-flex items-center gap-2 px-6 py-3">
           Continue Shopping <ArrowRight className="w-4 h-4" />
@@ -27,7 +27,7 @@ export default function CartPage() {
         <div className="absolute inset-0 radial-glow" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="section-label mb-2">// CART</p>
-          <h1 className="text-4xl font-black text-[#F0F2F5]" style={{fontFamily:'Montserrat,sans-serif'}}>Shopping Cart</h1>
+          <h1 className="text-4xl font-black text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>Shopping Cart</h1>
           <p className="mt-1" style={{color:'var(--text-low)',fontFamily:'Fira Code,monospace',fontSize:'0.85rem'}}>{getCartCount()} {getCartCount() === 1 ? 'item' : 'items'} in your cart</p>
         </div>
       </section>
@@ -51,7 +51,7 @@ export default function CartPage() {
                   </div>
 
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-bold text-[#F0F2F5] truncate" style={{fontFamily:'Montserrat,sans-serif'}}>{item.name}</h3>
+                    <h3 className="font-bold text-slate-900 truncate" style={{fontFamily:'Montserrat,sans-serif'}}>{item.name}</h3>
                     {item.category && (
                       <p className="text-xs capitalize mt-0.5" style={{color:'var(--accent-blue)',fontFamily:'Fira Code,monospace'}}>{item.category}</p>
                     )}
@@ -65,7 +65,7 @@ export default function CartPage() {
                       aria-label="Decrease quantity">
                       <Minus className="w-3.5 h-3.5" />
                     </button>
-                    <span className="w-10 text-center font-bold text-[#F0F2F5]" style={{fontFamily:'Fira Code,monospace'}}>{item.quantity}</span>
+                    <span className="w-10 text-center font-bold text-slate-900" style={{fontFamily:'Fira Code,monospace'}}>{item.quantity}</span>
                     <button onClick={() => updateQuantity(item.id, item.quantity + 1)}
                       className="w-8 h-8 rounded-lg flex items-center justify-center transition"
                       style={{background:'rgba(0,123,255,0.1)',border:'1px solid rgba(0,123,255,0.2)',color:'var(--text-high)'}}
@@ -75,7 +75,7 @@ export default function CartPage() {
                   </div>
 
                   <div className="text-right">
-                    <p className="text-base font-black text-[#F0F2F5]" style={{fontFamily:'Montserrat,sans-serif'}}>
+                    <p className="text-base font-black text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>
                       KES {(item.price * item.quantity).toLocaleString()}
                     </p>
                     <button onClick={() => removeFromCart(item.id)}
@@ -104,7 +104,7 @@ export default function CartPage() {
                     </div>
                   ))}
                   <div className="pt-3" style={{borderTop:'1px solid rgba(0,123,255,0.15)'}}>
-                    <div className="flex justify-between font-black text-[#F0F2F5]" style={{fontFamily:'Montserrat,sans-serif'}}>
+                    <div className="flex justify-between font-black text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>
                       <span>Total</span>
                       <span style={{color:'var(--accent-green)'}}>KES {getCartTotal().toLocaleString()}</span>
                     </div>

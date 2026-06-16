@@ -147,7 +147,7 @@ export default function CheckoutPage() {
     }
   }
 
-  const inputCls = "w-full px-4 py-3 rounded-lg text-sm text-[#F0F2F5] outline-none transition"
+  const inputCls = "w-full px-4 py-3 rounded-lg text-sm text-slate-900 outline-none transition"
   const inputSty = {background:'rgba(0,123,255,0.06)',border:'1px solid rgba(0,123,255,0.2)'}
   const labelCls = "block text-xs font-semibold mb-2 uppercase tracking-wider"
   const labelSty = {color:'var(--text-low)',fontFamily:'Fira Code,monospace'}
@@ -170,7 +170,7 @@ export default function CheckoutPage() {
           <div key={k} className="flex justify-between text-xs" style={{color:'var(--text-low)'}}><span>{k}</span><span>{v}</span></div>
         ))}
         <div className="flex justify-between font-black pt-2" style={{borderTop:'1px solid rgba(0,123,255,0.1)',fontFamily:'Montserrat,sans-serif'}}>
-          <span className="text-[#F0F2F5]">Total</span>
+          <span className="text-slate-900">Total</span>
           <span style={{color:'var(--accent-green)'}}>KES {(getCartTotal()+500+Math.round(getCartTotal()*0.16)).toLocaleString()}</span>
         </div>
       </div>
@@ -184,7 +184,7 @@ export default function CheckoutPage() {
         <div className="absolute inset-0 radial-glow" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="section-label mb-2">// CHECKOUT</p>
-          <h1 className="text-4xl font-black text-[#F0F2F5]" style={{fontFamily:'Montserrat,sans-serif'}}>Checkout</h1>
+          <h1 className="text-4xl font-black text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>Checkout</h1>
           <p className="mt-1 text-sm" style={{color:'var(--text-low)'}}>Complete your order securely</p>
         </div>
       </section>
@@ -285,7 +285,7 @@ export default function CheckoutPage() {
                           onChange={() => setFormData({ ...formData, paymentMethod: val })} className="mr-3" style={{accentColor:'var(--accent-blue)'}} />
                         <Icon className="w-5 h-5 mr-3 flex-shrink-0" style={{color:iconColor}} />
                         <div>
-                          <p className="font-bold text-sm text-[#F0F2F5]" style={{fontFamily:'Montserrat,sans-serif'}}>{title}</p>
+                          <p className="font-bold text-sm text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>{title}</p>
                           <p className="text-xs" style={{color:'var(--text-low)'}}>{sub}</p>
                         </div>
                       </label>
@@ -310,7 +310,7 @@ export default function CheckoutPage() {
                         <div className="flex items-center gap-3 p-3 rounded-xl" style={{background:'rgba(0,123,255,0.08)',border:'1px solid rgba(0,123,255,0.2)'}}>
                           <Loader2 className="w-5 h-5 animate-spin flex-shrink-0" style={{color:'var(--accent-blue)'}} />
                           <div>
-                            <p className="text-sm font-bold text-[#F0F2F5]">Sending STK Push...</p>
+                            <p className="text-sm font-bold text-slate-900">Sending STK Push...</p>
                             <p className="text-xs" style={{color:'var(--text-low)'}}>Please wait while we contact Safaricom</p>
                           </div>
                         </div>
@@ -364,13 +364,13 @@ export default function CheckoutPage() {
                 <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6" style={{background:'rgba(0,255,0,0.1)',border:'1px solid rgba(0,255,0,0.3)',boxShadow:'0 0 24px rgba(0,255,0,0.2)'}}>
                   <CheckCircle className="w-10 h-10" style={{color:'var(--accent-green)'}} />
                 </div>
-                <h2 className="text-3xl font-black text-[#F0F2F5] mb-4" style={{fontFamily:'Montserrat,sans-serif'}}>Order Placed Successfully!</h2>
+                <h2 className="text-3xl font-black text-slate-900 mb-4" style={{fontFamily:'Montserrat,sans-serif'}}>Order Placed Successfully!</h2>
                 <p className="mb-6 text-sm" style={{color:'var(--text-low)'}}>
                   Thank you for your order. You will receive an email confirmation shortly with your order details.
                 </p>
                 <div className="rounded-lg p-4 mb-6" style={{background:'rgba(0,123,255,0.06)',border:'1px solid rgba(0,123,255,0.15)'}}>
                   <p className="text-xs mb-1" style={{color:'var(--text-low)',fontFamily:'Fira Code,monospace'}}>// ORDER_NUMBER</p>
-                  <p className="text-xl font-black text-[#F0F2F5]" style={{fontFamily:'Fira Code,monospace'}}>{savedOrderNumber || 'Confirmed'}</p>
+                  <p className="text-xl font-black text-slate-900" style={{fontFamily:'Fira Code,monospace'}}>{savedOrderNumber || 'Confirmed'}</p>
                 </div>
                 <div className="space-y-3">
                   <Link href="/" className="btn-primary block w-full py-3 text-center">Continue Shopping</Link>
