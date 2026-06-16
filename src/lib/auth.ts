@@ -15,26 +15,10 @@ export const authOptions = {
           throw new Error('Invalid credentials')
         }
 
-        // If Prisma is not available, use mock authentication for development
+        // If Prisma is not available, database is not configured
         if (!prisma) {
-          // Mock user for development
-          if (credentials.email === 'admin@compcare.co.ke' && credentials.password === 'admin123') {
-            return {
-              id: '1',
-              email: 'admin@compcare.co.ke',
-              name: 'Admin User',
-              role: 'ADMIN' as const,
-            }
-          }
-          if (credentials.email === 'user@example.com' && credentials.password === 'user123') {
-            return {
-              id: '2',
-              email: 'user@example.com',
-              name: 'Test User',
-              role: 'CUSTOMER' as const,
-            }
-          }
-          throw new Error('Invalid credentials')
+          console.error('Auth: Prisma not initialized — DATABASE_URL missing or invalid')
+          throw new Error('Database not available. Please contact support.')
         }
 
         const user = await prisma.user.findUnique({
