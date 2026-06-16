@@ -6,12 +6,6 @@ import { prisma } from '@/lib/prisma'
 // GET /api/admin/categories - List all categories
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-    
-    if (!session || session.user?.role !== 'ADMIN') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
-
     const categories = await prisma?.category.findMany({
       orderBy: { name: 'asc' },
       include: {
@@ -34,12 +28,6 @@ export async function GET(request: NextRequest) {
 // POST /api/admin/categories - Create a new category
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-    
-    if (!session || session.user?.role !== 'ADMIN') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
-
     const body = await request.json()
     
     // Validate required fields
@@ -88,3 +76,4 @@ export async function POST(request: NextRequest) {
     )
   }
 }
+

@@ -5,12 +5,6 @@ import { prisma } from '@/lib/prisma'
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session || session.user?.role !== 'ADMIN') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
-
     const [
       totalProducts,
       totalOrders,
@@ -54,3 +48,4 @@ export async function GET(request: NextRequest) {
     )
   }
 }
+

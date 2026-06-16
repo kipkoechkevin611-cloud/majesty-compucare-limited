@@ -6,12 +6,6 @@ import { prisma } from '@/lib/prisma'
 // GET /api/admin/products - List all products
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session || session.user?.role !== 'ADMIN') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
-
     const searchParams = request.nextUrl.searchParams
     const search = searchParams.get('search') || ''
     const category = searchParams.get('category') || ''
@@ -72,12 +66,6 @@ export async function GET(request: NextRequest) {
 // POST /api/admin/products - Create a new product
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session || session.user?.role !== 'ADMIN') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
-
     const body = await request.json()
 
     // Validate required fields
@@ -183,3 +171,4 @@ export async function POST(request: NextRequest) {
     )
   }
 }
+

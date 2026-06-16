@@ -6,11 +6,6 @@ import { prisma } from '@/lib/prisma'
 // GET /api/admin/settings - Get store settings
 export async function GET() {
   try {
-    const session = await getServerSession(authOptions)
-    if (!session || session.user?.role !== 'ADMIN') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
-
     // Fetch settings from database or return defaults
     const settings = {
       storeName: 'Majesty Compucare Limited',
@@ -51,11 +46,6 @@ export async function GET() {
 // PUT /api/admin/settings - Update store settings
 export async function PUT(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-    if (!session || session.user?.role !== 'ADMIN') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
-
     const body = await request.json()
     
     // In a real implementation, you would save these to a Settings table in the database
@@ -71,3 +61,4 @@ export async function PUT(request: NextRequest) {
     return NextResponse.json({ error: 'Failed to update settings' }, { status: 500 })
   }
 }
+
