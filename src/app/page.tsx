@@ -128,9 +128,8 @@ export default function Home() {
               <div className="relative rounded-2xl overflow-hidden h-52 group shadow-lg border border-slate-200">
                 <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800&q=85&auto=format&fit=crop"
                   alt="Laptops" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/10 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-5">
-                  <p className="text-blue-400 text-xs mb-1" style={{fontFamily:'Fira Code,monospace'}}>// FEATURED</p>
                   <p className="text-xl font-black text-white" style={{fontFamily:'Montserrat,sans-serif'}}>Laptops & Computers</p>
                   <p className="text-sm mt-0.5 text-slate-300">HP · Dell · Lenovo & more</p>
                 </div>
@@ -143,7 +142,7 @@ export default function Home() {
                 ].map(({src,title,sub})=>(
                   <div key={title} className="relative rounded-2xl overflow-hidden h-44 group shadow-md border border-slate-200">
                     <img src={src} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/30 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/65 via-slate-900/15 to-transparent" />
                     <div className="absolute bottom-0 left-0 p-4">
                       <p className="text-sm font-bold text-white" style={{fontFamily:'Montserrat,sans-serif'}}>{title}</p>
                       <p className="text-xs mt-0.5 text-slate-300">{sub}</p>
