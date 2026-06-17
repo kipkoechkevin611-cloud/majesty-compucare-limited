@@ -175,6 +175,11 @@ code, pre, .font-mono {
   to   { transform: scaleX(1); }
 }
 
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 /* === Footer social links (Light Theme) === */
 .footer-social-link {
   font-size: 0.75rem;

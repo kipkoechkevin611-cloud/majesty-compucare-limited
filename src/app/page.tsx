@@ -14,7 +14,8 @@ const HERO_SLIDES = [
     sub: 'Computers · Laptops · Printers · CCTV · Networking · IT Services — all under one roof. Fast. Genuine. Trusted.',
     cta: { label: 'Shop Now', href: '/products' },
     cta2: { label: 'Our Services', href: '/services' },
-    overlay: 'linear-gradient(to right, rgba(15,23,42,0.82) 0%, rgba(15,23,42,0.55) 55%, rgba(15,23,42,0.15) 100%)',
+    overlay: 'linear-gradient(to left, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.55) 55%, rgba(15,23,42,0.10) 100%)',
+    align: 'right' as const,
   },
   {
     bg: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=1400&q=90&auto=format&fit=crop',
@@ -59,7 +60,7 @@ export default function Home() {
   const [heroSlide, setHeroSlide] = useState(0)
 
   useEffect(() => {
-    const timer = setInterval(() => setHeroSlide(s => (s + 1) % HERO_SLIDES.length), 5500)
+    const timer = setInterval(() => setHeroSlide(s => (s + 1) % HERO_SLIDES.length), 3500)
     return () => clearInterval(timer)
   }, [])
 
@@ -142,13 +143,19 @@ export default function Home() {
 
         {/* Content */}
         <div className="relative z-10 h-full flex flex-col justify-center">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div className="max-w-2xl">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex">
+            <div className="max-w-2xl w-full"
+              style={{
+                marginLeft: (HERO_SLIDES[heroSlide] as any).align === 'right' ? 'auto' : undefined,
+                marginRight: (HERO_SLIDES[heroSlide] as any).align === 'right' ? '0' : undefined,
+                textAlign: (HERO_SLIDES[heroSlide] as any).align === 'right' ? 'right' : 'left',
+              }}>
 
               {/* Badge */}
               <div key={`badge-${heroSlide}`}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
-                style={{background:'rgba(255,255,255,0.15)',backdropFilter:'blur(8px)',border:'1px solid rgba(255,255,255,0.3)',
+                style={{marginLeft: (HERO_SLIDES[heroSlide] as any).align === 'right' ? 'auto' : undefined,
+                  background:'rgba(255,255,255,0.15)',backdropFilter:'blur(8px)',border:'1px solid rgba(255,255,255,0.3)',
                   animation:'fadeSlideUp 0.6s ease forwards'}}>
                 <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                 <span className="text-white text-xs font-semibold tracking-widest uppercase" style={{fontFamily:'Fira Code,monospace'}}>
@@ -179,7 +186,7 @@ export default function Home() {
               {/* CTAs */}
               <div key={`cta-${heroSlide}`}
                 className="flex flex-col sm:flex-row gap-4 mb-10"
-                style={{animation:'fadeSlideUp 0.7s 0.3s ease both'}}>
+                style={{animation:'fadeSlideUp 0.7s 0.3s ease both', justifyContent: (HERO_SLIDES[heroSlide] as any).align === 'right' ? 'flex-end' : undefined}}>
                 <Link href={HERO_SLIDES[heroSlide].cta.href}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-base transition hover:scale-105 active:scale-95"
                   style={{background:'var(--accent-blue)',color:'#fff',boxShadow:'0 4px 24px rgba(0,102,204,0.45)',fontFamily:'Montserrat,sans-serif'}}>
@@ -196,7 +203,8 @@ export default function Home() {
               </div>
 
               {/* Stats strip */}
-              <div className="flex items-center gap-6 md:gap-10 flex-wrap">
+              <div className="flex items-center gap-6 md:gap-10 flex-wrap"
+                style={{justifyContent: (HERO_SLIDES[heroSlide] as any).align === 'right' ? 'flex-end' : undefined}}>
                 {[['10+','Years'],['5,000+','Customers'],['24/7','Support'],['100%','Genuine']].map(([val,lbl])=>(
                   <div key={lbl} className="text-center">
                     <p className="text-2xl sm:text-3xl font-black text-white" style={{fontFamily:'Montserrat,sans-serif'}}>{val}</p>
@@ -241,7 +249,7 @@ export default function Home() {
         {/* Progress bar */}
         <div className="absolute bottom-0 left-0 right-0 h-0.5 z-20 bg-white/10">
           <div key={heroSlide} className="h-full bg-blue-400 origin-left"
-            style={{animation:'progressBar 5.5s linear forwards'}} />
+            style={{animation:'progressBar 3.5s linear forwards'}} />
         </div>
 
       </section>
