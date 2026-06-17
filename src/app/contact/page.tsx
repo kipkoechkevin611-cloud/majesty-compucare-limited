@@ -52,7 +52,6 @@ export default function ContactPage() {
       <section className="py-12 sm:py-20 relative overflow-hidden" style={{background:'var(--bg-surface2)',borderBottom:'1px solid rgba(0,123,255,0.15)'}}>
         <div className="absolute inset-0 radial-glow" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="section-label mb-4">// CONTACT_US</p>
           <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-4" style={{fontFamily:'Montserrat,sans-serif'}}>Contact Us</h1>
           <p className="text-lg max-w-3xl mx-auto" style={{color:'var(--text-low)'}}>
             Get in touch with us for any inquiries, support, or to discuss your technology needs
@@ -67,7 +66,6 @@ export default function ContactPage() {
             {/* Contact Information */}
             <div className="lg:col-span-1 space-y-6">
               <div>
-                <p className="section-label mb-3">// GET_IN_TOUCH</p>
                 <h2 className="text-xl font-black text-slate-900 mb-3" style={{fontFamily:'Montserrat,sans-serif'}}>Get In Touch</h2>
                 <p className="text-sm leading-relaxed" style={{color:'var(--text-low)'}}>
                   Have questions or need assistance? We're here to help. Reach out to us through any of the following channels.
@@ -96,7 +94,6 @@ export default function ContactPage() {
             {/* Contact Form */}
             <div className="lg:col-span-2">
               <div className="rounded-xl p-8 glass" style={{border:'1px solid rgba(0,123,255,0.2)'}}>
-                <p className="section-label mb-4">// SEND_MESSAGE</p>
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid md:grid-cols-2 gap-5">
                     <div>
@@ -164,7 +161,6 @@ export default function ContactPage() {
       <section className="py-16" style={{background:'var(--bg-surface2)'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <p className="section-label mb-3">// OUR_BRANCHES</p>
             <h2 className="text-3xl font-black text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>Two Branches, One Standard</h2>
             <p className="mt-2 text-sm text-slate-500">Visit us in Nakuru or Kisumu — same quality, same commitment</p>
           </div>
@@ -255,7 +251,6 @@ export default function ContactPage() {
       {/* WhatsApp CTA */}
       <section className="py-12 sm:py-16" style={{borderTop:'1px solid rgba(0,255,0,0.15)'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="section-label mb-4">// WHATSAPP</p>
           <h2 className="text-3xl font-black text-slate-900 mb-4" style={{fontFamily:'Montserrat,sans-serif'}}>Chat with us on WhatsApp</h2>
           <p className="mb-8 max-w-2xl mx-auto text-sm" style={{color:'var(--text-low)'}}>
             Get instant responses to your questions. Our team is available on WhatsApp to assist you.

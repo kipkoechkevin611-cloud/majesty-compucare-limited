@@ -3,6 +3,7 @@ import { Montserrat, Roboto, Fira_Code } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import Chatbot from "@/components/Chatbot";
 import { Providers } from "@/components/Providers";
 
 const montserrat = Montserrat({
@@ -44,6 +45,7 @@ export default function RootLayout({
           <Navigation />
           <main className="flex-1">{children}</main>
           <Footer />
+          <Chatbot />
         </Providers>
       </body>
     </html>

@@ -58,7 +58,6 @@ export default function DashboardPage() {
             {initial}
           </div>
           <div>
-            <p className="section-label mb-1">// DASHBOARD</p>
             <h1 className="text-2xl font-black text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>Welcome back, {session.user?.name || 'there'}!</h1>
             <p className="text-sm mt-0.5" style={{color:'var(--text-low)',fontFamily:'Fira Code,monospace'}}>{session.user?.email}</p>
           </div>
@@ -112,7 +111,6 @@ export default function DashboardPage() {
               {/* Orders */}
               {activeTab === 'orders' && (
                 <div className="rounded-xl p-6 glass" style={{border:'1px solid rgba(0,123,255,0.2)'}}>
-                  <p className="section-label mb-4">// MY_ORDERS</p>
                   {ordersLoading ? (
                     <div className="space-y-4">
                       {[1,2,3].map(i => (
@@ -171,7 +169,6 @@ export default function DashboardPage() {
               {/* Profile */}
               {activeTab === 'profile' && (
                 <div className="rounded-xl p-6 glass" style={{border:'1px solid rgba(0,123,255,0.2)'}}>
-                  <p className="section-label mb-5">// PROFILE</p>
                   <form className="space-y-5" onSubmit={e => e.preventDefault()}>
                     <div className="grid md:grid-cols-2 gap-5">
                       <div>
@@ -195,7 +192,6 @@ export default function DashboardPage() {
               {/* Addresses */}
               {activeTab === 'addresses' && (
                 <div className="rounded-xl p-6 glass" style={{border:'1px solid rgba(0,123,255,0.2)'}}>
-                  <p className="section-label mb-5">// ADDRESSES</p>
                   <div className="text-center py-16">
                     <MapPin className="w-16 h-16 mx-auto mb-4" style={{color:'rgba(0,123,255,0.2)'}} />
                     <p className="font-bold text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>No saved addresses</p>

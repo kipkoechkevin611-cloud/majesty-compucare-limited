@@ -154,7 +154,6 @@ export default function CheckoutPage() {
 
   const OrderSummaryPanel = () => (
     <div className="rounded-xl p-6 sticky top-24 glass" style={{border:'1px solid rgba(0,123,255,0.2)'}}>
-      <p className="section-label mb-4">// ORDER_SUMMARY</p>
       {step === 1 && (
         <div className="space-y-2 mb-4">
           {cart.map(item => (
@@ -183,7 +182,6 @@ export default function CheckoutPage() {
       <section className="py-12 relative overflow-hidden" style={{background:'var(--bg-surface2)',borderBottom:'1px solid rgba(0,123,255,0.15)'}}>
         <div className="absolute inset-0 radial-glow" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="section-label mb-2">// CHECKOUT</p>
           <h1 className="text-4xl font-black text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>Checkout</h1>
           <p className="mt-1 text-sm" style={{color:'var(--text-low)'}}>Complete your order securely</p>
         </div>
@@ -220,7 +218,6 @@ export default function CheckoutPage() {
             <div className="grid lg:grid-cols-3 gap-8">
               <div className="lg:col-span-2">
                 <div className="rounded-xl p-6 glass" style={{border:'1px solid rgba(0,123,255,0.2)'}}>
-                  <p className="section-label mb-5">// SHIPPING_INFO</p>
                   <form onSubmit={(e) => { e.preventDefault(); setStep(2); }} className="space-y-5">
                     <div className="grid md:grid-cols-2 gap-5">
                       <div>
@@ -269,8 +266,6 @@ export default function CheckoutPage() {
             <div className="grid lg:grid-cols-3 gap-8">
               <div className="lg:col-span-2">
                 <div className="rounded-xl p-6 glass" style={{border:'1px solid rgba(0,123,255,0.2)'}}>
-                  <p className="section-label mb-5">// PAYMENT</p>
-
                   <div className="space-y-3 mb-6">
                     {[
                       {val:'mpesa', icon:Smartphone, iconColor:'var(--accent-green)', title:'M-Pesa',         sub:'Pay via M-Pesa STK Push'},

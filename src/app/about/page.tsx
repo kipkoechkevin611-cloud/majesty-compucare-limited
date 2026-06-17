@@ -77,7 +77,6 @@ export default function AboutPage() {
       <section className="py-20 relative overflow-hidden" style={{background:'var(--bg-surface2)',borderBottom:'1px solid rgba(0,123,255,0.15)'}}>
         <div className="absolute inset-0 radial-glow" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="section-label mb-4">// ABOUT_US</p>
           <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-4" style={{fontFamily:'Montserrat,sans-serif'}}>
             About <span style={{color:'var(--accent-blue)'}}>Majesty</span> Compucare
           </h1>
@@ -95,7 +94,6 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="section-label mb-3">// OUR_STORY</p>
               <h2 className="text-3xl font-black text-slate-900 mb-6" style={{fontFamily:'Montserrat,sans-serif'}}>Our Story</h2>
               {[
                 'Majesty Compucare Limited is a trusted ICT solutions provider based in Nakuru, specializing in the sale, repair, and maintenance of computers, printers, and office equipment.',
@@ -131,7 +129,6 @@ export default function AboutPage() {
               {label:'// VISION',  title:'Our Vision',  text:'To be the leading technology solutions provider in Kenya, recognized for excellence, innovation, and customer-centric approach. We aim to bridge the digital divide by making technology accessible and affordable for everyone.'},
             ].map(({label,title,text}) => (
               <div key={title} className="rounded-xl p-8 glass" style={{border:'1px solid rgba(0,123,255,0.2)'}}>
-                <p className="section-label mb-3">{label}</p>
                 <h3 className="text-2xl font-black text-slate-900 mb-4" style={{fontFamily:'Montserrat,sans-serif'}}>{title}</h3>
                 <p className="text-sm leading-relaxed" style={{color:'var(--text-low)'}}>{text}</p>
               </div>
@@ -144,7 +141,6 @@ export default function AboutPage() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="section-label mb-3">// CORE_VALUES</p>
             <h2 className="text-3xl font-black text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>Our Core Values</h2>
             <p className="mt-2 text-sm" style={{color:'var(--text-low)'}}>The principles that guide everything we do</p>
           </div>
@@ -169,7 +165,6 @@ export default function AboutPage() {
 
             {/* Products */}
             <div className="rounded-xl p-8 bg-white shadow-sm border border-blue-100">
-              <p className="section-label mb-2">// WHAT_WE_SELL</p>
               <h2 className="text-2xl font-black text-slate-900 mb-6" style={{fontFamily:'Montserrat,sans-serif'}}>Our Products</h2>
               <ul className="space-y-3">
                 {products.map(({icon:Icon, label}) => (
@@ -185,7 +180,6 @@ export default function AboutPage() {
 
             {/* Services */}
             <div className="rounded-xl p-8 bg-white shadow-sm border border-green-100">
-              <p className="section-label mb-2">// WHAT_WE_DO</p>
               <h2 className="text-2xl font-black text-slate-900 mb-6" style={{fontFamily:'Montserrat,sans-serif'}}>Our Services</h2>
               <ul className="space-y-3">
                 {services.map(({icon:Icon, label}) => (
@@ -206,7 +200,6 @@ export default function AboutPage() {
       <section className="py-16" style={{background:'var(--bg-surface2)'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="section-label mb-3">// THE_TEAM</p>
             <h2 className="text-3xl font-black text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>Meet Our Team</h2>
             <p className="mt-2 text-sm" style={{color:'var(--text-low)'}}>Dedicated professionals committed to your success</p>
           </div>
@@ -229,7 +222,6 @@ export default function AboutPage() {
       <section className="py-16" style={{borderTop:'1px solid rgba(0,123,255,0.15)'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <p className="section-label mb-3">// OUR_BRANCHES</p>
             <h2 className="text-3xl font-black text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>Find Us Near You</h2>
             <p className="mt-2 text-sm text-slate-500">Two convenient locations — Nakuru &amp; Kisumu</p>
           </div>

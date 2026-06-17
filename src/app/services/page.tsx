@@ -64,7 +64,6 @@ export default function ServicesPage() {
       <section className="py-12 sm:py-20 relative overflow-hidden" style={{background:'var(--bg-surface2)',borderBottom:'1px solid rgba(0,123,255,0.15)'}}>
         <div className="absolute inset-0 radial-glow" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="section-label mb-4">// OUR_SERVICES</p>
           <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-4" style={{fontFamily:'Montserrat,sans-serif'}}>Our Services</h1>
           <p className="text-lg max-w-3xl mx-auto" style={{color:'var(--text-low)'}}>
             Comprehensive IT solutions to keep your business and personal technology running smoothly
@@ -101,7 +100,6 @@ export default function ServicesPage() {
       <section className="py-16" style={{background:'var(--bg-surface2)'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="section-label mb-3">// WHY_US</p>
             <h2 className="text-3xl font-black text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>Why Choose Our Services</h2>
             <p className="mt-2 text-sm" style={{color:'var(--text-low)'}}>We deliver excellence in every aspect of our service delivery</p>
           </div>
@@ -128,7 +126,6 @@ export default function ServicesPage() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="section-label mb-3">// PROCESS</p>
             <h2 className="text-3xl font-black text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>Our Service Process</h2>
             <p className="mt-2 text-sm" style={{color:'var(--text-low)'}}>Simple and efficient process to get your technology working</p>
           </div>
@@ -155,7 +152,6 @@ export default function ServicesPage() {
       {/* CTA */}
       <section className="py-12 sm:py-16" style={{background:'var(--bg-surface2)',borderTop:'1px solid rgba(0,123,255,0.15)'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="section-label mb-4">// CONTACT</p>
           <h2 className="text-3xl font-black text-slate-900 mb-4" style={{fontFamily:'Montserrat,sans-serif'}}>Need IT Services?</h2>
           <p className="mb-8 max-w-2xl mx-auto text-sm" style={{color:'var(--text-low)'}}>
             Contact us today for professional IT solutions. Our team is ready to help you with all your technology needs.

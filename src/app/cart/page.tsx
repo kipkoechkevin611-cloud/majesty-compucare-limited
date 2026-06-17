@@ -26,7 +26,6 @@ export default function CartPage() {
       <section className="py-12 relative overflow-hidden" style={{background:'var(--bg-surface2)',borderBottom:'1px solid rgba(0,123,255,0.15)'}}>
         <div className="absolute inset-0 radial-glow" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="section-label mb-2">// CART</p>
           <h1 className="text-4xl font-black text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>Shopping Cart</h1>
           <p className="mt-1" style={{color:'var(--text-low)',fontFamily:'Fira Code,monospace',fontSize:'0.85rem'}}>{getCartCount()} {getCartCount() === 1 ? 'item' : 'items'} in your cart</p>
         </div>
@@ -91,8 +90,6 @@ export default function CartPage() {
             {/* Order Summary */}
             <div className="lg:col-span-1">
               <div className="rounded-xl p-6 sticky top-24 glass" style={{border:'1px solid rgba(0,123,255,0.2)'}}>
-                <p className="section-label mb-4">// ORDER_SUMMARY</p>
-
                 <div className="space-y-3 mb-6">
                   {[
                     ['Subtotal', `KES ${getCartTotal().toLocaleString()}`],

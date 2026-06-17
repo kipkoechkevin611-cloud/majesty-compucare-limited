@@ -50,7 +50,6 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8" style={{background:'var(--bg-primary)'}}>
       <div className="max-w-md w-full">
         <div className="text-center mb-8">
-          <p className="section-label mb-3">// ACCESS_PORTAL</p>
           <h1 className="text-4xl font-black text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>Welcome Back</h1>
           <p className="mt-2" style={{color:'var(--text-low)'}}>Sign in to your account</p>
         </div>

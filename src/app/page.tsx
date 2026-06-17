@@ -194,7 +194,6 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between mb-10">
             <div>
-              <p className="text-blue-600 text-sm mb-2" style={{fontFamily:'Fira Code,monospace'}}>// TOP_PICKS</p>
               <h2 className="text-3xl text-slate-900" style={{fontFamily:'Montserrat,sans-serif',fontWeight:800}}>Featured Products</h2>
             </div>
             <Link href="/products" className="inline-flex items-center gap-1 text-sm font-semibold text-blue-600 hover:text-blue-700 transition">
@@ -278,7 +277,6 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <p className="text-blue-200 text-sm mb-1" style={{fontFamily:'Fira Code,monospace'}}>// JUST_ARRIVED</p>
               <h2 className="text-3xl text-white" style={{fontFamily:'Montserrat,sans-serif',fontWeight:800}}>New Arrivals</h2>
               <p className="text-blue-100 text-sm mt-1">Fresh stock — just landed at our Nakuru &amp; Kisumu branches</p>
             </div>
@@ -312,7 +310,6 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <p className="text-blue-600 text-sm mb-1" style={{fontFamily:'Fira Code,monospace'}}>// SPECIAL_OFFERS</p>
               <h2 className="text-3xl text-slate-900" style={{fontFamily:'Montserrat,sans-serif',fontWeight:800}}>Current Offers &amp; Deals</h2>
               <p className="mt-1 text-slate-500 text-sm">Limited-time packages for repairs, installations &amp; ICT bundles</p>
             </div>
@@ -369,7 +366,6 @@ export default function Home() {
       <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <p className="text-blue-600 text-sm mb-1" style={{fontFamily:'Fira Code,monospace'}}>// TECH_BLOG</p>
             <h2 className="text-3xl text-slate-900" style={{fontFamily:'Montserrat,sans-serif',fontWeight:800}}>Tech Tips &amp; Insights</h2>
             <p className="mt-1 text-slate-500 text-sm">Expert advice from the Majesty Compucare team</p>
           </div>
@@ -404,7 +400,6 @@ export default function Home() {
       <section className="py-20 bg-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="text-blue-600 text-sm mb-2" style={{fontFamily:'Fira Code,monospace'}}>// WHY_US</p>
             <h2 className="text-3xl text-slate-900" style={{fontFamily:'Montserrat,sans-serif',fontWeight:800}}>Why Choose Majesty Compucare</h2>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
@@ -431,7 +426,6 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-blue-50/50 to-transparent" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="text-blue-600 text-sm mb-2" style={{fontFamily:'Fira Code,monospace'}}>// WHAT_WE_DO</p>
             <h2 className="text-3xl text-slate-900" style={{fontFamily:'Montserrat,sans-serif',fontWeight:800}}>Our Services</h2>
             <p className="mt-2 max-w-xl mx-auto text-slate-500">Comprehensive IT solutions to keep you running smoothly</p>
           </div>
@@ -458,7 +452,6 @@ export default function Home() {
       <section className="py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="text-blue-600 text-sm mb-2" style={{fontFamily:'Fira Code,monospace'}}>// CLIENT_FEEDBACK</p>
             <h2 className="text-3xl text-slate-900" style={{fontFamily:'Montserrat,sans-serif',fontWeight:800}}>What Our Customers Say</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -488,7 +481,6 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div>
-              <p className="text-blue-600 text-sm mb-2" style={{fontFamily:'Fira Code,monospace'}}>// GET_IN_TOUCH</p>
               <h2 className="text-3xl text-slate-900 mb-4" style={{fontFamily:'Montserrat,sans-serif',fontWeight:800}}>We're Here to Help</h2>
               <p className="mb-8 text-slate-500">Have questions or need a quote? Reach out — we respond fast.</p>
               <div className="space-y-5">
@@ -552,13 +544,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* WhatsApp FAB */}
-      <a href="https://wa.me/254716000367" target="_blank" rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 w-14 h-14 rounded-full flex items-center justify-center z-50 transition-transform hover:scale-110"
-        style={{background:'#25D366',boxShadow:'0 0 20px rgba(37,211,102,0.5)'}}
-        aria-label="Chat on WhatsApp">
-        <MessageCircle className="w-7 h-7 text-white" />
-      </a>
     </div>
   )
 }

@@ -83,7 +83,6 @@ export default function ProductsPage() {
       <section className="py-12 sm:py-16 relative overflow-hidden" style={{background:'var(--bg-surface2)',borderBottom:'1px solid rgba(0,123,255,0.15)'}}>
         <div className="absolute inset-0 radial-glow" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="section-label mb-3">// PRODUCTS</p>
           <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-3" style={{fontFamily:'Montserrat,sans-serif'}}>Our Products</h1>
           <p className="text-lg max-w-3xl" style={{color:'var(--text-low)'}}>Browse our wide range of quality technology products for home and business</p>
         </div>
