@@ -404,6 +404,99 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ═══ OFFERS & DEALS ═══ */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-end justify-between mb-8">
+            <div>
+              <p className="text-blue-600 text-sm mb-1" style={{fontFamily:'Fira Code,monospace'}}>// SPECIAL_OFFERS</p>
+              <h2 className="text-3xl text-slate-900" style={{fontFamily:'Montserrat,sans-serif',fontWeight:800}}>Current Offers &amp; Deals</h2>
+              <p className="mt-1 text-slate-500 text-sm">Limited-time packages for repairs, installations &amp; ICT bundles</p>
+            </div>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {emoji:'💻',badge:'HOT DEAL',badgeColor:'bg-red-500',title:'Laptop Service & Tune-Up',desc:'Full cleaning, thermal paste, OS optimization &amp; virus removal — all in one visit.',originalPrice:3500,offerPrice:1999,features:['Deep cleaning & dust removal','Thermal paste replacement','Windows optimization','Antivirus removal']},
+              {emoji:'📷',badge:'BUNDLE OFFER',badgeColor:'bg-blue-600',title:'CCTV 4-Camera Package',desc:'4 HD cameras, DVR, cables &amp; professional installation included.',originalPrice:45000,offerPrice:35000,features:['4 HD cameras (1080p)','DVR recorder + hard drive','Professional installation','1-year warranty']},
+              {emoji:'🖨️',badge:'SAVE 25%',badgeColor:'bg-green-600',title:'Printer Maintenance Plan',desc:'Monthly servicing — cleaning, alignment &amp; nozzle check for your office.',originalPrice:4000,offerPrice:3000,features:['Monthly servicing visit','Nozzle cleaning & alignment','Ink cartridge check','Priority support']},
+              {emoji:'📡',badge:'NEW OFFER',badgeColor:'bg-purple-600',title:'Network Setup — Office',desc:'Professional Wi-Fi &amp; LAN installation with configuration &amp; training.',originalPrice:15000,offerPrice:10000,features:['Router & switch config','Structured cabling','Wi-Fi optimization','Staff training']},
+              {emoji:'💾',badge:'FREE BONUS',badgeColor:'bg-orange-500',title:'Free Data Backup with Repair',desc:'Bring any device for repair and get a FREE data backup — worth KES 1,000.',originalPrice:1000,offerPrice:0,features:['Full data backup','Organized folder structure','External drive transfer','Before-repair safety copy']},
+              {emoji:'🏫',badge:'SCHOOLS',badgeColor:'bg-teal-600',title:'School ICT Lab Package',desc:'Complete computer lab setup — supply, networking, software &amp; staff training.',originalPrice:null,offerPrice:null,features:['Bulk laptop/desktop supply','Network & server setup','Software licensing','Staff IT training']},
+            ].map((deal,i)=>(
+              <div key={i} className="relative rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg transition bg-white flex flex-col overflow-hidden">
+                <div className="absolute top-0 right-0 z-10">
+                  <div className={`text-white text-[10px] font-black px-3 py-1 rounded-bl-xl ${deal.badgeColor}`}>{deal.badge}</div>
+                </div>
+                <div className="p-6 pb-4 flex-1">
+                  <span className="text-4xl mb-3 block">{deal.emoji}</span>
+                  <h3 className="text-base font-black text-slate-900 mb-2 leading-snug" style={{fontFamily:'Montserrat,sans-serif'}}>{deal.title}</h3>
+                  <p className="text-xs text-slate-500 mb-3 leading-relaxed" dangerouslySetInnerHTML={{__html:deal.desc}} />
+                  <ul className="space-y-1">
+                    {deal.features.map(f=>(
+                      <li key={f} className="flex items-center gap-2 text-xs text-slate-600">
+                        <CheckCircle className="w-3.5 h-3.5 text-green-500 flex-shrink-0" />{f}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="px-6 pb-5 pt-3 border-t border-slate-100">
+                  {deal.offerPrice !== null ? (
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-xl font-black text-green-600" style={{fontFamily:'Montserrat,sans-serif'}}>
+                        {deal.offerPrice === 0 ? 'FREE' : `KES ${deal.offerPrice.toLocaleString()}`}
+                      </span>
+                      {deal.originalPrice && <span className="text-xs line-through text-slate-400">KES {deal.originalPrice.toLocaleString()}</span>}
+                    </div>
+                  ) : (
+                    <p className="text-sm font-semibold text-slate-600">📞 Call for quote</p>
+                  )}
+                  <a href="https://wa.me/254716000367" target="_blank" rel="noopener noreferrer"
+                    className="mt-3 w-full py-2 rounded-lg text-xs font-bold text-white flex items-center justify-center gap-2 transition hover:opacity-90"
+                    style={{background:'#25D366'}}>
+                    <MessageCircle className="w-3.5 h-3.5" /> Claim on WhatsApp
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ BLOG ═══ */}
+      <section className="py-16 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <p className="text-blue-600 text-sm mb-1" style={{fontFamily:'Fira Code,monospace'}}>// TECH_BLOG</p>
+            <h2 className="text-3xl text-slate-900" style={{fontFamily:'Montserrat,sans-serif',fontWeight:800}}>Tech Tips &amp; Insights</h2>
+            <p className="mt-1 text-slate-500 text-sm">Expert advice from the Majesty Compucare team</p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {img:'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=80&auto=format&fit=crop',cat:'Tips & Tricks',catColor:'bg-blue-100 text-blue-700',title:'How to Maintain Your Laptop for Longer Life',excerpt:'Simple habits that keep your laptop running fast — cleaning vents, updating drivers, and knowing when to bring it in.',date:'June 10, 2025',read:'4 min'},
+              {img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format&fit=crop',cat:'Security',catColor:'bg-red-100 text-red-700',title:'Why Every Business Needs a CCTV System',excerpt:'Security cameras reduce theft, improve accountability, and lower insurance costs. Here\'s what you need to know.',date:'May 28, 2025',read:'5 min'},
+              {img:'https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=600&q=80&auto=format&fit=crop',cat:'Buying Guide',catColor:'bg-green-100 text-green-700',title:'Best Printers for Small Offices — 2025 Guide',excerpt:'Epson, Canon or HP? We break down the top printers, running costs, and which is best for your business.',date:'May 15, 2025',read:'6 min'},
+              {img:'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80&auto=format&fit=crop',cat:'Networking',catColor:'bg-purple-100 text-purple-700',title:'Networking Basics Every Business Owner Should Know',excerpt:'Routers, switches, Wi-Fi extenders — what your business actually needs explained in plain language.',date:'Apr 30, 2025',read:'5 min'},
+              {img:'https://images.unsplash.com/photo-1544256718-3bcf237f3974?w=600&q=80&auto=format&fit=crop',cat:'Tips & Tricks',catColor:'bg-blue-100 text-blue-700',title:'Never Lose Your Data Again — Backup Guide',excerpt:'Hard drives fail without warning. Set up automatic backups using cloud and external drives before it\'s too late.',date:'Apr 18, 2025',read:'4 min'},
+              {img:'https://images.unsplash.com/photo-1605379399642-870262d3d051?w=600&q=80&auto=format&fit=crop',cat:'Repair',catColor:'bg-orange-100 text-orange-700',title:'7 Signs Your Computer Needs a Professional Repair',excerpt:'Slow performance, crashes, overheating — know when to stop Googling and bring your machine to the experts.',date:'Mar 22, 2025',read:'3 min'},
+            ].map((post,i)=>(
+              <article key={i} className="group rounded-xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition bg-white flex flex-col">
+                <div className="relative h-44 overflow-hidden flex-shrink-0">
+                  <img src={post.img} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <span className={`absolute top-3 left-3 text-xs font-bold px-2.5 py-1 rounded-full ${post.catColor}`}>{post.cat}</span>
+                </div>
+                <div className="p-5 flex flex-col flex-1">
+                  <div className="flex items-center gap-3 text-xs text-slate-400 mb-2" style={{fontFamily:'Fira Code,monospace'}}>
+                    <span>{post.read} read</span><span>·</span><span>{post.date}</span>
+                  </div>
+                  <h3 className="text-sm font-black text-slate-900 mb-2 leading-snug flex-1" style={{fontFamily:'Montserrat,sans-serif'}}>{post.title}</h3>
+                  <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">{post.excerpt}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ═══ CONTACT ═══ */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -35,7 +35,7 @@ export default function Footer() {
               <span style={{color:'var(--accent-blue)'}}>// </span>Quick Links
             </h4>
             <ul className="space-y-2.5">
-              {[['/', 'Home'],['/about','About Us'],['/products','Products'],['/services','Services'],['/shop','Shop'],['/offers','Offers & Deals'],['/blog','Blog'],['/contact','Contact']].map(([href, label]) => (
+              {[['/', 'Home'],['/about','About Us'],['/products','Products'],['/services','Services'],['/shop','Shop'],['/contact','Contact']].map(([href, label]) => (
                 <li key={href}>
                   <Link href={href} className="text-sm transition flex items-center gap-2 group" style={{color:'var(--text-low)'}}>
                     <span className="w-0 group-hover:w-3 h-px transition-all duration-200" style={{background:'var(--accent-green)'}} />
