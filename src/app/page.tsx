@@ -120,7 +120,7 @@ export default function Home() {
     <div className="flex flex-col" style={{background:'var(--bg-primary)'}}>
 
       {/* ═══ HERO SLIDESHOW ═══ */}
-      <section className="relative overflow-hidden" style={{height:'72vh',minHeight:'480px',maxHeight:'650px'}}>
+      <section className="relative overflow-hidden" style={{height:'82vh',minHeight:'520px',maxHeight:'750px'}}>
 
         {/* Slides */}
         {HERO_SLIDES.map((slide, i) => (
