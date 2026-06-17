@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { ArrowRight, Shield, Clock, Headphones, Award, Star, MessageCircle, ShoppingCart, Monitor, Printer, Video, Wifi, Package, CheckCircle, Phone, MapPin, Mail } from 'lucide-react'
+import { ArrowRight, Shield, Clock, Headphones, Award, Star, MessageCircle, ShoppingCart, Monitor, Printer, Video, Wifi, Package, CheckCircle, Phone, MapPin, Mail, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useCart } from '@/contexts/CartContext'
 
 export default function Home() {
@@ -13,6 +13,55 @@ export default function Home() {
   const [addedId, setAddedId] = useState<string | null>(null)
   const [contactForm, setContactForm] = useState({ name: '', email: '', message: '' })
   const [contactSent, setContactSent] = useState(false)
+  const [heroSlide, setHeroSlide] = useState(0)
+
+  const heroSlides = [
+    {
+      bg: '/hero.jpeg',
+      badge: 'NAKURU & KISUMU — TRUSTED SINCE 2014',
+      headline: ['PREMIUM', 'TECH SALES', '& REPAIR'],
+      headlineColors: ['text-white', 'text-blue-300', 'text-green-400'],
+      sub: 'Computers · Laptops · Printers · CCTV · Networking · IT Services — all under one roof. Fast. Genuine. Trusted.',
+      cta: { label: 'Shop Now', href: '/products' },
+      cta2: { label: 'Our Services', href: '/services' },
+      overlay: 'from-slate-900/80 via-slate-900/55 to-slate-900/20',
+    },
+    {
+      bg: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=1400&q=90&auto=format&fit=crop',
+      badge: 'LAPTOPS & DESKTOPS',
+      headline: ['HP · DELL', 'LENOVO &', 'MORE'],
+      headlineColors: ['text-white', 'text-blue-300', 'text-white'],
+      sub: 'Genuine laptops and desktops for home, office, and school. Budget to premium — we have it all.',
+      cta: { label: 'View Laptops', href: '/products?category=laptops' },
+      cta2: { label: 'Get a Quote', href: '/contact' },
+      overlay: 'from-blue-900/80 via-blue-900/55 to-blue-900/10',
+    },
+    {
+      bg: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=90&auto=format&fit=crop',
+      badge: 'CCTV & SECURITY SYSTEMS',
+      headline: ['PROTECT', 'YOUR HOME', '& BUSINESS'],
+      headlineColors: ['text-white', 'text-red-300', 'text-white'],
+      sub: 'HD & 4K CCTV systems professionally installed. 4-camera package from KES 35,000 — includes DVR & full installation.',
+      cta: { label: 'View CCTV Packages', href: '/products?category=cctv' },
+      cta2: { label: 'Request Installation', href: '/contact' },
+      overlay: 'from-red-900/80 via-red-900/55 to-slate-900/10',
+    },
+    {
+      bg: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1400&q=90&auto=format&fit=crop',
+      badge: 'NETWORKING & IT SOLUTIONS',
+      headline: ['CONNECT', 'YOUR OFFICE', 'SEAMLESSLY'],
+      headlineColors: ['text-white', 'text-green-300', 'text-white'],
+      sub: 'Routers, switches, structured cabling & full Wi-Fi setup for offices and homes. Professional installation included.',
+      cta: { label: 'Explore Networking', href: '/products?category=networking' },
+      cta2: { label: 'Our Services', href: '/services' },
+      overlay: 'from-green-900/80 via-green-900/55 to-slate-900/10',
+    },
+  ]
+
+  useEffect(() => {
+    const timer = setInterval(() => setHeroSlide(s => (s + 1) % heroSlides.length), 5500)
+    return () => clearInterval(timer)
+  }, [heroSlides.length])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -69,100 +118,132 @@ export default function Home() {
   return (
     <div className="flex flex-col" style={{background:'var(--bg-primary)'}}>
 
-      {/* ═══ HERO ═══ */}
-      <section className="relative overflow-hidden min-h-[92vh] flex items-center bg-gradient-to-br from-slate-50 via-blue-50 to-white">
-        <div className="absolute inset-0">
-          <img src="/hero.jpeg" alt="Majesty Compucare - Technology Solutions"
-            className="w-full h-full object-cover opacity-25 md:opacity-35 blur-sm md:blur" />
-          <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-white/60 to-white/30" />
-        </div>
-        <div className="absolute inset-0 pattern-subtle" />
-        {/* Decorative blobs */}
-        <div className="absolute top-[-10%] right-[10%] w-[500px] h-[500px] rounded-full animate-pulse" style={{background:'radial-gradient(circle,rgba(0,102,204,0.08) 0%,transparent 70%)'}} />
-        <div className="absolute bottom-[-5%] left-[5%] w-[400px] h-[400px] rounded-full" style={{background:'radial-gradient(circle,rgba(22,163,74,0.05) 0%,transparent 70%)'}} />
+      {/* ═══ HERO SLIDESHOW ═══ */}
+      <section className="relative overflow-hidden" style={{height:'100svh',minHeight:'580px',maxHeight:'860px'}}>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 w-full">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Text */}
-            <div className="space-y-7">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs bg-blue-100 text-blue-700" style={{fontFamily:'Fira Code,monospace'}}>
-                <span className="w-2 h-2 rounded-full animate-pulse bg-green-500" />
-                // NAKURU &amp; KISUMU — TRUSTED TECH PARTNER SINCE 2014
+        {/* Slides */}
+        {heroSlides.map((slide, i) => (
+          <div key={i}
+            className="absolute inset-0 transition-opacity duration-1000"
+            style={{opacity: i === heroSlide ? 1 : 0, zIndex: i === heroSlide ? 1 : 0}}>
+            {/* Background image — full brightness */}
+            <img
+              src={slide.bg}
+              alt={slide.badge}
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{objectPosition:'center'}}
+            />
+            {/* Gradient overlay — left-heavy so text is readable, right is clear */}
+            <div className={`absolute inset-0 bg-gradient-to-r ${slide.overlay}`} />
+            {/* Extra bottom vignette for dot controls */}
+            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/50 to-transparent" />
+          </div>
+        ))}
+
+        {/* Content */}
+        <div className="relative z-10 h-full flex flex-col justify-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div className="max-w-2xl">
+
+              {/* Badge */}
+              <div key={`badge-${heroSlide}`}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+                style={{background:'rgba(255,255,255,0.15)',backdropFilter:'blur(8px)',border:'1px solid rgba(255,255,255,0.3)',
+                  animation:'fadeSlideUp 0.6s ease forwards'}}>
+                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                <span className="text-white text-xs font-semibold tracking-widest uppercase" style={{fontFamily:'Fira Code,monospace'}}>
+                  {heroSlides[heroSlide].badge}
+                </span>
               </div>
-              <h1 style={{fontFamily:'Montserrat,sans-serif',fontWeight:900,lineHeight:1.05}} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-slate-900">
-                PREMIUM<br />
-                <span className="text-blue-600">TECH SALES</span><br />
-                <span className="text-3xl sm:text-4xl md:text-5xl text-green-600">& REPAIR</span>
+
+              {/* Headline */}
+              <h1 key={`h1-${heroSlide}`}
+                style={{fontFamily:'Montserrat,sans-serif',fontWeight:900,lineHeight:1.05,
+                  animation:'fadeSlideUp 0.7s 0.1s ease both'}}
+                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-6">
+                {heroSlides[heroSlide].headline.map((line, li) => (
+                  <span key={li} className={`block ${heroSlides[heroSlide].headlineColors[li]}`}
+                    style={li === 2 ? {fontSize:'0.65em'} : {}}>
+                    {line}
+                  </span>
+                ))}
               </h1>
-              <p className="text-lg max-w-lg leading-relaxed text-slate-600">
-                Computers · Laptops · Printers · CCTV · Networking · IT Services — all under one roof. Fast. Genuine. Trusted.
+
+              {/* Subtext */}
+              <p key={`sub-${heroSlide}`}
+                className="text-white/85 text-base sm:text-lg leading-relaxed mb-8 max-w-xl"
+                style={{animation:'fadeSlideUp 0.7s 0.2s ease both'}}>
+                {heroSlides[heroSlide].sub}
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/products" className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 text-sm sm:px-8 sm:py-4 sm:text-base">
-                  <ShoppingCart className="w-5 h-5" /> Shop Now <ArrowRight className="w-4 h-4" />
+
+              {/* CTAs */}
+              <div key={`cta-${heroSlide}`}
+                className="flex flex-col sm:flex-row gap-4 mb-10"
+                style={{animation:'fadeSlideUp 0.7s 0.3s ease both'}}>
+                <Link href={heroSlides[heroSlide].cta.href}
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-base transition hover:scale-105 active:scale-95"
+                  style={{background:'var(--accent-blue)',color:'#fff',boxShadow:'0 4px 24px rgba(0,102,204,0.45)',fontFamily:'Montserrat,sans-serif'}}>
+                  <ShoppingCart className="w-5 h-5" />
+                  {heroSlides[heroSlide].cta.label}
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
-                <Link href="/services" className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm sm:px-8 sm:py-4 sm:text-base rounded-lg font-semibold transition bg-white text-slate-700 border border-green-200 hover:border-green-300 shadow-sm">
-                  Our Services <ArrowRight className="w-4 h-4 opacity-60" />
+                <Link href={heroSlides[heroSlide].cta2.href}
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-base transition hover:scale-105 active:scale-95"
+                  style={{background:'rgba(255,255,255,0.12)',backdropFilter:'blur(8px)',border:'1.5px solid rgba(255,255,255,0.4)',color:'#fff',fontFamily:'Montserrat,sans-serif'}}>
+                  {heroSlides[heroSlide].cta2.label}
+                  <ArrowRight className="w-4 h-4 opacity-70" />
                 </Link>
               </div>
-              {/* Stats */}
-              <div className="flex items-center gap-6 md:gap-8 pt-2">
+
+              {/* Stats strip */}
+              <div className="flex items-center gap-6 md:gap-10 flex-wrap">
                 {[['10+','Years'],['5,000+','Customers'],['24/7','Support'],['100%','Genuine']].map(([val,lbl])=>(
                   <div key={lbl} className="text-center">
-                    <p className="text-2xl font-black text-blue-600" style={{fontFamily:'Montserrat,sans-serif'}}>{val}</p>
-                    <p className="text-[10px] mt-0.5 uppercase tracking-widest text-slate-500" style={{fontFamily:'Fira Code,monospace'}}>{lbl}</p>
+                    <p className="text-2xl sm:text-3xl font-black text-white" style={{fontFamily:'Montserrat,sans-serif'}}>{val}</p>
+                    <p className="text-[10px] mt-0.5 uppercase tracking-widest text-white/60" style={{fontFamily:'Fira Code,monospace'}}>{lbl}</p>
                   </div>
                 ))}
-              </div>
-              <div className="flex items-center gap-5 flex-wrap">
-                {[{icon:Shield,t:'Warranty on all products'},{icon:CheckCircle,t:'Same-day repair'}].map(({icon:Ic,t})=>(
-                  <div key={t} className="flex items-center gap-2 text-sm text-slate-600">
-                    <Ic className="w-4 h-4 flex-shrink-0 text-green-600" />{t}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Image cards */}
-            <div className="hidden lg:flex flex-col gap-4">
-              <div className="relative rounded-2xl overflow-hidden h-52 group shadow-lg border border-slate-200">
-                <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800&q=85&auto=format&fit=crop"
-                  alt="Laptops" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/10 to-transparent" />
-                <div className="absolute bottom-0 left-0 p-5">
-                  <p className="text-xl font-black text-white" style={{fontFamily:'Montserrat,sans-serif'}}>Laptops & Computers</p>
-                  <p className="text-sm mt-0.5 text-slate-300">HP · Dell · Lenovo & more</p>
-                </div>
-                <div className="absolute top-4 right-4 px-3 py-1 rounded text-xs font-bold bg-blue-600 text-white shadow-md">50+ Models</div>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  {src:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=85&auto=format&fit=crop',title:'CCTV & Security',sub:'HD & 4K systems'},
-                  {src:'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=85&auto=format&fit=crop',title:'Networking & IT',sub:'Routers · Switches'},
-                ].map(({src,title,sub})=>(
-                  <div key={title} className="relative rounded-2xl overflow-hidden h-44 group shadow-md border border-slate-200">
-                    <img src={src} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/65 via-slate-900/15 to-transparent" />
-                    <div className="absolute bottom-0 left-0 p-4">
-                      <p className="text-sm font-bold text-white" style={{fontFamily:'Montserrat,sans-serif'}}>{title}</p>
-                      <p className="text-xs mt-0.5 text-slate-300">{sub}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              {/* Floating badge */}
-              <div className="absolute top-[24%] right-[2.5%] bg-white px-4 py-3 flex items-center gap-3 rounded-xl shadow-lg border border-green-200">
-                <CheckCircle className="w-5 h-5 flex-shrink-0 text-green-600" />
-                <div>
-                  <p className="text-xs font-bold text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>Repair Done ✓</p>
-                  <p className="text-[10px] text-slate-500" style={{fontFamily:'Fira Code,monospace'}}>same-day · guaranteed</p>
-                </div>
               </div>
             </div>
           </div>
         </div>
-        {/* Bottom border line */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent" />
+
+        {/* Prev / Next arrows */}
+        <button onClick={() => setHeroSlide(s => (s - 1 + heroSlides.length) % heroSlides.length)}
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full flex items-center justify-center transition hover:scale-110"
+          style={{background:'rgba(255,255,255,0.15)',backdropFilter:'blur(6px)',border:'1px solid rgba(255,255,255,0.3)'}}>
+          <ChevronLeft className="w-6 h-6 text-white" />
+        </button>
+        <button onClick={() => setHeroSlide(s => (s + 1) % heroSlides.length)}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full flex items-center justify-center transition hover:scale-110"
+          style={{background:'rgba(255,255,255,0.15)',backdropFilter:'blur(6px)',border:'1px solid rgba(255,255,255,0.3)'}}>
+          <ChevronRight className="w-6 h-6 text-white" />
+        </button>
+
+        {/* Dot indicators */}
+        <div className="absolute bottom-7 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2.5">
+          {heroSlides.map((_, i) => (
+            <button key={i} onClick={() => setHeroSlide(i)}
+              className="transition-all duration-300 rounded-full"
+              style={{
+                width: i === heroSlide ? '28px' : '8px',
+                height: '8px',
+                background: i === heroSlide ? '#fff' : 'rgba(255,255,255,0.45)',
+              }} />
+          ))}
+        </div>
+
+        {/* Slide counter */}
+        <div className="absolute bottom-7 right-6 z-20 text-white/60 text-xs font-mono">
+          {String(heroSlide + 1).padStart(2,'0')} / {String(heroSlides.length).padStart(2,'0')}
+        </div>
+
+        {/* Progress bar */}
+        <div className="absolute bottom-0 left-0 right-0 h-0.5 z-20 bg-white/10">
+          <div key={heroSlide} className="h-full bg-blue-400 origin-left"
+            style={{animation:'progressBar 5.5s linear forwards'}} />
+        </div>
+
       </section>
 
       {/* ═══ CATEGORY STRIP ═══ */}
