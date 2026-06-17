@@ -120,7 +120,7 @@ export default function Home() {
     <div className="flex flex-col" style={{background:'var(--bg-primary)'}}>
 
       {/* ═══ HERO SLIDESHOW ═══ */}
-      <section className="relative overflow-hidden" style={{height:'100svh',minHeight:'580px',maxHeight:'860px'}}>
+      <section className="relative overflow-hidden" style={{height:'72vh',minHeight:'480px',maxHeight:'650px'}}>
 
         {/* Slides */}
         {HERO_SLIDES.map((slide, i) => (
@@ -167,7 +167,7 @@ export default function Home() {
               <h1 key={`h1-${heroSlide}`}
                 style={{fontFamily:'Montserrat,sans-serif',fontWeight:900,lineHeight:1.05,
                   animation:'fadeSlideUp 0.7s 0.1s ease both'}}
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-6">
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-5">
                 {HERO_SLIDES[heroSlide].headline.map((line, li) => (
                   <span key={li} className="block"
                     style={{color: HERO_SLIDES[heroSlide].headlineColors[li], fontSize: li === 2 ? '0.65em' : undefined}}>
