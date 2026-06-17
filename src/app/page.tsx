@@ -5,6 +5,49 @@ import Link from 'next/link'
 import { ArrowRight, Shield, Clock, Headphones, Award, Star, MessageCircle, ShoppingCart, Monitor, Printer, Video, Wifi, Package, CheckCircle, Phone, MapPin, Mail, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useCart } from '@/contexts/CartContext'
 
+const HERO_SLIDES = [
+  {
+    bg: '/hero.jpeg',
+    badge: 'NAKURU & KISUMU — TRUSTED SINCE 2014',
+    headline: ['PREMIUM', 'TECH SALES', '& REPAIR'],
+    headlineColors: ['#ffffff', '#93c5fd', '#4ade80'],
+    sub: 'Computers · Laptops · Printers · CCTV · Networking · IT Services — all under one roof. Fast. Genuine. Trusted.',
+    cta: { label: 'Shop Now', href: '/products' },
+    cta2: { label: 'Our Services', href: '/services' },
+    overlay: 'linear-gradient(to right, rgba(15,23,42,0.82) 0%, rgba(15,23,42,0.55) 55%, rgba(15,23,42,0.15) 100%)',
+  },
+  {
+    bg: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=1400&q=90&auto=format&fit=crop',
+    badge: 'LAPTOPS & DESKTOPS',
+    headline: ['HP · DELL', 'LENOVO &', 'MORE'],
+    headlineColors: ['#ffffff', '#93c5fd', '#ffffff'],
+    sub: 'Genuine laptops and desktops for home, office, and school. Budget to premium — we have it all.',
+    cta: { label: 'View Laptops', href: '/products?category=laptops' },
+    cta2: { label: 'Get a Quote', href: '/contact' },
+    overlay: 'linear-gradient(to right, rgba(23,37,84,0.82) 0%, rgba(23,37,84,0.55) 55%, rgba(23,37,84,0.10) 100%)',
+  },
+  {
+    bg: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=90&auto=format&fit=crop',
+    badge: 'CCTV & SECURITY SYSTEMS',
+    headline: ['PROTECT', 'YOUR HOME', '& BUSINESS'],
+    headlineColors: ['#ffffff', '#fca5a5', '#ffffff'],
+    sub: 'HD & 4K CCTV systems professionally installed. 4-camera package from KES 35,000 — includes DVR & full installation.',
+    cta: { label: 'View CCTV Packages', href: '/products?category=cctv' },
+    cta2: { label: 'Request Installation', href: '/contact' },
+    overlay: 'linear-gradient(to right, rgba(69,10,10,0.82) 0%, rgba(69,10,10,0.55) 55%, rgba(15,23,42,0.10) 100%)',
+  },
+  {
+    bg: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1400&q=90&auto=format&fit=crop',
+    badge: 'NETWORKING & IT SOLUTIONS',
+    headline: ['CONNECT', 'YOUR OFFICE', 'SEAMLESSLY'],
+    headlineColors: ['#ffffff', '#86efac', '#ffffff'],
+    sub: 'Routers, switches, structured cabling & full Wi-Fi setup for offices and homes. Professional installation included.',
+    cta: { label: 'Explore Networking', href: '/products?category=networking' },
+    cta2: { label: 'Our Services', href: '/services' },
+    overlay: 'linear-gradient(to right, rgba(5,46,22,0.82) 0%, rgba(5,46,22,0.55) 55%, rgba(15,23,42,0.10) 100%)',
+  },
+]
+
 export default function Home() {
   const { addToCart } = useCart()
   const [featuredProducts, setFeaturedProducts] = useState<any[]>([])
@@ -15,53 +58,10 @@ export default function Home() {
   const [contactSent, setContactSent] = useState(false)
   const [heroSlide, setHeroSlide] = useState(0)
 
-  const heroSlides = [
-    {
-      bg: '/hero.jpeg',
-      badge: 'NAKURU & KISUMU — TRUSTED SINCE 2014',
-      headline: ['PREMIUM', 'TECH SALES', '& REPAIR'],
-      headlineColors: ['text-white', 'text-blue-300', 'text-green-400'],
-      sub: 'Computers · Laptops · Printers · CCTV · Networking · IT Services — all under one roof. Fast. Genuine. Trusted.',
-      cta: { label: 'Shop Now', href: '/products' },
-      cta2: { label: 'Our Services', href: '/services' },
-      overlay: 'from-slate-900/80 via-slate-900/55 to-slate-900/20',
-    },
-    {
-      bg: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=1400&q=90&auto=format&fit=crop',
-      badge: 'LAPTOPS & DESKTOPS',
-      headline: ['HP · DELL', 'LENOVO &', 'MORE'],
-      headlineColors: ['text-white', 'text-blue-300', 'text-white'],
-      sub: 'Genuine laptops and desktops for home, office, and school. Budget to premium — we have it all.',
-      cta: { label: 'View Laptops', href: '/products?category=laptops' },
-      cta2: { label: 'Get a Quote', href: '/contact' },
-      overlay: 'from-blue-900/80 via-blue-900/55 to-blue-900/10',
-    },
-    {
-      bg: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=90&auto=format&fit=crop',
-      badge: 'CCTV & SECURITY SYSTEMS',
-      headline: ['PROTECT', 'YOUR HOME', '& BUSINESS'],
-      headlineColors: ['text-white', 'text-red-300', 'text-white'],
-      sub: 'HD & 4K CCTV systems professionally installed. 4-camera package from KES 35,000 — includes DVR & full installation.',
-      cta: { label: 'View CCTV Packages', href: '/products?category=cctv' },
-      cta2: { label: 'Request Installation', href: '/contact' },
-      overlay: 'from-red-900/80 via-red-900/55 to-slate-900/10',
-    },
-    {
-      bg: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1400&q=90&auto=format&fit=crop',
-      badge: 'NETWORKING & IT SOLUTIONS',
-      headline: ['CONNECT', 'YOUR OFFICE', 'SEAMLESSLY'],
-      headlineColors: ['text-white', 'text-green-300', 'text-white'],
-      sub: 'Routers, switches, structured cabling & full Wi-Fi setup for offices and homes. Professional installation included.',
-      cta: { label: 'Explore Networking', href: '/products?category=networking' },
-      cta2: { label: 'Our Services', href: '/services' },
-      overlay: 'from-green-900/80 via-green-900/55 to-slate-900/10',
-    },
-  ]
-
   useEffect(() => {
-    const timer = setInterval(() => setHeroSlide(s => (s + 1) % heroSlides.length), 5500)
+    const timer = setInterval(() => setHeroSlide(s => (s + 1) % HERO_SLIDES.length), 5500)
     return () => clearInterval(timer)
-  }, [heroSlides.length])
+  }, [])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -122,7 +122,7 @@ export default function Home() {
       <section className="relative overflow-hidden" style={{height:'100svh',minHeight:'580px',maxHeight:'860px'}}>
 
         {/* Slides */}
-        {heroSlides.map((slide, i) => (
+        {HERO_SLIDES.map((slide, i) => (
           <div key={i}
             className="absolute inset-0 transition-opacity duration-1000"
             style={{opacity: i === heroSlide ? 1 : 0, zIndex: i === heroSlide ? 1 : 0}}>
@@ -134,9 +134,9 @@ export default function Home() {
               style={{objectPosition:'center'}}
             />
             {/* Gradient overlay — left-heavy so text is readable, right is clear */}
-            <div className={`absolute inset-0 bg-gradient-to-r ${slide.overlay}`} />
+            <div className="absolute inset-0" style={{background: slide.overlay}} />
             {/* Extra bottom vignette for dot controls */}
-            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/50 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 h-32" style={{background:'linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%)'}} />
           </div>
         ))}
 
@@ -152,7 +152,7 @@ export default function Home() {
                   animation:'fadeSlideUp 0.6s ease forwards'}}>
                 <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                 <span className="text-white text-xs font-semibold tracking-widest uppercase" style={{fontFamily:'Fira Code,monospace'}}>
-                  {heroSlides[heroSlide].badge}
+                  {HERO_SLIDES[heroSlide].badge}
                 </span>
               </div>
 
@@ -161,9 +161,9 @@ export default function Home() {
                 style={{fontFamily:'Montserrat,sans-serif',fontWeight:900,lineHeight:1.05,
                   animation:'fadeSlideUp 0.7s 0.1s ease both'}}
                 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-6">
-                {heroSlides[heroSlide].headline.map((line, li) => (
-                  <span key={li} className={`block ${heroSlides[heroSlide].headlineColors[li]}`}
-                    style={li === 2 ? {fontSize:'0.65em'} : {}}>
+                {HERO_SLIDES[heroSlide].headline.map((line, li) => (
+                  <span key={li} className="block"
+                    style={{color: HERO_SLIDES[heroSlide].headlineColors[li], fontSize: li === 2 ? '0.65em' : undefined}}>
                     {line}
                   </span>
                 ))}
@@ -171,26 +171,26 @@ export default function Home() {
 
               {/* Subtext */}
               <p key={`sub-${heroSlide}`}
-                className="text-white/85 text-base sm:text-lg leading-relaxed mb-8 max-w-xl"
-                style={{animation:'fadeSlideUp 0.7s 0.2s ease both'}}>
-                {heroSlides[heroSlide].sub}
+                className="text-base sm:text-lg leading-relaxed mb-8 max-w-xl"
+                style={{color:'rgba(255,255,255,0.85)', animation:'fadeSlideUp 0.7s 0.2s ease both'}}>
+                {HERO_SLIDES[heroSlide].sub}
               </p>
 
               {/* CTAs */}
               <div key={`cta-${heroSlide}`}
                 className="flex flex-col sm:flex-row gap-4 mb-10"
                 style={{animation:'fadeSlideUp 0.7s 0.3s ease both'}}>
-                <Link href={heroSlides[heroSlide].cta.href}
+                <Link href={HERO_SLIDES[heroSlide].cta.href}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-base transition hover:scale-105 active:scale-95"
                   style={{background:'var(--accent-blue)',color:'#fff',boxShadow:'0 4px 24px rgba(0,102,204,0.45)',fontFamily:'Montserrat,sans-serif'}}>
                   <ShoppingCart className="w-5 h-5" />
-                  {heroSlides[heroSlide].cta.label}
+                  {HERO_SLIDES[heroSlide].cta.label}
                   <ArrowRight className="w-4 h-4" />
                 </Link>
-                <Link href={heroSlides[heroSlide].cta2.href}
+                <Link href={HERO_SLIDES[heroSlide].cta2.href}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-base transition hover:scale-105 active:scale-95"
                   style={{background:'rgba(255,255,255,0.12)',backdropFilter:'blur(8px)',border:'1.5px solid rgba(255,255,255,0.4)',color:'#fff',fontFamily:'Montserrat,sans-serif'}}>
-                  {heroSlides[heroSlide].cta2.label}
+                  {HERO_SLIDES[heroSlide].cta2.label}
                   <ArrowRight className="w-4 h-4 opacity-70" />
                 </Link>
               </div>
@@ -209,12 +209,12 @@ export default function Home() {
         </div>
 
         {/* Prev / Next arrows */}
-        <button onClick={() => setHeroSlide(s => (s - 1 + heroSlides.length) % heroSlides.length)}
+        <button onClick={() => setHeroSlide(s => (s - 1 + HERO_SLIDES.length) % HERO_SLIDES.length)}
           className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full flex items-center justify-center transition hover:scale-110"
           style={{background:'rgba(255,255,255,0.15)',backdropFilter:'blur(6px)',border:'1px solid rgba(255,255,255,0.3)'}}>
           <ChevronLeft className="w-6 h-6 text-white" />
         </button>
-        <button onClick={() => setHeroSlide(s => (s + 1) % heroSlides.length)}
+        <button onClick={() => setHeroSlide(s => (s + 1) % HERO_SLIDES.length)}
           className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full flex items-center justify-center transition hover:scale-110"
           style={{background:'rgba(255,255,255,0.15)',backdropFilter:'blur(6px)',border:'1px solid rgba(255,255,255,0.3)'}}>
           <ChevronRight className="w-6 h-6 text-white" />
@@ -222,7 +222,7 @@ export default function Home() {
 
         {/* Dot indicators */}
         <div className="absolute bottom-7 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2.5">
-          {heroSlides.map((_, i) => (
+          {HERO_SLIDES.map((_, i) => (
             <button key={i} onClick={() => setHeroSlide(i)}
               className="transition-all duration-300 rounded-full"
               style={{
@@ -235,7 +235,7 @@ export default function Home() {
 
         {/* Slide counter */}
         <div className="absolute bottom-7 right-6 z-20 text-white/60 text-xs font-mono">
-          {String(heroSlide + 1).padStart(2,'0')} / {String(heroSlides.length).padStart(2,'0')}
+          {String(heroSlide + 1).padStart(2,'0')} / {String(HERO_SLIDES.length).padStart(2,'0')}
         </div>
 
         {/* Progress bar */}
