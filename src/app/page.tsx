@@ -14,8 +14,7 @@ const HERO_SLIDES = [
     sub: 'Computers · Laptops · Printers · CCTV · Networking · IT Services — all under one roof. Fast. Genuine. Trusted.',
     cta: { label: 'Shop Now', href: '/products' },
     cta2: { label: 'Our Services', href: '/services' },
-    overlay: 'linear-gradient(to left, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.55) 55%, rgba(15,23,42,0.10) 100%)',
-    align: 'right' as const,
+    overlay: 'linear-gradient(to right, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.55) 55%, rgba(15,23,42,0.10) 100%)',
   },
   {
     bg: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=1400&q=90&auto=format&fit=crop',
