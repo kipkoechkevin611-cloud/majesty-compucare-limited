@@ -153,12 +153,12 @@ export default function Home() {
 
               {/* Badge */}
               <div key={`badge-${heroSlide}`}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-4"
                 style={{marginLeft: (HERO_SLIDES[heroSlide] as any).align === 'right' ? 'auto' : undefined,
                   background:'rgba(255,255,255,0.15)',backdropFilter:'blur(8px)',border:'1px solid rgba(255,255,255,0.3)',
                   animation:'fadeSlideUp 0.6s ease forwards'}}>
                 <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                <span className="text-white text-xs font-semibold tracking-widest uppercase" style={{fontFamily:'Fira Code,monospace'}}>
+                <span className="text-white text-[11px] font-semibold tracking-widest uppercase" style={{fontFamily:'Fira Code,monospace'}}>
                   {HERO_SLIDES[heroSlide].badge}
                 </span>
               </div>
@@ -167,7 +167,7 @@ export default function Home() {
               <h1 key={`h1-${heroSlide}`}
                 style={{fontFamily:'Montserrat,sans-serif',fontWeight:900,lineHeight:1.05,
                   animation:'fadeSlideUp 0.7s 0.1s ease both'}}
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-5">
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4">
                 {HERO_SLIDES[heroSlide].headline.map((line, li) => (
                   <span key={li} className="block"
                     style={{color: HERO_SLIDES[heroSlide].headlineColors[li], fontSize: li === 2 ? '0.65em' : undefined}}>
@@ -178,37 +178,37 @@ export default function Home() {
 
               {/* Subtext */}
               <p key={`sub-${heroSlide}`}
-                className="text-base sm:text-lg leading-relaxed mb-8 max-w-xl"
+                className="text-sm sm:text-base leading-relaxed mb-5 max-w-xl"
                 style={{color:'rgba(255,255,255,0.85)', animation:'fadeSlideUp 0.7s 0.2s ease both'}}>
                 {HERO_SLIDES[heroSlide].sub}
               </p>
 
               {/* CTAs */}
               <div key={`cta-${heroSlide}`}
-                className="flex flex-col sm:flex-row gap-4 mb-10"
+                className="flex flex-col sm:flex-row gap-3 mb-6"
                 style={{animation:'fadeSlideUp 0.7s 0.3s ease both', justifyContent: (HERO_SLIDES[heroSlide] as any).align === 'right' ? 'flex-end' : undefined}}>
                 <Link href={HERO_SLIDES[heroSlide].cta.href}
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-base transition hover:scale-105 active:scale-95"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition hover:scale-105 active:scale-95"
                   style={{background:'var(--accent-blue)',color:'#fff',boxShadow:'0 4px 24px rgba(0,102,204,0.45)',fontFamily:'Montserrat,sans-serif'}}>
-                  <ShoppingCart className="w-5 h-5" />
+                  <ShoppingCart className="w-4 h-4" />
                   {HERO_SLIDES[heroSlide].cta.label}
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link href={HERO_SLIDES[heroSlide].cta2.href}
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-base transition hover:scale-105 active:scale-95"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition hover:scale-105 active:scale-95"
                   style={{background:'rgba(255,255,255,0.12)',backdropFilter:'blur(8px)',border:'1.5px solid rgba(255,255,255,0.4)',color:'#fff',fontFamily:'Montserrat,sans-serif'}}>
                   {HERO_SLIDES[heroSlide].cta2.label}
-                  <ArrowRight className="w-4 h-4 opacity-70" />
+                  <ArrowRight className="w-3.5 h-3.5 opacity-70" />
                 </Link>
               </div>
 
               {/* Stats strip */}
-              <div className="flex items-center gap-6 md:gap-10 flex-wrap"
+              <div className="flex items-center gap-5 md:gap-8 flex-wrap"
                 style={{justifyContent: (HERO_SLIDES[heroSlide] as any).align === 'right' ? 'flex-end' : undefined}}>
                 {[['10+','Years'],['5,000+','Customers'],['24/7','Support'],['100%','Genuine']].map(([val,lbl])=>(
                   <div key={lbl} className="text-center">
-                    <p className="text-2xl sm:text-3xl font-black text-white" style={{fontFamily:'Montserrat,sans-serif'}}>{val}</p>
-                    <p className="text-[10px] mt-0.5 uppercase tracking-widest text-white/60" style={{fontFamily:'Fira Code,monospace'}}>{lbl}</p>
+                    <p className="text-xl sm:text-2xl font-black text-white" style={{fontFamily:'Montserrat,sans-serif'}}>{val}</p>
+                    <p className="text-[9px] mt-0.5 uppercase tracking-widest text-white/60" style={{fontFamily:'Fira Code,monospace'}}>{lbl}</p>
                   </div>
                 ))}
               </div>
