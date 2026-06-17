@@ -143,9 +143,10 @@ export default function Home() {
 
         {/* Content */}
         <div className="relative z-10 h-full flex flex-col justify-center">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex">
-            <div className="max-w-2xl w-full"
+          <div className="w-full px-8 sm:px-12 lg:px-20">
+            <div className="w-full"
               style={{
+                maxWidth: '560px',
                 marginLeft: (HERO_SLIDES[heroSlide] as any).align === 'right' ? 'auto' : undefined,
                 marginRight: (HERO_SLIDES[heroSlide] as any).align === 'right' ? '0' : undefined,
                 textAlign: (HERO_SLIDES[heroSlide] as any).align === 'right' ? 'right' : 'left',
