@@ -304,103 +304,6 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Offer strip */}
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-xl bg-yellow-400 px-6 py-4">
-            <div className="flex items-center gap-3">
-              <span className="text-3xl">🎉</span>
-              <div>
-                <p className="font-black text-slate-900 text-sm" style={{fontFamily:'Montserrat,sans-serif'}}>Special Offers &amp; Deals — Available Now!</p>
-                <p className="text-slate-700 text-xs">Repair packages, CCTV bundles, school ICT deals &amp; more.</p>
-              </div>
-            </div>
-            <Link href="/offers"
-              className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-sm bg-blue-700 text-white hover:bg-blue-800 transition">
-              See All Deals <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ WHY CHOOSE US ═══ */}
-      <section className="py-20 bg-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <p className="text-blue-600 text-sm mb-2" style={{fontFamily:'Fira Code,monospace'}}>// WHY_US</p>
-            <h2 className="text-3xl text-slate-900" style={{fontFamily:'Montserrat,sans-serif',fontWeight:800}}>Why Choose Majesty Compucare</h2>
-          </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {icon:Award,title:'Genuine Products',desc:'Only authentic, high-quality tech products',color:'text-blue-600',bg:'bg-blue-100'},
-              {icon:Clock,title:'Fast Service',desc:'Quick turnaround on repairs & deliveries',color:'text-green-600',bg:'bg-green-100'},
-              {icon:Headphones,title:'Expert Support',desc:'Professional technicians always ready to help',color:'text-blue-600',bg:'bg-blue-100'},
-              {icon:Shield,title:'Full Warranty',desc:'Comprehensive warranty on all products',color:'text-green-600',bg:'bg-green-100'},
-            ].map(({icon:Icon,title,desc,color,bg})=>(
-              <div key={title} className="glow-card rounded-xl p-6 text-center bg-white border border-slate-200 shadow-sm">
-                <div className={`w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4 ${bg}`}>
-                  <Icon className={`w-7 h-7 ${color}`} />
-                </div>
-                <h3 className="font-bold text-slate-900 mb-2" style={{fontFamily:'Montserrat,sans-serif'}}>{title}</h3>
-                <p className="text-sm leading-relaxed text-slate-500">{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ SERVICES ═══ */}
-      <section className="py-20 relative overflow-hidden bg-white">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-50/50 to-transparent" />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <p className="text-blue-600 text-sm mb-2" style={{fontFamily:'Fira Code,monospace'}}>// WHAT_WE_DO</p>
-            <h2 className="text-3xl text-slate-900" style={{fontFamily:'Montserrat,sans-serif',fontWeight:800}}>Our Services</h2>
-            <p className="mt-2 max-w-xl mx-auto text-slate-500">Comprehensive IT solutions to keep you running smoothly</p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map(({icon:Icon,title,desc})=>(
-              <div key={title} className="glow-card rounded-xl p-6 bg-slate-50 border border-slate-200 group hover:shadow-md transition">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-blue-100 border border-blue-200">
-                  <Icon className="w-6 h-6 text-blue-600" />
-                </div>
-                <h3 className="text-base font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition" style={{fontFamily:'Montserrat,sans-serif'}}>{title}</h3>
-                <p className="text-sm leading-relaxed text-slate-500">{desc}</p>
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-10">
-            <Link href="/services" className="btn-primary inline-flex items-center gap-2 px-8 py-3">
-              Explore All Services <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ TESTIMONIALS ═══ */}
-      <section className="py-20 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <p className="text-blue-600 text-sm mb-2" style={{fontFamily:'Fira Code,monospace'}}>// CLIENT_FEEDBACK</p>
-            <h2 className="text-3xl text-slate-900" style={{fontFamily:'Montserrat,sans-serif',fontWeight:800}}>What Our Customers Say</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.map(({name,role,text})=>(
-              <div key={name} className="glow-card rounded-xl p-6 bg-white border border-slate-200 shadow-sm">
-                <div className="flex mb-4 gap-0.5">
-                  {[1,2,3,4,5].map(s=><Star key={s} className="w-4 h-4 fill-current text-yellow-400" />)}
-                </div>
-                <p className="text-sm leading-relaxed mb-5 text-slate-600">"{text}"</p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-black flex-shrink-0 bg-blue-600 text-white" style={{fontFamily:'Montserrat,sans-serif'}}>
-                    {name.charAt(0)}
-                  </div>
-                  <div>
-                    <p className="font-bold text-sm text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>{name}</p>
-                    <p className="text-xs text-green-600" style={{fontFamily:'Fira Code,monospace'}}>{role}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -492,6 +395,89 @@ export default function Home() {
                   <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">{post.excerpt}</p>
                 </div>
               </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ WHY CHOOSE US ═══ */}
+      <section className="py-20 bg-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-blue-600 text-sm mb-2" style={{fontFamily:'Fira Code,monospace'}}>// WHY_US</p>
+            <h2 className="text-3xl text-slate-900" style={{fontFamily:'Montserrat,sans-serif',fontWeight:800}}>Why Choose Majesty Compucare</h2>
+          </div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {icon:Award,title:'Genuine Products',desc:'Only authentic, high-quality tech products',color:'text-blue-600',bg:'bg-blue-100'},
+              {icon:Clock,title:'Fast Service',desc:'Quick turnaround on repairs & deliveries',color:'text-green-600',bg:'bg-green-100'},
+              {icon:Headphones,title:'Expert Support',desc:'Professional technicians always ready to help',color:'text-blue-600',bg:'bg-blue-100'},
+              {icon:Shield,title:'Full Warranty',desc:'Comprehensive warranty on all products',color:'text-green-600',bg:'bg-green-100'},
+            ].map(({icon:Icon,title,desc,color,bg})=>(
+              <div key={title} className="glow-card rounded-xl p-6 text-center bg-white border border-slate-200 shadow-sm">
+                <div className={`w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4 ${bg}`}>
+                  <Icon className={`w-7 h-7 ${color}`} />
+                </div>
+                <h3 className="font-bold text-slate-900 mb-2" style={{fontFamily:'Montserrat,sans-serif'}}>{title}</h3>
+                <p className="text-sm leading-relaxed text-slate-500">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ SERVICES ═══ */}
+      <section className="py-20 relative overflow-hidden bg-white">
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-50/50 to-transparent" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-blue-600 text-sm mb-2" style={{fontFamily:'Fira Code,monospace'}}>// WHAT_WE_DO</p>
+            <h2 className="text-3xl text-slate-900" style={{fontFamily:'Montserrat,sans-serif',fontWeight:800}}>Our Services</h2>
+            <p className="mt-2 max-w-xl mx-auto text-slate-500">Comprehensive IT solutions to keep you running smoothly</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map(({icon:Icon,title,desc})=>(
+              <div key={title} className="glow-card rounded-xl p-6 bg-slate-50 border border-slate-200 group hover:shadow-md transition">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-blue-100 border border-blue-200">
+                  <Icon className="w-6 h-6 text-blue-600" />
+                </div>
+                <h3 className="text-base font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition" style={{fontFamily:'Montserrat,sans-serif'}}>{title}</h3>
+                <p className="text-sm leading-relaxed text-slate-500">{desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-10">
+            <Link href="/services" className="btn-primary inline-flex items-center gap-2 px-8 py-3">
+              Explore All Services <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ TESTIMONIALS ═══ */}
+      <section className="py-20 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-blue-600 text-sm mb-2" style={{fontFamily:'Fira Code,monospace'}}>// CLIENT_FEEDBACK</p>
+            <h2 className="text-3xl text-slate-900" style={{fontFamily:'Montserrat,sans-serif',fontWeight:800}}>What Our Customers Say</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {testimonials.map(({name,role,text})=>(
+              <div key={name} className="glow-card rounded-xl p-6 bg-white border border-slate-200 shadow-sm">
+                <div className="flex mb-4 gap-0.5">
+                  {[1,2,3,4,5].map(s=><Star key={s} className="w-4 h-4 fill-current text-yellow-400" />)}
+                </div>
+                <p className="text-sm leading-relaxed mb-5 text-slate-600">"{text}"</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-black flex-shrink-0 bg-blue-600 text-white" style={{fontFamily:'Montserrat,sans-serif'}}>
+                    {name.charAt(0)}
+                  </div>
+                  <div>
+                    <p className="font-bold text-sm text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>{name}</p>
+                    <p className="text-xs text-green-600" style={{fontFamily:'Fira Code,monospace'}}>{role}</p>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
