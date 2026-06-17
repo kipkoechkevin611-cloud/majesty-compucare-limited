@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Misiko Solutions Inc – Financial & AI-Driven Business Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #07090F;
+    --navy-mid: #0D1120;
+    --navy-light: #141929;
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-pale: #F5E9C8;
+    --cream: #F2EDE3;
+    --white: #FAFAF8;
+    --muted: #8B90A0;
+    --border: rgba(201,168,76,0.18);
+    --border-faint: rgba(201,168,76,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--cream);
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 1.2rem 5vw;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(7,9,15,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 0.5px solid var(--border-faint);
+    transition: background 0.3s;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--gold-light);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--cream); font-weight: 300; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 5vw 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 60% 40%, rgba(201,168,76,0.07) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 50% at 10% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image:
+      linear-gradient(var(--gold) 1px, transparent 1px),
+      linear-gradient(90deg, var(--gold) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content { position: relative; max-width: 760px; animation: fadeUp 1s ease both; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 2rem;
+    padding: 0.4rem 1rem;
+    border: 0.5px solid var(--border);
+    border-radius: 2px;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 20px; height: 1px; background: var(--gold);
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  h1 em { font-style: italic; color: var(--gold-light); }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 520px;
+    margin-bottom: 3rem;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-gold {
+    padding: 0.85rem 2.2rem;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-outline {
+    padding: 0.85rem 2.2rem;
+    background: transparent;
+    color: var(--gold-light);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 0.5px solid var(--border);
+    cursor: pointer;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 0.5px solid var(--border-faint);
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 500;
+    color: var(--gold-light);
+    display: block;
+    line-height: 1;
+  }
+  .stat-lbl {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 7rem 5vw; }
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.2rem;
+  }
+  .section-tag::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.15;
+    letter-spacing: -0.005em;
+    margin-bottom: 1.2rem;
+  }
+  h2 em { font-style: italic; color: var(--gold-light); }
+
+  /* ── ABOUT ── */
+  #about { background: var(--navy-mid); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .about-text p {
+    color: var(--muted); font-weight: 300; font-size: 1rem; margin-bottom: 1.2rem;
+  }
+  .about-highlights { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
+  .highlight-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1.1rem 1.4rem;
+    border-left: 2px solid var(--gold);
+    background: rgba(201,168,76,0.04);
+  }
+  .highlight-item strong {
+    display: block; color: var(--cream); font-weight: 500; font-size: 0.9rem; margin-bottom: 0.2rem;
+  }
+  .highlight-item p { color: var(--muted); font-size: 0.85rem; margin: 0; }
+  .about-visual {
+    position: relative; display: flex; align-items: center; justify-content: center;
+  }
+  .about-ring {
+    width: 340px; height: 340px; border-radius: 50%;
+    border: 0.5px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .about-ring::before {
+    content: ''; position: absolute;
+    width: 90%; height: 90%; border-radius: 50%;
+    border: 0.5px solid var(--border-faint);
+  }
+  .about-center {
+    text-align: center; z-index: 1;
+  }
+  .about-center .big {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem; font-weight: 300; color: var(--gold-light); line-height: 1;
+    display: block;
+  }
+  .about-center .lbl { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .about-orbit {
+    position: absolute; width: 100%; height: 100%;
+    top: 0; left: 0;
+  }
+  .orbit-dot {
+    position: absolute; width: 10px; height: 10px; border-radius: 50%;
+    background: var(--gold); opacity: 0.7;
+  }
+  .orbit-dot:nth-child(1) { top: -5px; left: 50%; transform: translateX(-50%); }
+  .orbit-dot:nth-child(2) { bottom: -5px; left: 50%; transform: translateX(-50%); }
+  .orbit-dot:nth-child(3) { left: -5px; top: 50%; transform: translateY(-50%); }
+  .orbit-dot:nth-child(4) { right: -5px; top: 50%; transform: translateY(-50%); }
+
+  /* ── SERVICES ── */
+  #services { background: var(--navy); }
+  .services-header { max-width: 1200px; margin: 0 auto 4rem; }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5px; max-width: 1200px; margin: 0 auto;
+    background: var(--border-faint);
+  }
+  .service-card {
+    background: var(--navy);
+    padding: 2.5rem 2rem;
+    transition: background 0.35s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 1.5px; background: var(--gold);
+    transition: width 0.4s ease;
+  }
+  .service-card:hover::after { width: 100%; }
+  .service-card:hover { background: var(--navy-light); }
+  .service-icon {
+    width: 44px; height: 44px; margin-bottom: 1.5rem;
+    display: flex; align-items: center; justify-content: center;
+    border: 0.5px solid var(--border);
+    color: var(--gold);
+    font-size: 1.1rem;
+  }
+  .service-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 500; color: var(--white);
+    margin-bottom: 0.7rem;
+  }
+  .service-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; font-weight: 300; }
+
+  /* ── PORTFOLIO ── */
+  #portfolio { background: var(--navy-mid); }
+  .portfolio-header { max-width: 1200px; margin: 0 auto 4rem; }
+  .portfolio-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .portfolio-card {
+    border: 0.5px solid var(--border-faint);
+    padding: 2.2rem 1.8rem;
+    position: relative;
+    background: linear-gradient(135deg, rgba(201,168,76,0.03) 0%, transparent 100%);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .portfolio-card:hover { border-color: var(--border); transform: translateY(-4px); }
+  .portfolio-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem; font-weight: 300; color: rgba(201,168,76,0.12);
+    line-height: 1; margin-bottom: 1rem;
+  }
+  .portfolio-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-weight: 500; color: var(--cream);
+    margin-bottom: 0.6rem;
+  }
+  .portfolio-card p { color: var(--muted); font-size: 0.87rem; line-height: 1.65; font-weight: 300; }
+  .portfolio-tag {
+    display: inline-block; margin-top: 1.2rem;
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold); padding: 0.3rem 0.7rem;
+    border: 0.5px solid rgba(201,168,76,0.3);
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--navy); }
+  .contact-inner { max-width: 1200px; margin: 0 auto; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+  .contact-info p { color: var(--muted); font-weight: 300; margin-bottom: 2.5rem; }
+  .contact-item {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 0.5px solid var(--border-faint);
+    font-size: 0.9rem;
+  }
+  .contact-item-icon {
+    width: 36px; height: 36px; flex-shrink: 0;
+    border: 0.5px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); font-size: 0.85rem;
+  }
+  .contact-item-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 0.15rem; }
+  .contact-item-value { color: var(--cream); font-weight: 300; }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .form-group input, .form-group textarea {
+    background: rgba(255,255,255,0.03);
+    border: 0.5px solid var(--border-faint);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    padding: 0.85rem 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+    resize: none;
+  }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--gold); }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(139,144,160,0.5); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy-mid);
+    border-top: 0.5px solid var(--border-faint);
+    padding: 2.5rem 5vw;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; color: var(--gold-light); font-weight: 400;
+  }
+  footer p { font-size: 0.8rem; color: var(--muted); }
+
+  /* ── DIVIDER ── */
+  .gold-line {
+    height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 5vw; opacity: 0.3;
+  }
+
+  /* ── ANIMATION ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .about-visual { display: none; }
+    .portfolio-grid { grid-template-columns: 1fr 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 620px) {
+    .nav-links { display: none; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Misiko <span>Solutions</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Nairobi, Kenya · Est. 2024</div>
+    <h1>Your <em>trusted</em> partner<br>in finance &amp; AI</h1>
+    <p class="hero-sub">Accounting, taxation, payroll &amp; AI-driven financial solutions — combining expertise, technology, and strategic insight for sustainable growth.</p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-gold">Our Services</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <span class="stat-num">6+</span>
+        <span class="stat-lbl">Core Services</span>
+      </div>
+      <div>
+        <span class="stat-num">AI</span>
+        <span class="stat-lbl">Driven Insights</span>
+      </div>
+      <div>
+        <span class="stat-num">2024</span>
+        <span class="stat-lbl">Founded</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-line"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <div class="section-tag">About Us</div>
+      <h2>Bridging tradition<br>with <em>modern innovation</em></h2>
+      <p>Founded in 2024 by Allan Misiko and located in Nairobi, Kenya, Misiko Solutions Inc delivers innovative, practical, and results-driven solutions for businesses and professionals.</p>
+      <p>We combine deep financial expertise with cutting-edge technology — including artificial intelligence and data analytics — to help our clients thrive in a fast-changing world.</p>
+      <div class="about-highlights">
+        <div class="highlight-item">
+          <div>
+            <strong>Experienced Professionals</strong>
+            <p>Deep domain expertise across finance, HR, technology, and strategy.</p>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <div>
+            <strong>Technology-Driven &amp; Forward-Thinking</strong>
+            <p>AI, automation, and data insights at the core of everything we do.</p>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <div>
+            <strong>Integrity &amp; Transparency</strong>
+            <p>Honest, tailored solutions built around your unique business needs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual reveal">
+      <div class="about-ring">
+        <div class="about-orbit">
+          <div class="orbit-dot"></div>
+          <div class="orbit-dot"></div>
+          <div class="orbit-dot"></div>
+          <div class="orbit-dot"></div>
+        </div>
+        <div class="about-center">
+          <span class="big">11–50</span>
+          <span class="lbl">Employees</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-line"></div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header reveal">
+    <div class="section-tag">What We Offer</div>
+    <h2>Comprehensive solutions<br>for <em>every business need</em></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <h3>Accounting, Finance &amp; Taxation</h3>
+      <p>Accurate financial reporting, regulatory compliance, and strategic tax advisory to keep your business on solid financial ground.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      </div>
+      <h3>Payroll &amp; HR Services</h3>
+      <p>Efficient payroll management, HR solutions, and comprehensive employee support to simplify your workforce administration.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20M6 20V10l6-8 6 8v10"/><path d="M10 20v-5h4v5"/></svg>
+      </div>
+      <h3>Business Advisory &amp; Strategy</h3>
+      <p>Tailored strategic solutions designed to drive measurable growth, operational efficiency, and long-term competitive advantage.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a9 9 0 100 18A9 9 0 0012 2z"/><path d="M9 12h6M12 9v6"/><circle cx="12" cy="12" r="3"/></svg>
+      </div>
+      <h3>Artificial Intelligence &amp; Data Insights</h3>
+      <p>Leveraging AI automation, machine learning, and data analytics to optimize operations, decision-making, and competitive intelligence.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+      </div>
+      <h3>Professional Training &amp; Capacity Building</h3>
+      <p>Upskilling programmes and workshops that equip teams with modern business, financial, and AI competencies for tomorrow's demands.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <h3>IT &amp; Business Process Outsourcing</h3>
+      <p>Streamlined technology solutions and outsourced business processes designed to maximize productivity and reduce operational overhead.</p>
+    </div>
+  </div>
+</section>
+
+<div class="gold-line"></div>
+
+<!-- PORTFOLIO / WHY US -->
+<section id="portfolio">
+  <div class="portfolio-header reveal">
+    <div class="section-tag">Why Work With Us</div>
+    <h2>Turning challenges into<br><em>opportunities</em></h2>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-card reveal">
+      <div class="portfolio-num">01</div>
+      <h3>AI-Powered Financial Intelligence</h3>
+      <p>We integrate artificial intelligence directly into financial workflows — from automated bookkeeping and anomaly detection to predictive cash flow modelling and intelligent reporting dashboards.</p>
+      <span class="portfolio-tag">AI &amp; Automation</span>
+    </div>
+    <div class="portfolio-card reveal">
+      <div class="portfolio-num">02</div>
+      <h3>AI Training &amp; Workforce Upskilling</h3>
+      <p>Our dedicated AI training programmes prepare your team to harness the power of modern tools — prompt engineering, AI-assisted analysis, automation frameworks, and responsible AI adoption.</p>
+      <span class="portfolio-tag">Training</span>
+    </div>
+    <div class="portfolio-card reveal">
+      <div class="portfolio-num">03</div>
+      <h3>Tax Compliance &amp; Advisory</h3>
+      <p>Comprehensive tax planning, filing, and compliance support for businesses and individuals across Kenya and beyond — ensuring accuracy and minimising risk.</p>
+      <span class="portfolio-tag">Taxation</span>
+    </div>
+    <div class="portfolio-card reveal">
+      <div class="portfolio-num">04</div>
+      <h3>Smart Payroll Management</h3>
+      <p>End-to-end payroll processing with statutory deductions, NHIF, NSSF compliance, and employee self-service — reducing manual effort and ensuring timely, accurate payments.</p>
+      <span class="portfolio-tag">Payroll &amp; HR</span>
+    </div>
+    <div class="portfolio-card reveal">
+      <div class="portfolio-num">05</div>
+      <h3>Growth Strategy &amp; Business Advisory</h3>
+      <p>From start-up structuring to SME growth strategies — our advisors deliver practical, data-backed plans that translate vision into measurable results.</p>
+      <span class="portfolio-tag">Strategy</span>
+    </div>
+    <div class="portfolio-card reveal">
+      <div class="portfolio-num">06</div>
+      <h3>BPO &amp; Tech Solutions</h3>
+      <p>Outsource non-core functions to our expert team: IT support, virtual assistance, data entry, process automation — freeing you to focus on what matters most.</p>
+      <span class="portfolio-tag">IT &amp; BPO</span>
+    </div>
+  </div>
+</section>
+
+<div class="gold-line"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="section-tag">Get in Touch</div>
+        <h2>Start your<br><em>growth journey</em></h2>
+        <p>Partner with Misiko Solutions Inc and experience business solutions that truly make a difference. We'd love to hear about your goals.</p>
+        <div>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div>
+              <span class="contact-item-label">Phone</span>
+              <span class="contact-item-value">+254 759 071 906 / +1 (845) 315-9260</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <span class="contact-item-label">Email</span>
+              <span class="contact-item-value">misikosolutions@gmail.com</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <span class="contact-item-label">Location</span>
+              <span class="contact-item-value">Nairobi, Kenya</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div>
+              <span class="contact-item-label">Company Size</span>
+              <span class="contact-item-value">11–50 employees · Financial Services</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form reveal">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" placeholder="Your name"/>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="your@email.com"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Company / Organisation</label>
+          <input type="text" placeholder="Company name"/>
+        </div>
+        <div class="form-group">
+          <label>Service Interest</label>
+          <input type="text" placeholder="e.g. AI Training, Payroll, Taxation…"/>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea rows="5" placeholder="Tell us about your business needs…"></textarea>
+        </div>
+        <button class="btn-gold" style="width:100%; margin-top:0.5rem; font-size:0.85rem; cursor:pointer;">Send Message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Misiko Solutions Inc</div>
+  <p>© 2024 Misiko Solutions Inc. Nairobi, Kenya.</p>
+  <p style="font-size:0.78rem; color:var(--muted);">#Accounting #Finance #AI #Payroll #HR</p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>

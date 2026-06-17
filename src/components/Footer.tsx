@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Phone, Mail, MapPin } from 'lucide-react'
+import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -35,7 +35,7 @@ export default function Footer() {
               <span style={{color:'var(--accent-blue)'}}>// </span>Quick Links
             </h4>
             <ul className="space-y-2.5">
-              {[['/', 'Home'],['/about','About Us'],['/products','Products'],['/services','Services'],['/shop','Shop'],['/contact','Contact']].map(([href, label]) => (
+              {[['/', 'Home'],['/about','About Us'],['/products','Products'],['/services','Services'],['/shop','Shop'],['/offers','Offers & Deals'],['/blog','Blog'],['/contact','Contact']].map(([href, label]) => (
                 <li key={href}>
                   <Link href={href} className="text-sm transition flex items-center gap-2 group" style={{color:'var(--text-low)'}}>
                     <span className="w-0 group-hover:w-3 h-px transition-all duration-200" style={{background:'var(--accent-green)'}} />
@@ -77,22 +77,47 @@ export default function Footer() {
             <h4 className="text-sm font-black mb-5 uppercase tracking-widest" style={{fontFamily:'Montserrat,sans-serif',color:'var(--text-high)'}}>
               <span style={{color:'var(--accent-blue)'}}>// </span>Contact Us
             </h4>
-            <ul className="space-y-4">
-              <li className="flex items-start space-x-3">
-                <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" style={{color:'var(--accent-blue)'}} />
-                <span className="text-sm" style={{color:'var(--text-low)'}}>Nyakinyua Building, Kangei, Nakuru, Kenya</span>
+
+            {/* Nakuru */}
+            <p className="text-[10px] font-black uppercase tracking-widest mb-2" style={{color:'var(--accent-blue)',fontFamily:'Fira Code,monospace'}}>🏢 Nakuru HQ</p>
+            <ul className="space-y-2 mb-5">
+              <li className="flex items-start gap-2">
+                <MapPin className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" style={{color:'var(--accent-blue)'}} />
+                <span className="text-xs" style={{color:'var(--text-low)'}}>Nyakinyua Building, Kangei, Nakuru</span>
               </li>
-              <li className="flex items-start space-x-3">
-                <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" style={{color:'var(--accent-blue)'}} />
-                <div className="text-sm" style={{color:'var(--text-low)',fontFamily:'Fira Code,monospace'}}>
+              <li className="flex items-start gap-2">
+                <Phone className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" style={{color:'var(--accent-blue)'}} />
+                <div className="text-xs" style={{color:'var(--text-low)',fontFamily:'Fira Code,monospace'}}>
                   <p>0716 000 367</p>
                   <p>0722 717 846</p>
                 </div>
               </li>
-              <li className="flex items-center space-x-3">
-                <Mail className="w-4 h-4 flex-shrink-0" style={{color:'var(--accent-blue)'}} />
-                <a href="mailto:sales.compucare111@gmail.com" className="text-sm transition hover:text-slate-900" style={{color:'var(--text-low)'}}>
+              <li className="flex items-center gap-2">
+                <Mail className="w-3.5 h-3.5 flex-shrink-0" style={{color:'var(--accent-blue)'}} />
+                <a href="mailto:sales.compucare111@gmail.com" className="text-xs transition hover:text-slate-900 break-all" style={{color:'var(--text-low)'}}>
                   sales.compucare111@gmail.com
+                </a>
+              </li>
+            </ul>
+
+            {/* Kisumu */}
+            <p className="text-[10px] font-black uppercase tracking-widest mb-2" style={{color:'var(--accent-green)',fontFamily:'Fira Code,monospace'}}>🌊 Kisumu Branch</p>
+            <ul className="space-y-2">
+              <li className="flex items-start gap-2">
+                <MapPin className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" style={{color:'var(--accent-green)'}} />
+                <span className="text-xs" style={{color:'var(--text-low)'}}>Mega Plaza, GF, Oginga Odinga St, Kisumu</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Phone className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" style={{color:'var(--accent-green)'}} />
+                <div className="text-xs" style={{color:'var(--text-low)',fontFamily:'Fira Code,monospace'}}>
+                  <p>0111 543 714 (Seth)</p>
+                  <p>0702 881 106 (Christine)</p>
+                </div>
+              </li>
+              <li className="flex items-center gap-2">
+                <MessageCircle className="w-3.5 h-3.5 flex-shrink-0" style={{color:'var(--accent-green)'}} />
+                <a href="https://wa.me/254111543714" target="_blank" rel="noopener noreferrer" className="text-xs transition hover:text-slate-900" style={{color:'var(--text-low)'}}>
+                  WhatsApp Kisumu
                 </a>
               </li>
             </ul>

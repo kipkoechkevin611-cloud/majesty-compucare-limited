@@ -23,6 +23,33 @@ export default function AboutPage() {
     { icon: Phone,  label: 'Phone',    value: '0716 000 367 / 0722 717 846' },
     { icon: Mail,   label: 'Email',    value: 'sales.compucare111@gmail.com' },
   ]
+  const branches = [
+    {
+      city: 'Nakuru — HQ',
+      flag: '🏢',
+      address: 'Nyakinyua Building, Kangei, Nakuru',
+      phone1: '0716 000 367',
+      phone2: '0722 717 846',
+      email: 'sales.compucare111@gmail.com',
+      whatsapp: '254716000367',
+      manager: null,
+      color: 'border-blue-500',
+      badge: 'bg-blue-100 text-blue-700',
+    },
+    {
+      city: 'Kisumu Branch',
+      flag: '🌊',
+      address: 'Mega Plaza, Ground Floor, Oginga Odinga Street, Kisumu',
+      phone1: '0111 543 714',
+      phone2: '0702 881 106',
+      email: 'sales.compucare111@gmail.com',
+      whatsapp: '254111543714',
+      manager: 'Seth Awuoth (Manager)',
+      secretary: 'Christine Ochang (Secretary)',
+      color: 'border-green-500',
+      badge: 'bg-green-100 text-green-700',
+    },
+  ]
 
   const products = [
     { icon: Monitor,    label: 'Laptops & Desktop Computers' },
@@ -198,22 +225,59 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Contact */}
+      {/* Our Branches */}
       <section className="py-16" style={{borderTop:'1px solid rgba(0,123,255,0.15)'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <p className="section-label mb-3">// GET_IN_TOUCH</p>
-            <h2 className="text-3xl font-black text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>Get In Touch</h2>
-            <p className="mt-2 text-sm" style={{color:'var(--text-low)'}}>Visit us or reach out for any inquiries</p>
+          <div className="text-center mb-10">
+            <p className="section-label mb-3">// OUR_BRANCHES</p>
+            <h2 className="text-3xl font-black text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>Find Us Near You</h2>
+            <p className="mt-2 text-sm text-slate-500">Two convenient locations — Nakuru &amp; Kisumu</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {contacts.map(({icon:Icon,label,value}) => (
-              <div key={label} className="text-center rounded-xl p-8 glass" style={{border:'1px solid rgba(0,123,255,0.2)'}}>
-                <div className="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4" style={{background:'rgba(0,123,255,0.12)',border:'1px solid rgba(0,123,255,0.25)'}}>
-                  <Icon className="w-7 h-7" style={{color:'var(--accent-blue)'}} />
+          <div className="grid md:grid-cols-2 gap-8">
+            {branches.map((b: any) => (
+              <div key={b.city} className={`rounded-2xl bg-white border-l-4 ${b.color} shadow-sm p-7`}>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <span className="text-3xl">{b.flag}</span>
+                    <div>
+                      <span className={`text-xs font-bold px-2.5 py-0.5 rounded-full ${b.badge}`}>{b.city}</span>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-base font-black text-slate-900 mb-2" style={{fontFamily:'Montserrat,sans-serif'}}>{label}</h3>
-                <p className="text-sm" style={{color:'var(--text-low)'}}>{value}</p>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-slate-400" />
+                    <span className="text-sm text-slate-700">{b.address}</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Phone className="w-4 h-4 flex-shrink-0 text-slate-400" />
+                    <div>
+                      <a href={`tel:${b.phone1.replace(/\s/g,'')}`} className="text-sm font-semibold text-blue-600 hover:underline">{b.phone1}</a>
+                      {b.phone2 && <><span className="text-slate-400 mx-1">/</span>
+                      <a href={`tel:${b.phone2.replace(/\s/g,'')}`} className="text-sm font-semibold text-blue-600 hover:underline">{b.phone2}</a></>}
+                    </div>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Mail className="w-4 h-4 flex-shrink-0 text-slate-400" />
+                    <a href={`mailto:${b.email}`} className="text-sm text-slate-600 hover:underline">{b.email}</a>
+                  </li>
+                  {b.manager && (
+                    <li className="flex items-center gap-3">
+                      <MessageCircle className="w-4 h-4 flex-shrink-0 text-slate-400" />
+                      <span className="text-sm text-slate-700"><strong>{b.manager}</strong></span>
+                    </li>
+                  )}
+                  {b.secretary && (
+                    <li className="flex items-start gap-3">
+                      <MessageCircle className="w-4 h-4 flex-shrink-0 mt-0.5 text-slate-400" />
+                      <span className="text-sm text-slate-700"><strong>{b.secretary}</strong></span>
+                    </li>
+                  )}
+                </ul>
+                <a href={`https://wa.me/${b.whatsapp}`} target="_blank" rel="noopener noreferrer"
+                  className="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold bg-green-500 text-white hover:bg-green-600 transition">
+                  <MessageCircle className="w-3.5 h-3.5" /> WhatsApp This Branch
+                </a>
               </div>
             ))}
           </div>

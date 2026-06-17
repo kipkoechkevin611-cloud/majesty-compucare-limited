@@ -160,20 +160,94 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Map */}
+      {/* Branch Locations */}
       <section className="py-16" style={{background:'var(--bg-surface2)'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <p className="section-label mb-3">// FIND_US</p>
-            <h2 className="text-3xl font-black text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>Find Us</h2>
-            <p className="mt-2 text-sm" style={{color:'var(--text-low)'}}>Visit our store in Nakuru for in-person assistance</p>
+          <div className="text-center mb-10">
+            <p className="section-label mb-3">// OUR_BRANCHES</p>
+            <h2 className="text-3xl font-black text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>Two Branches, One Standard</h2>
+            <p className="mt-2 text-sm text-slate-500">Visit us in Nakuru or Kisumu — same quality, same commitment</p>
           </div>
-          <div className="rounded-xl overflow-hidden h-64 sm:h-72 lg:h-80 flex items-center justify-center" style={{background:'rgba(0,123,255,0.05)',border:'1px solid rgba(0,123,255,0.15)'}}>
-            <div className="text-center">
-              <MapPin className="w-14 h-14 mx-auto mb-3" style={{color:'rgba(0,123,255,0.3)'}} />
-              <p className="font-bold text-slate-900" style={{fontFamily:'Montserrat,sans-serif'}}>Map Integration</p>
-              <p className="text-sm mt-1" style={{color:'var(--text-low)',fontFamily:'Fira Code,monospace'}}>Nyakinyua Building, Kangei, Nakuru, Kenya</p>
+          <div className="grid md:grid-cols-2 gap-8">
+
+            {/* Nakuru */}
+            <div className="rounded-2xl bg-white border-l-4 border-blue-500 shadow-sm p-7">
+              <div className="flex items-center gap-3 mb-5">
+                <span className="text-3xl">🏢</span>
+                <div>
+                  <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-blue-100 text-blue-700">Nakuru — Headquarters</span>
+                </div>
+              </div>
+              <ul className="space-y-3 mb-5">
+                <li className="flex items-start gap-3">
+                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-400" />
+                  <span className="text-sm text-slate-700">Nyakinyua Building, Kangei, Nakuru, Kenya</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Phone className="w-4 h-4 flex-shrink-0 text-blue-400" />
+                  <div className="text-sm font-semibold text-slate-700">
+                    <a href="tel:0716000367" className="text-blue-600 hover:underline">0716 000 367</a>
+                    <span className="text-slate-400 mx-1">/</span>
+                    <a href="tel:0722717846" className="text-blue-600 hover:underline">0722 717 846</a>
+                  </div>
+                </li>
+                <li className="flex items-center gap-3">
+                  <MessageCircle className="w-4 h-4 flex-shrink-0 text-green-500" />
+                  <a href="https://wa.me/254716000367" target="_blank" rel="noopener noreferrer"
+                    className="text-sm text-green-600 font-semibold hover:underline">WhatsApp: 0716 000 367</a>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Mail className="w-4 h-4 flex-shrink-0 text-blue-400" />
+                  <a href="mailto:sales.compucare111@gmail.com" className="text-sm text-slate-600 hover:underline">sales.compucare111@gmail.com</a>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Clock className="w-4 h-4 flex-shrink-0 text-blue-400" />
+                  <span className="text-xs text-slate-500">Mon–Fri: 8:00 AM–6:00 PM &nbsp;|&nbsp; Sat: 9:00 AM–4:00 PM</span>
+                </li>
+              </ul>
             </div>
+
+            {/* Kisumu */}
+            <div className="rounded-2xl bg-white border-l-4 border-green-500 shadow-sm p-7">
+              <div className="flex items-center gap-3 mb-5">
+                <span className="text-3xl">🌊</span>
+                <div>
+                  <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-green-100 text-green-700">Kisumu Branch</span>
+                </div>
+              </div>
+              <ul className="space-y-3 mb-5">
+                <li className="flex items-start gap-3">
+                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-green-500" />
+                  <span className="text-sm text-slate-700">Mega Plaza, Ground Floor, Oginga Odinga Street, Kisumu</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Phone className="w-4 h-4 flex-shrink-0 text-green-500" />
+                  <div className="text-sm font-semibold text-slate-700">
+                    <a href="tel:0111543714" className="text-blue-600 hover:underline">0111 543 714</a>
+                    <span className="text-slate-400 mx-1">/</span>
+                    <a href="tel:0702881106" className="text-blue-600 hover:underline">0702 881 106</a>
+                  </div>
+                </li>
+                <li className="flex items-center gap-3">
+                  <MessageCircle className="w-4 h-4 flex-shrink-0 text-green-500" />
+                  <a href="https://wa.me/254111543714" target="_blank" rel="noopener noreferrer"
+                    className="text-sm text-green-600 font-semibold hover:underline">WhatsApp: 0111 543 714</a>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Mail className="w-4 h-4 flex-shrink-0 text-green-500" />
+                  <a href="mailto:sales.compucare111@gmail.com" className="text-sm text-slate-600 hover:underline">sales.compucare111@gmail.com</a>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Clock className="w-4 h-4 flex-shrink-0 mt-0.5 text-green-500" />
+                  <div>
+                    <p className="text-xs text-slate-500">Mon–Fri: 8:00 AM–6:00 PM &nbsp;|&nbsp; Sat: 9:00 AM–4:00 PM</p>
+                    <p className="text-xs font-semibold text-slate-700 mt-1">Manager: Seth Awuoth — 0111 543 714</p>
+                    <p className="text-xs font-semibold text-slate-700">Secretary: Christine Ochang — 0702 881 106</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
           </div>
         </div>
       </section>

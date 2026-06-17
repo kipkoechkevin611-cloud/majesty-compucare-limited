@@ -87,7 +87,7 @@ export default function Home() {
             <div className="space-y-7">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs bg-blue-100 text-blue-700" style={{fontFamily:'Fira Code,monospace'}}>
                 <span className="w-2 h-2 rounded-full animate-pulse bg-green-500" />
-                // NAKURU'S TRUSTED TECH PARTNER SINCE 2014
+                // NAKURU &amp; KISUMU — TRUSTED TECH PARTNER SINCE 2014
               </div>
               <h1 style={{fontFamily:'Montserrat,sans-serif',fontWeight:900,lineHeight:1.05}} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-slate-900">
                 PREMIUM<br />
@@ -271,6 +271,56 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ═══ NEW ARRIVALS ═══ */}
+      <section className="py-16 bg-gradient-to-br from-blue-700 to-blue-900 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10"
+          style={{backgroundImage:"url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='1'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E\")"}} />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-end justify-between mb-8">
+            <div>
+              <p className="text-blue-200 text-sm mb-1" style={{fontFamily:'Fira Code,monospace'}}>// JUST_ARRIVED</p>
+              <h2 className="text-3xl text-white" style={{fontFamily:'Montserrat,sans-serif',fontWeight:800}}>New Arrivals</h2>
+              <p className="text-blue-100 text-sm mt-1">Fresh stock — just landed at our Nakuru &amp; Kisumu branches</p>
+            </div>
+            <Link href="/products" className="hidden sm:inline-flex items-center gap-1 text-sm font-semibold text-white/80 hover:text-white transition">
+              View All <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            {[
+              {emoji:'💻', name:'Laptops', sub:'HP, Dell, Lenovo', slug:'laptops'},
+              {emoji:'🖨️', name:'Printers', sub:'Epson, Canon, HP', slug:'printers'},
+              {emoji:'📷', name:'CCTV', sub:'HD & 4K Systems', slug:'cctv-systems'},
+              {emoji:'🌐', name:'Networking', sub:'Routers, Switches', slug:'networking'},
+              {emoji:'📱', name:'Phone Acc.', sub:'Chargers, Headsets', slug:'phone-accessories'},
+              {emoji:'🖥️', name:'Monitors', sub:'Full HD Displays', slug:'accessories'},
+            ].map(item => (
+              <Link key={item.slug} href={`/products?category=${item.slug}`}
+                className="group flex flex-col items-center rounded-xl p-4 text-center border border-white/10 bg-white/10 hover:bg-white/20 transition backdrop-blur-sm">
+                <span className="text-4xl mb-2">{item.emoji}</span>
+                <p className="text-sm font-black text-white leading-tight" style={{fontFamily:'Montserrat,sans-serif'}}>{item.name}</p>
+                <p className="text-[10px] text-blue-200 mt-0.5">{item.sub}</p>
+              </Link>
+            ))}
+          </div>
+
+          {/* Offer strip */}
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-xl bg-yellow-400 px-6 py-4">
+            <div className="flex items-center gap-3">
+              <span className="text-3xl">🎉</span>
+              <div>
+                <p className="font-black text-slate-900 text-sm" style={{fontFamily:'Montserrat,sans-serif'}}>Special Offers &amp; Deals — Available Now!</p>
+                <p className="text-slate-700 text-xs">Repair packages, CCTV bundles, school ICT deals &amp; more.</p>
+              </div>
+            </div>
+            <Link href="/offers"
+              className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-sm bg-blue-700 text-white hover:bg-blue-800 transition">
+              See All Deals <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ═══ WHY CHOOSE US ═══ */}
       <section className="py-20 bg-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -367,7 +417,8 @@ export default function Home() {
                   {icon:MessageCircle,label:'WhatsApp',value:'0716 000 367',href:'https://wa.me/254716000367',color:'text-green-600',bg:'bg-green-100',border:'border-green-200'},
                   {icon:Phone,label:'Phone',value:'0716 000 367 / 0722 717 846',href:'tel:0716000367',color:'text-blue-600',bg:'bg-blue-100',border:'border-blue-200'},
                   {icon:Mail,label:'Email',value:'sales.compucare111@gmail.com',href:'mailto:sales.compucare111@gmail.com',color:'text-blue-600',bg:'bg-blue-100',border:'border-blue-200'},
-                  {icon:MapPin,label:'Location',value:'Nyakinyua Building, Kangei, Nakuru',href:null,color:'text-red-600',bg:'bg-red-100',border:'border-red-200'},
+                  {icon:MapPin,label:'Nakuru HQ',value:'Nyakinyua Building, Kangei, Nakuru',href:null,color:'text-red-600',bg:'bg-red-100',border:'border-red-200'},
+                  {icon:MapPin,label:'Kisumu Branch',value:'Mega Plaza, GF, Oginga Odinga St',href:null,color:'text-green-600',bg:'bg-green-100',border:'border-green-200'},
                 ].map(({icon:Icon,label,value,href,color,bg,border})=>(
                   <div key={label} className="flex items-center gap-4">
                     <div className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 ${bg} ${border} border`}>
