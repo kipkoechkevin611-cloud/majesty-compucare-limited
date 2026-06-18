@@ -22,7 +22,15 @@ export default function Navigation() {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
   const [userMenuOpen, setUserMenuOpen] = useState(false)
+  const [categories, setCategories] = useState<any[]>([])
   const userMenuRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    fetch('/api/categories')
+      .then(res => res.ok ? res.json() : [])
+      .then(setCategories)
+      .catch(() => setCategories([]))
+  }, [])
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -197,6 +205,27 @@ export default function Navigation() {
                   </Link>
                 </div>
               )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Category Strip */}
+      {categories.length > 0 && (
+        <div className="border-b border-gray-100 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center gap-2 py-2 overflow-x-auto scrollbar-hide">
+              <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider flex-shrink-0" style={{fontFamily:'Fira Code,monospace'}}>Categories:</span>
+              {categories.map((cat: any) => (
+                <Link
+                  key={cat.id}
+                  href={`/products?category=${cat.slug}`}
+                  className="flex-shrink-0 px-3 py-1 rounded-md text-xs font-medium transition border border-gray-200 bg-white text-gray-600 hover:text-blue-600 hover:border-blue-300 hover:shadow-sm"
+                  style={{fontFamily:'Montserrat,sans-serif'}}
+                >
+                  {cat.name}
+                </Link>
+              ))}
             </div>
           </div>
         </div>

@@ -255,29 +255,6 @@ export default function Home() {
 
       </section>
 
-      {/* ═══ CATEGORY STRIP ═══ */}
-      {categories.length > 0 && (
-        <section className="bg-slate-100 border-b border-blue-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex overflow-x-auto gap-2 py-3 scrollbar-hide">
-              {categories.map((cat: any) => (
-                <Link
-                  key={cat.id}
-                  href={`/products?category=${cat.slug}`}
-                  className="flex-shrink-0 px-5 py-2 rounded-full text-xs font-semibold transition border border-blue-200 bg-blue-50 text-slate-600 hover:text-green-600 hover:border-green-300 hover:shadow-sm"
-                  style={{
-                    fontFamily: 'Montserrat,sans-serif',
-                    letterSpacing: '0.05em',
-                  }}
-                >
-                  {cat.name}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* ═══ FEATURED PRODUCTS ═══ */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
