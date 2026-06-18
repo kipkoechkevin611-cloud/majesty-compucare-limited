@@ -60,7 +60,7 @@ export default function Home() {
   const [heroSlide, setHeroSlide] = useState(0)
 
   useEffect(() => {
-    const timer = setInterval(() => setHeroSlide(s => (s + 1) % HERO_SLIDES.length), 3500)
+    const timer = setInterval(() => setHeroSlide(s => (s + 1) % HERO_SLIDES.length), 2500)
     return () => clearInterval(timer)
   }, [])
 
@@ -250,7 +250,7 @@ export default function Home() {
         {/* Progress bar */}
         <div className="absolute bottom-0 left-0 right-0 h-0.5 z-20 bg-white/10">
           <div key={heroSlide} className="h-full bg-blue-400 origin-left"
-            style={{animation:'progressBar 3.5s linear forwards'}} />
+            style={{animation:'progressBar 2.5s linear forwards'}} />
         </div>
 
       </section>
