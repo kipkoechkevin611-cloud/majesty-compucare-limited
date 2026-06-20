@@ -269,7 +269,7 @@ export default function CheckoutPage() {
                   <div className="space-y-3 mb-6">
                     {[
                       {val:'mpesa', icon:Smartphone, iconColor:'var(--accent-green)', title:'M-Pesa',         sub:'Pay via M-Pesa STK Push'},
-                      {val:'till',  icon:CreditCard,  iconColor:'var(--accent-blue)',  title:'M-Pesa Buy Goods', sub:'Pay to Till Number 3745188'},
+                      {val:'till',  icon:CreditCard,  iconColor:'var(--accent-blue)',  title:'M-Pesa Paybill', sub:'Paybill: 508885, Account: 18/6'},
                       {val:'cash',  icon:Truck,        iconColor:'var(--text-low)',     title:'Cash on Delivery', sub:'Pay when you receive your order'},
                     ].map(({val,icon:Icon,iconColor,title,sub}) => (
                       <label key={val} className="flex items-center p-4 rounded-lg cursor-pointer transition"

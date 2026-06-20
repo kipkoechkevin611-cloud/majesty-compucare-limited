@@ -8,8 +8,8 @@ const prisma = new PrismaClient({
 })
 
 async function main() {
-  const email = 'admin@majestycompucare.co.ke'
-  const password = 'Admin@2024'
+  const email = 'sales.compucare111@gmail.com'
+  const password = 'Compucare@2026'
   const hashedPassword = await bcrypt.hash(password, 10)
 
   const existing = await prisma.user.findUnique({ where: { email } })
