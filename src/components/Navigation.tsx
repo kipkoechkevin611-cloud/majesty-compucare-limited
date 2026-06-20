@@ -57,7 +57,7 @@ export default function Navigation() {
             </div>
             <div className="hidden sm:block leading-tight">
               <p className="text-sm font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-200" style={{fontFamily:'Montserrat,sans-serif'}}>Majesty Compucare</p>
-              <p className="text-[10px] text-gray-500" style={{fontFamily:'Fira Code,monospace'}}>// Tech Partner Since 2014</p>
+              <p className="text-[10px] text-gray-500" style={{fontFamily:'Fira Code,monospace'}}>// Tech Partner Since 2016</p>
             </div>
           </Link>
 

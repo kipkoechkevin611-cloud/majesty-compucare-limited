@@ -8,7 +8,7 @@ import { useCart } from '@/contexts/CartContext'
 const HERO_SLIDES = [
   {
     bg: '/hero.jpeg',
-    badge: 'NAKURU & KISUMU — TRUSTED SINCE 2014',
+    badge: 'NAKURU & KISUMU — TRUSTED SINCE 2016',
     headline: ['PREMIUM', 'TECH SALES', '& REPAIR'],
     headlineColors: ['#ffffff', '#93c5fd', '#4ade80'],
     sub: 'Computers · Laptops · Printers · CCTV · Networking · IT Services — all under one roof. Fast. Genuine. Trusted.',

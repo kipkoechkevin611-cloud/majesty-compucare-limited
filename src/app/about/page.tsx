@@ -84,7 +84,7 @@ export default function AboutPage() {
             &ldquo;Reliable Tech Solutions for Everyday Needs.&rdquo;
           </p>
           <p className="text-base max-w-3xl mx-auto" style={{color:'var(--text-low)'}}>
-            Trusted ICT solutions provider based in Nakuru — serving businesses, institutions, and individuals since 2014
+            Trusted ICT solutions provider based in Nakuru — serving businesses, institutions, and individuals since 2016
           </p>
         </div>
       </section>

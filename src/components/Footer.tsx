@@ -13,7 +13,7 @@ export default function Footer() {
               <img src="/logo.jpeg" alt="Majesty Compucare Logo" className="h-10 w-auto object-contain rounded-lg" />
               <div>
                 <h3 className="text-base font-black" style={{fontFamily:'Montserrat,sans-serif',color:'var(--text-high)'}}>Majesty Compucare</h3>
-                <p className="text-[10px]" style={{fontFamily:'Fira Code,monospace',color:'var(--accent-green)'}}>// Tech Partner Since 2014</p>
+                <p className="text-[10px]" style={{fontFamily:'Fira Code,monospace',color:'var(--accent-green)'}}>// Tech Partner Since 2016</p>
               </div>
             </div>
             <p className="text-xs italic mb-1 font-semibold" style={{color:'var(--accent-blue)',fontFamily:'Montserrat,sans-serif'}}>&ldquo;Reliable Tech Solutions for Everyday Needs.&rdquo;</p>
