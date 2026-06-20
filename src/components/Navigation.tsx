@@ -69,6 +69,7 @@ export default function Navigation() {
                 <Link
                   key={href}
                   href={href}
+                  prefetch={href === '/' ? true : undefined}
                   className={`nav-link px-4 py-2 text-gray-700 hover:text-blue-600 ${
                     active ? 'text-blue-600 font-semibold border-b-2 border-blue-600' : ''
                   }`}

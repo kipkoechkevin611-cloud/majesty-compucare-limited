@@ -69,7 +69,7 @@ export default function ForgotPasswordPage() {
   return (
     <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8" style={{background:'var(--bg-primary)'}}>
       <div className="max-w-md w-full">
-        <Link href="/login" className="inline-flex items-center gap-2 text-sm mb-6 transition" style={{color:'var(--text-low)',fontFamily:'Fira Code,monospace'}}>
+        <Link href="/login" className="inline-flex items-center gap-2 text-sm mb-6 transition" style={{color:'var(--text-low)',fontFamily:'Fira Code,monospace'}} prefetch={true}>
           <ArrowLeft className="w-4 h-4" /> Back to Login
         </Link>
 
@@ -178,7 +178,7 @@ export default function ForgotPasswordPage() {
           )}
 
           {step === 'success' && (
-            <Link href="/login" className="btn-primary w-full py-3 inline-block text-center">
+            <Link href="/login" className="btn-primary w-full py-3 inline-block text-center" prefetch={true}>
               Go to Login
             </Link>
           )}

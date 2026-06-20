@@ -37,8 +37,8 @@ export default function LoginPage() {
       } else {
         // Force session update to ensure it's established
         await update()
-        // Redirect to callback URL or dashboard
-        router.push(callbackUrl)
+        // Redirect to callback URL or dashboard with faster transition
+        router.push(callbackUrl, { scroll: false })
         router.refresh()
       }
     } catch (error) {
@@ -104,7 +104,7 @@ export default function LoginPage() {
                 <input type="checkbox" id="remember" className="h-4 w-4 rounded" style={{accentColor:'var(--accent-blue)'}} />
                 <label htmlFor="remember" className="text-sm" style={{color:'var(--text-low)'}}>Remember me</label>
               </div>
-              <Link href="/forgot-password" className="text-sm transition" style={{color:'var(--accent-blue)'}}>
+              <Link href="/forgot-password" className="text-sm transition" style={{color:'var(--accent-blue)'}} prefetch={true}>
                 Forgot password?
               </Link>
             </div>
@@ -120,7 +120,7 @@ export default function LoginPage() {
           <div className="mt-6 text-center">
             <p style={{color:'var(--text-low)',fontSize:'0.875rem'}}>
               Don't have an account?{' '}
-              <Link href="/register" className="font-semibold transition" style={{color:'var(--accent-green)'}}>
+              <Link href="/register" className="font-semibold transition" style={{color:'var(--accent-green)'}} prefetch={true}>
                 Register
               </Link>
             </p>
@@ -128,7 +128,7 @@ export default function LoginPage() {
         </div>
 
         <div className="mt-6 text-center">
-          <Link href="/" className="text-sm transition" style={{color:'var(--text-low)',fontFamily:'Fira Code,monospace'}}>
+          <Link href="/" className="text-sm transition" style={{color:'var(--text-low)',fontFamily:'Fira Code,monospace'}} prefetch={true}>
             ← Back to Home
           </Link>
         </div>
