@@ -1,13 +1,15 @@
 'use client'
 
 import { useState } from 'react'
-import { signIn } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
+import { signIn, useSession } from 'next-auth/react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { Mail, Lock, AlertCircle } from 'lucide-react'
 import Link from 'next/link'
 
 export default function LoginPage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const { update } = useSession()
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -21,22 +23,22 @@ export default function LoginPage() {
     setLoading(true)
 
     try {
+      const callbackUrl = searchParams.get('callbackUrl') || '/dashboard'
+
       const result = await signIn('credentials', {
         email: formData.email,
         password: formData.password,
         redirect: false,
+        callbackUrl,
       })
 
       if (result?.error) {
         setError('Invalid email or password')
       } else {
-        const { getSession } = await import('next-auth/react')
-        const session = await getSession()
-        if (session?.user?.role === 'ADMIN') {
-          router.push('/admin')
-        } else {
-          router.push('/dashboard')
-        }
+        // Force session update to ensure it's established
+        await update()
+        // Redirect to callback URL or dashboard
+        router.push(callbackUrl)
         router.refresh()
       }
     } catch (error) {
