@@ -31,9 +31,9 @@ export default withAuth(
           return true
         }
 
-        // Admin routes — open, no auth required
+        // Admin routes — require authentication and ADMIN role
         if (pathname.startsWith('/admin') || pathname.startsWith('/api/admin')) {
-          return true
+          return !!token && token.role === 'ADMIN'
         }
 
         // Dashboard requires authentication
