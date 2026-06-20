@@ -17,63 +17,67 @@ const WA_KISUMU   = 'https://wa.me/254111543714'
 const KB: { keywords: string[]; answer: string }[] = [
   {
     keywords: ['laptop', 'laptops', 'notebook', 'computer', 'computers', 'desktop', 'pc'],
-    answer: 'We stock a wide range of laptops and desktop computers — HP, Dell, Lenovo, Toshiba and more. Prices start from KES 18,000 for budget laptops. Visit us in Nakuru or Kisumu or WhatsApp us for current stock and pricing.',
+    answer: 'We stock Laptops & Desktop Computers from major brands. Visit our Products page or WhatsApp us for current stock and pricing.',
   },
   {
     keywords: ['printer', 'printers', 'printing', 'epson', 'canon', 'hp printer', 'inkjet', 'laser'],
-    answer: 'We carry Epson, Canon, and HP printers — inkjet, laser, and all-in-one models. We also do printer repair and maintenance. WhatsApp us for availability and pricing.',
+    answer: 'We carry Printers from Epson, Canon, and HP — inkjet, laser, and all-in-one models. We also offer Printer Repair & Maintenance services.',
   },
   {
     keywords: ['cctv', 'camera', 'cameras', 'security', 'surveillance', 'nvr', 'dvr'],
-    answer: 'We supply and install HD and 4K CCTV systems for homes, offices, and businesses. Our 4-camera package starts at KES 35,000 including installation. Call or WhatsApp us for a custom quote.',
+    answer: 'We supply and install CCTV Cameras & Security Systems for homes, offices, and businesses. We also offer CCTV Installation & Maintenance services.',
   },
   {
     keywords: ['network', 'networking', 'router', 'switch', 'wifi', 'wi-fi', 'lan', 'internet', 'cable'],
-    answer: 'We supply routers, switches, and structured cabling, and do full network setup for offices and homes. Our office network package starts at KES 10,000 including installation and configuration.',
+    answer: 'We supply Networking Equipment including routers and switches. We offer Network Setup & Support for offices and homes.',
   },
   {
-    keywords: ['accessory', 'accessories', 'keyboard', 'mouse', 'monitor', 'headset', 'charger', 'cable', 'usb', 'hub', 'phone'],
-    answer: 'We stock monitors, keyboards, mice, headsets, phone chargers, smartwatches, and all computer accessories. Visit our store or WhatsApp us for current stock.',
+    keywords: ['accessory', 'accessories', 'keyboard', 'mouse', 'monitor', 'headset', 'charger', 'cable', 'usb', 'hub'],
+    answer: 'We stock Monitors & Computer Accessories including keyboards, mice, and more. Visit our store or WhatsApp us for current stock.',
+  },
+  {
+    keywords: ['phone', 'smartphone', 'mobile', 'charger', 'headset', 'smartwatch'],
+    answer: 'We stock Phone Accessories including chargers, headsets, and smartwatches. Visit our store for the full range.',
   },
   {
     keywords: ['software', 'windows', 'antivirus', 'os', 'operating system', 'license', 'office', 'microsoft'],
-    answer: 'We install and troubleshoot Windows OS, Microsoft Office, antivirus software, and other business software. We can do on-site or remote software support.',
+    answer: 'We offer Software Installation & Troubleshooting services including Windows OS, Microsoft Office, and antivirus software.',
   },
   {
-    keywords: ['repair', 'fix', 'broken', 'screen', 'battery', 'slow', 'virus', 'format', 'service', 'maintenance', 'tune'],
-    answer: 'We repair laptops, desktops, and printers — screen replacements, motherboard repair, data recovery, virus removal, and full tune-ups. Our laptop service package is KES 1,999. Same-day service available!',
+    keywords: ['repair', 'fix', 'broken', 'screen', 'battery', 'slow', 'virus', 'format', 'service', 'maintenance'],
+    answer: 'We offer Computer & Laptop Repair services including screen replacements, motherboard repair, and more. We also offer Printer Repair & Maintenance.',
   },
   {
     keywords: ['support', 'it support', 'help', 'technical', 'technician', 'issue', 'problem'],
-    answer: 'Our certified technicians offer on-site and remote IT support for businesses and individuals. We handle hardware, software, and network issues. Call 0716 000 367 or WhatsApp us.',
+    answer: 'Our certified technicians offer IT support for hardware, software, and network issues. Call 0716 000 367 or WhatsApp us.',
   },
   {
     keywords: ['toner', 'ink', 'cartridge', 'refill', 'drum'],
-    answer: 'We stock genuine and compatible toner cartridges and ink for all major printer brands. WhatsApp us with your printer model for availability and pricing.',
+    answer: 'We stock Toners & Ink Cartridges for all major printer brands. WhatsApp us with your printer model for availability.',
   },
   {
     keywords: ['stationery', 'paper', 'office supplies', 'supplies', 'pen', 'file'],
-    answer: 'We stock office stationery and supplies. Visit our store in Nakuru or Kisumu for the full range.',
+    answer: 'We stock Office Stationery and supplies. Visit our store in Nakuru or Kisumu for the full range.',
   },
   {
     keywords: ['price', 'cost', 'how much', 'pricing', 'quote', 'budget', 'cheap', 'affordable'],
-    answer: 'Prices vary by product and model. WhatsApp us on 0716 000 367 with what you need and we will give you a quick quote. We offer competitive prices and can work within your budget.',
+    answer: 'Prices vary by product and model. WhatsApp us on 0716 000 367 with what you need and we will give you a quick quote.',
   },
   {
     keywords: ['location', 'where', 'address', 'find', 'directions', 'nakuru'],
-    answer: 'Our Nakuru HQ is at Nyakinyua Building, Kangei, Nakuru. Open Mon–Fri 8AM–6PM, Sat 9AM–4PM. Call 0716 000 367 or WhatsApp us for directions.',
+    answer: 'Our Nakuru HQ is at Nyakinyua Building, Kangei, Nakuru. Call 0716 000 367 or WhatsApp us for directions.',
   },
   {
     keywords: ['kisumu', 'branch', 'kisumu branch', 'oginga', 'mega plaza'],
-    answer: 'Our Kisumu branch is at Mega Plaza, Ground Floor, Oginga Odinga Street, Kisumu. Contact: Seth Awuoth (Manager) — 0111 543 714 or Christine Ochang (Secretary) — 0702 881 106.',
+    answer: 'Our Kisumu branch is at Mega Plaza, Ground Floor, Oginga Odinga Street, Kisumu. Manager: Seth Awuoth (0111 543 714), Secretary: Christine Ochang (0702 881 106).',
   },
   {
     keywords: ['delivery', 'shipping', 'deliver', 'ship', 'courier'],
-    answer: 'We offer delivery within Nakuru and Kisumu CBD. For upcountry deliveries we use reliable courier services. WhatsApp us to arrange delivery for your order.',
+    answer: 'Contact us to arrange delivery for your order. We serve Nakuru and Kisumu areas.',
   },
   {
     keywords: ['warranty', 'guarantee', 'return', 'refund', 'exchange'],
-    answer: 'All our products come with manufacturer warranty. We also offer a service warranty on all repairs. Contact us within the warranty period if you have any issues.',
+    answer: 'All our products come with manufacturer warranty. Contact us within the warranty period if you have any issues.',
   },
   {
     keywords: ['whatsapp', 'contact', 'call', 'phone', 'email', 'reach', 'talk'],
@@ -85,15 +89,27 @@ const KB: { keywords: string[]; answer: string }[] = [
   },
   {
     keywords: ['data', 'backup', 'recovery', 'recover', 'lost data', 'hard drive'],
-    answer: 'We offer data backup and recovery services. Bring in your device and our technicians will assess the situation. We also offer FREE data backup with every repair service!',
+    answer: 'We offer Data Backup & System Optimization services. Bring in your device and our technicians will assess the situation.',
   },
   {
     keywords: ['school', 'ict', 'lab', 'institution', 'bulk', 'tender'],
-    answer: 'We offer special packages for schools and institutions — bulk laptop supply, ICT lab setup, networking, and staff training. Call or WhatsApp us for a customized quote.',
+    answer: 'We offer special packages for schools and institutions — bulk laptop supply, ICT lab setup, networking, and staff training. Call or WhatsApp us.',
+  },
+  {
+    keywords: ['about', 'company', 'who', 'majesty', 'compucare', 'story'],
+    answer: 'Majesty Compucare Limited is a trusted ICT solutions provider based in Nakuru, serving businesses, institutions, and individuals since 2016. Our slogan: "Reliable Tech Solutions for Everyday Needs."',
+  },
+  {
+    keywords: ['product', 'products', 'what do you sell', 'offer'],
+    answer: 'Our Products: Laptops & Desktop Computers, Printers (Epson, Canon, HP), CCTV Cameras & Security Systems, Monitors & Computer Accessories, Networking Equipment, Phone Accessories, Office Stationery, and Toners & Ink Cartridges.',
+  },
+  {
+    keywords: ['service', 'services', 'what do you do'],
+    answer: 'Our Services: Computer & Laptop Repair, Printer Repair & Maintenance, CCTV Installation & Maintenance, Software Installation & Troubleshooting, Network Setup & Support, and Data Backup & System Optimization.',
   },
   {
     keywords: ['hello', 'hi', 'hey', 'good morning', 'good afternoon', 'good evening', 'hallo', 'habari'],
-    answer: 'Hello! 😊 How can I help you today? You can ask me about our products, services, prices, or locations.',
+    answer: 'Hello! 😊 Welcome to Majesty Compucare Limited. How can I help you today? You can ask me about our products, services, prices, or locations.',
   },
   {
     keywords: ['thank', 'thanks', 'asante', 'sawa'],
