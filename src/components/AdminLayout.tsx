@@ -1,8 +1,9 @@
 'use client'
 
-import { signOut } from 'next-auth/react'
-import { usePathname } from 'next/navigation'
-import { LayoutDashboard, Package, ShoppingCart, Users, Settings, BarChart3, LogOut, Folder } from 'lucide-react'
+import { signOut, useSession } from 'next-auth/react'
+import { usePathname, useRouter } from 'next/navigation'
+import { useEffect } from 'react'
+import { LayoutDashboard, Package, ShoppingCart, Users, Settings, BarChart3, LogOut, Folder, Loader2 } from 'lucide-react'
 import Link from 'next/link'
 
 const navItems = [
@@ -17,6 +18,31 @@ const navItems = [
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
+  const router = useRouter()
+  const { data: session, status } = useSession()
+
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      router.push('/login')
+    } else if (status === 'authenticated' && session?.user?.role !== 'ADMIN') {
+      router.push('/login')
+    }
+  }, [status, session, router])
+
+  if (status === 'loading') {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <div className="text-center">
+          <Loader2 className="w-10 h-10 animate-spin text-blue-600 mx-auto mb-4" />
+          <p className="text-sm text-gray-600">Checking access...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (session?.user?.role !== 'ADMIN') {
+    return null
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
