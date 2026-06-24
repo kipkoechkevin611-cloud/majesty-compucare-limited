@@ -23,7 +23,7 @@ function LoginForm() {
     setLoading(true)
 
     try {
-      const callbackUrl = searchParams.get('callbackUrl') || '/dashboard'
+      const callbackUrl = searchParams.get('callbackUrl') || '/admin'
 
       const result = await signIn('credentials', {
         email: formData.email,
@@ -37,7 +37,7 @@ function LoginForm() {
       } else {
         // Force session update to ensure it's established
         await update()
-        // Redirect to callback URL or dashboard with faster transition
+        // Redirect to admin dashboard (or callback URL if present)
         router.push(callbackUrl, { scroll: false })
         router.refresh()
       }
