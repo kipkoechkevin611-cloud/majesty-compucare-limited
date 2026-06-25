@@ -170,6 +170,11 @@ code, pre, .font-mono {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+.animate-fade-slide-up {
+  animation: fadeSlideUp 0.5s ease-out forwards;
+  opacity: 0;
+}
+
 @keyframes progressBar {
   from { transform: scaleX(0); }
   to   { transform: scaleX(1); }

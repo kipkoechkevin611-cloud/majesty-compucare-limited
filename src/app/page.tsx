@@ -288,8 +288,9 @@ export default function Home() {
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {featuredProducts.map((product) => (
-                <div key={product.id} className="glow-card rounded-xl overflow-hidden group bg-slate-50 border border-slate-200">
+              {featuredProducts.map((product, index) => (
+                <div key={product.id} className="glow-card rounded-xl overflow-hidden group bg-slate-50 border border-slate-200 animate-fade-slide-up"
+                  style={{animationDelay: `${(index % 4) * 100}ms`}}>
                   <Link href={`/products/${product.id}`} className="block">
                     <div className="relative h-48 overflow-hidden bg-slate-100">
                       {product.images?.[0] ? (
