@@ -13,7 +13,7 @@ config()
 const prisma = new PrismaClient({ datasources: { db: { url: process.env.DATABASE_URL } } })
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const pdfPath  = path.join(__dirname, '..', 'public', 'uploads', 'product_catalog.pdf')
-const outDir   = path.join(__dirname, '..', 'public', 'products')
+const outDir   = path.join(__dirname, '..', 'public', 'images', 'products')
 
 if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true })
 
@@ -164,7 +164,7 @@ for (let p = 0; p < doc.countPages(); p++) {
     const cropped = px.warp([[x0,y0],[x1,y0],[x1,y1],[x0,y1]], x1-x0, y1-y0)
     const outFile = path.join(outDir, prod.file)
     fs.writeFileSync(outFile, cropped.asPNG())
-    slugToFile[prod.slug] = `/products/${prod.file}`
+    slugToFile[prod.slug] = `/images/products/${prod.file}`
     console.log(`  [${imgIdx+1}] ${prod.file}`)
     imgIdx++
   }

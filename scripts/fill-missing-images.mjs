@@ -11,7 +11,7 @@ config()
 
 const prisma = new PrismaClient({ datasources: { db: { url: process.env.DATABASE_URL } } })
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const productsDir = path.join(__dirname, '..', 'public', 'products')
+const productsDir = path.join(__dirname, '..', 'public', 'images', 'products')
 
 // Map variant slugs to base model image filename
 const VARIANT_MAP = {
@@ -61,7 +61,7 @@ async function main() {
     const srcPath = path.join(productsDir, imgFile)
     const newFile = product.slug.replace(/-/g, '-') + '.png'  // keep slug as filename
     const destPath = path.join(productsDir, newFile)
-    const dbUrl = `/products/${newFile}`
+    const dbUrl = `/images/products/${newFile}`
 
     if (!fs.existsSync(srcPath)) {
       console.log(`  Source image missing for ${product.slug}: ${imgFile}`)
