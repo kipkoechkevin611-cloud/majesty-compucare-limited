@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server'
 import { PrismaClient } from '@prisma/client'
+import { randomBytes } from 'crypto'
+import { sendPasswordResetEmail } from '@/lib/email'
 
 const prisma = new PrismaClient()
 
@@ -7,45 +9,47 @@ export async function POST(req: Request) {
   try {
     const { email } = await req.json()
 
-    if (!email) {
+    if (!email || typeof email !== 'string') {
       return NextResponse.json({ error: 'Email is required' }, { status: 400 })
     }
 
-    const user = await prisma.user.findUnique({ where: { email } })
+    const normalizedEmail = email.trim().toLowerCase()
+    const user = await prisma.user.findUnique({ where: { email: normalizedEmail } })
 
     if (!user) {
       // Don't reveal if email exists, but return success to prevent enumeration
-      return NextResponse.json({ message: 'If the email exists, a code has been sent' })
+      return NextResponse.json({ message: 'If the email exists, a reset link has been sent' })
     }
 
-    // Generate 4-digit code
-    const code = Math.floor(1000 + Math.random() * 9000).toString()
+    // Generate secure random token
+    const token = randomBytes(32).toString('hex')
+    const expiry = new Date(Date.now() + 60 * 60 * 1000) // 1 hour
 
-    // Store code with expiry (5 minutes)
     await prisma.user.update({
       where: { id: user.id },
       data: {
-        resetCode: code,
-        resetCodeExpiry: new Date(Date.now() + 5 * 60 * 1000),
+        resetToken: token,
+        resetTokenExpiry: expiry,
       },
     })
 
-    // In production, send email here with the code
-    // For now, log it to console (remove in production)
-    console.log(`Password reset code for ${email}: ${code}`)
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.majestycompucarelimited.com'
+    const resetUrl = `${baseUrl}/reset-password?token=${token}`
 
-    // TODO: Integrate with email service (Resend, SendGrid, etc.)
-    // Example with Resend:
-    // await resend.emails.send({
-    //   from: 'noreply@yourdomain.com',
-    //   to: email,
-    //   subject: 'Password Reset Code',
-    //   html: `<p>Your password reset code is: <strong>${code}</strong></p><p>This code expires in 5 minutes.</p>`,
-    // })
+    try {
+      await sendPasswordResetEmail(normalizedEmail, resetUrl)
+      console.log(`Password reset email sent to ${normalizedEmail}: ${resetUrl}`)
+    } catch (emailError) {
+      console.error('Failed to send password reset email:', emailError)
+      return NextResponse.json(
+        { error: 'Failed to send reset email. Please try again later.' },
+        { status: 500 }
+      )
+    }
 
-    return NextResponse.json({ message: 'Code sent successfully' })
+    return NextResponse.json({ message: 'Reset link sent successfully' })
   } catch (error) {
     console.error('Forgot password error:', error)
-    return NextResponse.json({ error: 'Failed to send code' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to process request' }, { status: 500 })
   }
 }

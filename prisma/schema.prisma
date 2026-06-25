@@ -26,6 +26,8 @@ model User {
   reviews          Review[]
   resetCode        String?
   resetCodeExpiry  DateTime?
+  resetToken       String?
+  resetTokenExpiry DateTime?
   createdAt        DateTime  @default(now())
   updatedAt        DateTime  @updatedAt
 }

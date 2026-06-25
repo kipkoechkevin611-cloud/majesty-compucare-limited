@@ -6,33 +6,39 @@ const prisma = new PrismaClient()
 
 export async function POST(req: Request) {
   try {
-    const { email, code, newPassword } = await req.json()
+    const { token, newPassword } = await req.json()
 
-    if (!email || !code || !newPassword) {
-      return NextResponse.json({ error: 'All fields are required' }, { status: 400 })
+    if (!token || !newPassword) {
+      return NextResponse.json({ error: 'Token and new password are required' }, { status: 400 })
     }
 
-    const user = await prisma.user.findUnique({ where: { email } })
+    if (newPassword.length < 6) {
+      return NextResponse.json({ error: 'Password must be at least 6 characters' }, { status: 400 })
+    }
+
+    const user = await prisma.user.findFirst({
+      where: {
+        resetToken: token,
+        resetTokenExpiry: { gt: new Date() },
+      },
+    })
 
     if (!user) {
-      return NextResponse.json({ error: 'Invalid email or code' }, { status: 400 })
-    }
-
-    // Check if code matches and hasn't expired
-    if (user.resetCode !== code || !user.resetCodeExpiry || new Date() > user.resetCodeExpiry) {
-      return NextResponse.json({ error: 'Invalid or expired code' }, { status: 400 })
+      return NextResponse.json({ error: 'Invalid or expired reset link' }, { status: 400 })
     }
 
     // Hash new password
     const hashedPassword = await bcrypt.hash(newPassword, 10)
 
-    // Update password and clear reset code
+    // Update password and clear all reset credentials
     await prisma.user.update({
       where: { id: user.id },
       data: {
         password: hashedPassword,
         resetCode: null,
         resetCodeExpiry: null,
+        resetToken: null,
+        resetTokenExpiry: null,
       },
     })
 
