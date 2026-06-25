@@ -337,6 +337,7 @@ export default function NewProductPage() {
                         src={preview}
                         alt={`Preview ${index + 1}`}
                         className="w-full h-40 object-cover rounded-lg"
+                        onError={(e) => { e.currentTarget.src = '/images/product-fallback.svg'; e.currentTarget.onerror = null; }}
                       />
                       <button
                         type="button"

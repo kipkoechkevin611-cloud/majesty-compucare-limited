@@ -293,7 +293,8 @@ export default function Home() {
                   <Link href={`/products/${product.id}`} className="block">
                     <div className="relative h-48 overflow-hidden bg-slate-100">
                       {product.images?.[0] ? (
-                        <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                        <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                          onError={(e) => { e.currentTarget.src = '/images/product-fallback.svg'; e.currentTarget.onerror = null; }} />
                       ) : (
                         <div className="absolute inset-0 flex items-center justify-center text-blue-200">
                           <Package className="w-16 h-16" />

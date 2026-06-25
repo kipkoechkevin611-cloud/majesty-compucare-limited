@@ -188,7 +188,8 @@ export default function ProductDetailPage() {
             <div>
               <div className="bg-gray-100 rounded-xl h-96 flex items-center justify-center mb-4 overflow-hidden">
                 {product.images && product.images[selectedImage] ? (
-                  <img src={product.images[selectedImage]} alt={product.name} className="w-full h-full object-cover" />
+                  <img src={product.images[selectedImage]} alt={product.name} className="w-full h-full object-cover"
+                    onError={(e) => { e.currentTarget.src = '/images/product-fallback.svg'; e.currentTarget.onerror = null; }} />
                 ) : (
                   <Package className="w-32 h-32 text-gray-400" />
                 )}
@@ -202,7 +203,8 @@ export default function ProductDetailPage() {
                       className={`bg-gray-100 rounded-lg h-24 flex items-center justify-center overflow-hidden ${selectedImage === i ? 'ring-2 ring-blue-500' : ''
                         }`}
                     >
-                      <img src={product.images[i]} alt={`${product.name} ${i + 1}`} className="w-full h-full object-cover" />
+                      <img src={product.images[i]} alt={`${product.name} ${i + 1}`} className="w-full h-full object-cover"
+                        onError={(e) => { e.currentTarget.src = '/images/product-fallback.svg'; e.currentTarget.onerror = null; }} />
                     </button>
                   ))}
                 </div>

@@ -172,7 +172,8 @@ export default function ProductsPage() {
                   <Link href={`/products/${product.id}`} className="block">
                   <div className="relative overflow-hidden" style={{background:'var(--bg-surface2)', aspectRatio: '4 / 3'}}>
                     {product.images?.[0] ? (
-                      <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover" />
+                      <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover"
+                        onError={(e) => { e.currentTarget.src = '/images/product-fallback.svg'; e.currentTarget.onerror = null; }} />
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center" style={{color:'rgba(0,123,255,0.2)'}}>
                         <Package className="w-14 h-14" />

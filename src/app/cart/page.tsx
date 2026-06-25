@@ -41,7 +41,8 @@ export default function CartPage() {
                 <div key={item.id} className="rounded-xl p-4 flex items-center space-x-4 glass" style={{border:'1px solid rgba(0,123,255,0.15)'}}>
                   <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0" style={{background:'var(--bg-surface2)',border:'1px solid rgba(0,123,255,0.15)'}}>
                     {item.image ? (
-                      <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                      <img src={item.image} alt={item.name} className="w-full h-full object-cover"
+                        onError={(e) => { e.currentTarget.src = '/images/product-fallback.svg'; e.currentTarget.onerror = null; }} />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center" style={{color:'rgba(0,123,255,0.2)'}}>
                         <ShoppingBag className="w-8 h-8" />

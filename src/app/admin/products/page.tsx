@@ -150,6 +150,7 @@ export default function AdminProductsPage() {
                             src={product.images[0]}
                             alt={product.name}
                             className="w-12 h-12 rounded-lg object-cover"
+                            onError={(e) => { e.currentTarget.src = '/images/product-fallback.svg'; e.currentTarget.onerror = null; }}
                           />
                         ) : (
                           <div className="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center">
