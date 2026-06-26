@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { ArrowRight, Shield, Clock, Headphones, Award, Star, MessageCircle, ShoppingCart, Monitor, Printer, Video, Wifi, Package, CheckCircle, Phone, MapPin, Mail, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useCart } from '@/contexts/CartContext'
+import ProductCard from '@/components/ProductCard'
 
 const HERO_SLIDES = [
   {
@@ -287,45 +288,16 @@ export default function Home() {
               <p className="text-sm mt-1 text-slate-500">Add products via the admin panel</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
               {featuredProducts.map((product, index) => (
-                <div key={product.id} className="glow-card rounded-xl overflow-hidden group bg-slate-50 border border-slate-200 animate-fade-slide-up"
-                  style={{animationDelay: `${(index % 4) * 100}ms`}}>
-                  <Link href={`/products/${product.id}`} className="block">
-                    <div className="relative h-48 overflow-hidden bg-slate-100">
-                      {product.images?.[0] ? (
-                        <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                          onError={(e) => { e.currentTarget.src = '/images/product-fallback.svg'; e.currentTarget.onerror = null; }} />
-                      ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-blue-200">
-                          <Package className="w-16 h-16" />
-                        </div>
-                      )}
-                      {product.salePrice && product.salePrice < product.price && (
-                        <span className="absolute top-2 left-2 text-white text-xs font-bold px-2 py-1 rounded bg-red-500 shadow-sm">
-                          {Math.round((1 - product.salePrice / product.price) * 100)}% OFF
-                        </span>
-                      )}
-                    </div>
-                    <div className="p-4">
-                      <p className="text-xs mb-1 text-blue-600" style={{fontFamily:'Fira Code,monospace'}}>{product.category?.name}</p>
-                      <h3 className="text-sm font-semibold leading-snug mb-3 line-clamp-2 text-slate-900 group-hover:text-blue-600 transition" style={{fontFamily:'Montserrat,sans-serif'}}>{product.name}</h3>
-                      <div className="flex items-baseline gap-2 mb-4">
-                        <span className="text-lg font-black text-green-600" style={{fontFamily:'Montserrat,sans-serif'}}>KES {(product.salePrice || product.price).toLocaleString()}</span>
-                        {product.salePrice && <span className="text-xs line-through text-slate-400">KES {product.price.toLocaleString()}</span>}
-                      </div>
-                    </div>
-                  </Link>
-                  <div className="px-4 pb-4">
-                    <button onClick={(e) => { e.preventDefault(); handleAddToCart(product); }}
-                      className="w-full py-2.5 rounded-lg text-sm font-bold transition flex items-center justify-center gap-2"
-                      style={addedId === product.id
-                        ? {background:'#dcfce7',color:'#16a34a',border:'1px solid #16a34a'}
-                        : {background:'#0066cc',color:'#fff'}}>
-                      {addedId === product.id ? <><CheckCircle className="w-4 h-4" /> Added!</> : <><ShoppingCart className="w-4 h-4" /> Add to Cart</>}
-                    </button>
-                  </div>
-                </div>
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  onAddToCart={handleAddToCart}
+                  added={addedId === product.id}
+                  className="animate-fade-slide-up"
+                  style={{ animationDelay: `${(index % 4) * 100}ms` }}
+                />
               ))}
             </div>
           )}
