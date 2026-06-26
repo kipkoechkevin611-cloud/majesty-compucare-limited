@@ -10,6 +10,21 @@ interface Message {
   ts: number
 }
 
+interface Product {
+  id: string
+  name: string
+  slug: string
+  description?: string
+  shortDescription?: string
+  brand?: string
+  price: number
+  salePrice?: number
+  stock: number
+  category?: { name: string; slug: string }
+  images?: string[]
+  featured?: boolean
+}
+
 const STORAGE_KEY = 'majesty_chat_history'
 const WA_NAKURU   = 'https://wa.me/254716000367'
 const WA_KISUMU   = 'https://wa.me/254111543714'
@@ -117,8 +132,67 @@ const KB: { keywords: string[]; answer: string }[] = [
   },
 ]
 
-function getBotReply(input: string): string {
+function formatProductLink(product: Product) {
+  return `https://www.majestycompucarelimited.com/products/${product.id}`
+}
+
+function searchProducts(products: Product[], input: string): Product[] {
   const lower = input.toLowerCase()
+  const terms = lower.split(/\s+/).filter(t => t.length > 2)
+  return products.filter(p => {
+    const haystack = [
+      p.name,
+      p.description,
+      p.shortDescription,
+      p.brand,
+      p.category?.name,
+      p.category?.slug,
+    ].filter(Boolean).join(' ').toLowerCase()
+    return terms.some(t => haystack.includes(t))
+  })
+}
+
+function buildProductAnswer(products: Product[], input: string): string | null {
+  const lower = input.toLowerCase()
+  if (products.length === 0) return null
+
+  // Category-wide or generic product questions
+  if (lower.includes('what') && (lower.includes('product') || lower.includes('sell') || lower.includes('have'))) {
+    const list = products.slice(0, 8).map(p => {
+      const price = (p.salePrice || p.price).toLocaleString()
+      return `• ${p.name} — KES ${price}`
+    }).join('\n')
+    return `Here are some products we currently have in stock:\n${list}\n\nVisit our products page for the full catalogue.`
+  }
+
+  // Specific product matches
+  const matches = searchProducts(products, input)
+  if (matches.length === 0) return null
+
+  if (matches.length === 1) {
+    const p = matches[0]
+    const price = (p.salePrice || p.price).toLocaleString()
+    const oldPrice = p.salePrice ? ` (was KES ${p.price.toLocaleString()})` : ''
+    const stock = p.stock > 10 ? 'In stock' : p.stock > 0 ? `Only ${p.stock} left` : 'Out of stock'
+    const link = formatProductLink(p)
+    return `We have **${p.name}** priced at **KES ${price}${oldPrice}**.\nCategory: ${p.category?.name || 'General'}\nStock status: ${stock}\n\nView it here: ${link}`
+  }
+
+  const list = matches.slice(0, 6).map(p => {
+    const price = (p.salePrice || p.price).toLocaleString()
+    return `• ${p.name} — KES ${price}`
+  }).join('\n')
+  return `I found ${matches.length} matching product${matches.length === 1 ? '' : 's'}:\n${list}\n\nVisit our products page to see more details.`
+}
+
+function getBotReply(input: string, products: Product[] = []): string {
+  const lower = input.toLowerCase()
+
+  // Try product catalogue first
+  const productAnswer = buildProductAnswer(products, input)
+  if (productAnswer) return productAnswer
+
+  // Fallback to FAQ knowledge base
   for (const entry of KB) {
     if (entry.keywords.some(kw => lower.includes(kw))) {
       return entry.answer
@@ -139,8 +213,25 @@ export default function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([])
   const [typing, setTyping]   = useState(false)
   const [unread, setUnread]   = useState(0)
+  const [products, setProducts] = useState<Product[]>([])
+  const [productsLoading, setProductsLoading] = useState(false)
   const endRef  = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+
+  // Load product catalogue when chat opens
+  useEffect(() => {
+    if (!open || products.length > 0) return
+    setProductsLoading(true)
+    fetch('/api/products?limit=1000')
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data.products)) {
+          setProducts(data.products)
+        }
+      })
+      .catch(err => console.error('Chatbot failed to load products:', err))
+      .finally(() => setProductsLoading(false))
+  }, [open, products.length])
 
   // Load history from localStorage
   useEffect(() => {
@@ -199,9 +290,9 @@ export default function Chatbot() {
     if (!trimmed) return
     setMessages(prev => [...prev, { id: `user-${Date.now()}`, role: 'user', text: trimmed, ts: Date.now() }])
     setInput('')
-    const reply = getBotReply(trimmed)
+    const reply = getBotReply(trimmed, products)
     addBotMessage(reply)
-  }, [addBotMessage])
+  }, [addBotMessage, products])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
