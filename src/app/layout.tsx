@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Chatbot from "@/components/Chatbot";
 import { Providers } from "@/components/Providers";
+import { siteConfig, siteUrl, buildJsonLd } from "@/lib/seo";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -28,9 +29,63 @@ const firaCode = Fira_Code({
 });
 
 export const metadata: Metadata = {
-  title: "Majesty Compucare Limited - Your Trusted Technology Partner in Kenya",
-  description: "Specializing in computer sales, IT solutions, CCTV security systems, networking, printer solutions, and technology support services for businesses, institutions, and individuals in Kenya.",
-  keywords: ["computers", "laptops", "printers", "CCTV", "networking", "IT solutions", "Kenya", "Nakuru"],
+  title: {
+    default: `${siteConfig.name} - ${siteConfig.tagline}`,
+    template: `%s | ${siteConfig.shortName}`,
+  },
+  description: siteConfig.description,
+  keywords: siteConfig.keywords,
+  metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: siteUrl,
+  },
+  openGraph: {
+    title: siteConfig.name,
+    description: siteConfig.description,
+    url: siteUrl,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: siteConfig.logo,
+        width: 1200,
+        height: 630,
+        alt: siteConfig.name,
+      },
+    ],
+    locale: "en_KE",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [siteConfig.logo],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-32x32.png",
+    apple: "/apple-touch-icon.png",
+    other: [
+      { rel: "icon", url: "/favicon-16x16.png", sizes: "16x16" },
+      { rel: "icon", url: "/favicon-32x32.png", sizes: "32x32" },
+      { rel: "apple-touch-icon", url: "/apple-touch-icon.png", sizes: "180x180" },
+      { rel: "manifest", url: "/site.webmanifest" },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -38,8 +93,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organizationSchema = buildJsonLd("organization");
+  const localBusinessSchema = buildJsonLd("localBusiness");
+  const websiteSchema = buildJsonLd("website");
+
   return (
     <html lang="en" className={`${montserrat.variable} ${roboto.variable} ${firaCode.variable} antialiased`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([organizationSchema, localBusinessSchema, websiteSchema]),
+          }}
+        />
+      </head>
       <body className="min-h-screen flex flex-col">
         <Providers>
           <Navigation />

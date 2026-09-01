@@ -1,14 +1,13 @@
 import { MetadataRoute } from 'next'
+import { siteUrl } from '@/lib/seo'
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://majestycompcare.co.ke'
-
   return {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/admin/', '/dashboard/', '/login/', '/register/'],
+      disallow: ['/api/', '/admin/', '/dashboard/', '/login/', '/register/', '/checkout/', '/cart/'],
     },
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: `${siteUrl}/sitemap.xml`,
   }
 }

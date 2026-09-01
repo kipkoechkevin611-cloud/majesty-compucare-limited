@@ -38,10 +38,16 @@ export async function POST(request: NextRequest) {
     // - AWS SES
     // For now, we'll just return success
 
-    return NextResponse.json(
+    const response = NextResponse.json(
       { message: 'Contact form submitted successfully' },
       { status: 200 }
     )
+
+    response.headers.set('Access-Control-Allow-Origin', process.env.NEXT_PUBLIC_APP_URL || '*')
+    response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+    response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+
+    return response
   } catch (error) {
     console.error('Error processing contact form:', error)
     return NextResponse.json(
@@ -49,4 +55,12 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     )
   }
+}
+
+export async function OPTIONS(request: NextRequest) {
+  const response = new NextResponse(null, { status: 200 })
+  response.headers.set('Access-Control-Allow-Origin', process.env.NEXT_PUBLIC_APP_URL || '*')
+  response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+  response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+  return response
 }
