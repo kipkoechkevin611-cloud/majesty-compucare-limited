@@ -177,6 +177,27 @@ model Coupon {
   updatedAt  DateTime @updatedAt
 }
 
+model Deal {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String?
+  type        DealType @default(MONTHLY)
+  discountType DiscountType
+  discountValue Float
+  startDate   DateTime
+  endDate     DateTime
+  isActive    Boolean  @default(true)
+  productIds  String[]
+  categoryIds String[]
+  minPurchase Float?
+  maxUses     Int?
+  usedCount   Int      @default(0)
+  imageUrl    String?
+  bannerText  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
 enum Role {
   CUSTOMER
   ADMIN
@@ -203,6 +224,14 @@ enum PaymentStatus {
 enum DiscountType {
   PERCENTAGE
   FIXED
+}
+
+enum DealType {
+  MONTHLY
+  FLASH_SALE
+  SEASONAL
+  BUNDLE
+  CLEARANCE
 }
 
 enum ProductStatus {

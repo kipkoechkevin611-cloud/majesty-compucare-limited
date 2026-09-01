@@ -87,6 +87,63 @@ export default function NewProductPage() {
     }
   }
 
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+  }
+
+  const handleDrop = async (e: React.DragEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    
+    const files = e.dataTransfer.files
+    if (files && files.length > 0) {
+      setUploadError(null)
+      const uploadPromises = Array.from(files).map(async (file) => {
+        if (!file.type.startsWith('image/')) {
+          setUploadError('Only image files are allowed')
+          return null
+        }
+        
+        const uploadData = new FormData()
+        uploadData.append('file', file)
+
+        try {
+          const response = await fetch('/api/upload', {
+            method: 'POST',
+            body: uploadData,
+          })
+
+          if (response.ok) {
+            const data = await response.json()
+            return data.url as string
+          } else {
+            let message = 'Failed to upload image'
+            try {
+              const err = await response.json()
+              message = err?.error || message
+              if (err?.hint) message += ` — ${err.hint}`
+            } catch {}
+            setUploadError(message)
+            return null
+          }
+        } catch (err: any) {
+          setUploadError(err?.message || 'Failed to upload image')
+          return null
+        }
+      })
+
+      const uploadedUrls = await Promise.all(uploadPromises)
+      const validUrls = uploadedUrls.filter((url): url is string => url !== null)
+
+      setImagePreviews(prev => [...prev, ...validUrls])
+      setFormData(prev => ({
+        ...prev,
+        images: [...prev.images, ...validUrls],
+      }))
+    }
+  }
+
   const removeImage = (index: number) => {
     setImagePreviews(prev => prev.filter((_, i) => i !== index))
     setFormData(prev => ({
@@ -306,7 +363,11 @@ export default function NewProductPage() {
             {/* Product Images */}
             <div>
               <h2 className="text-lg font-semibold text-gray-900 mb-4">Product Images</h2>
-              <div className="border-2 border-dashed border-blue-300 rounded-xl p-12 text-center bg-blue-50/50 hover:bg-blue-50 transition-colors">
+              <div 
+                className="border-2 border-dashed border-blue-300 rounded-xl p-12 text-center bg-blue-50/50 hover:bg-blue-50 transition-colors"
+                onDragOver={handleDragOver}
+                onDrop={handleDrop}
+              >
                 <input
                   type="file"
                   multiple
@@ -322,32 +383,47 @@ export default function NewProductPage() {
                   <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Upload className="w-10 h-10 text-blue-600" />
                   </div>
-                  <p className="text-gray-900 font-medium mb-1">Click to upload images</p>
-                  <p className="text-sm text-gray-500">PNG, JPG up to 5MB each</p>
+                  <p className="text-gray-900 font-medium mb-1">Click to upload or drag & drop images</p>
+                  <p className="text-sm text-gray-500">PNG, JPG up to 5MB each. Upload multiple images at once.</p>
                 </label>
               </div>
               {uploadError && (
                 <p className="mt-2 text-sm text-red-600">{uploadError}</p>
               )}
               {imagePreviews.length > 0 && (
-                <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                  {imagePreviews.map((preview, index) => (
-                    <div key={index} className="relative">
-                      <img
-                        src={preview}
-                        alt={`Preview ${index + 1}`}
-                        className="w-full h-40 object-cover rounded-lg"
-                        onError={(e) => { e.currentTarget.src = '/images/product-fallback.svg'; e.currentTarget.onerror = null; }}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => removeImage(index)}
-                        className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
-                      >
-                        <X className="w-4 h-4" />
-                      </button>
-                    </div>
-                  ))}
+                <div className="mt-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <p className="text-sm font-medium text-gray-700">{imagePreviews.length} image{imagePreviews.length !== 1 ? 's' : ''} uploaded</p>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setImagePreviews([])
+                        setFormData(prev => ({ ...prev, images: [] }))
+                      }}
+                      className="text-sm text-red-600 hover:text-red-700"
+                    >
+                      Clear all
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    {imagePreviews.map((preview, index) => (
+                      <div key={index} className="relative group">
+                        <img
+                          src={preview}
+                          alt={`Preview ${index + 1}`}
+                          className="w-full h-40 object-cover rounded-lg"
+                          onError={(e) => { e.currentTarget.src = '/images/product-fallback.svg'; e.currentTarget.onerror = null; }}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => removeImage(index)}
+                          className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
