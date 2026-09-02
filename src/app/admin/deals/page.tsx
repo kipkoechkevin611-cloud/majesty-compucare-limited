@@ -134,18 +134,18 @@ export default function AdminDealsPage() {
                 </tr>
               </thead>
               <tbody>
-                {deals.map((deal) => (
-                  <tr key={deal.id} className="border-b hover:bg-gray-50">
+                {deals.map((deal, index) => (
+                  <tr key={deal.id} className="border-b hover:bg-gray-50 transition-all duration-300 hover:shadow-md animate-fade-in-up" style={{ animationDelay: `${index * 50}ms` }}>
                     <td className="py-4 px-6">
                       <div>
-                        <span className="font-medium text-gray-900">{deal.title}</span>
+                        <span className="font-medium text-gray-900 transition-colors duration-300 hover:text-blue-600">{deal.title}</span>
                         {deal.description && (
                           <p className="text-sm text-gray-500 mt-1">{deal.description}</p>
                         )}
                       </div>
                     </td>
                     <td className="py-4 px-6">
-                      <span className="px-3 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                      <span className="px-3 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800 transition-transform duration-300 hover:scale-110 inline-block">
                         {deal.type.replace('_', ' ')}
                       </span>
                     </td>
@@ -153,20 +153,20 @@ export default function AdminDealsPage() {
                       <div className="flex items-center space-x-2">
                         {deal.discountType === 'PERCENTAGE' ? (
                           <>
-                            <Percent className="w-4 h-4 text-green-600" />
-                            <span className="font-semibold text-gray-900">{deal.discountValue}% OFF</span>
+                            <Percent className="w-4 h-4 text-green-600 transition-transform duration-300 hover:scale-125" />
+                            <span className="font-semibold text-gray-900 transition-transform duration-300 hover:scale-110">{deal.discountValue}% OFF</span>
                           </>
                         ) : (
                           <>
-                            <DollarSign className="w-4 h-4 text-green-600" />
-                            <span className="font-semibold text-gray-900">KES {deal.discountValue.toLocaleString()}</span>
+                            <DollarSign className="w-4 h-4 text-green-600 transition-transform duration-300 hover:scale-125" />
+                            <span className="font-semibold text-gray-900 transition-transform duration-300 hover:scale-110">KES {deal.discountValue.toLocaleString()}</span>
                           </>
                         )}
                       </div>
                     </td>
                     <td className="py-4 px-6">
                       <div className="flex items-center space-x-2 text-sm text-gray-600">
-                        <Calendar className="w-4 h-4" />
+                        <Calendar className="w-4 h-4 transition-transform duration-300 hover:rotate-12" />
                         <span>{formatDate(deal.startDate)} - {formatDate(deal.endDate)}</span>
                       </div>
                     </td>
@@ -174,16 +174,16 @@ export default function AdminDealsPage() {
                       <div className="flex items-center space-x-2">
                         <button
                           onClick={() => toggleActive(deal)}
-                          className={`p-2 rounded-lg transition ${
+                          className={`p-2 rounded-lg transition-all duration-300 hover:scale-110 ${
                             isDealActive(deal) 
-                              ? 'bg-green-100 text-green-600 hover:bg-green-200' 
-                              : 'bg-gray-100 text-gray-400 hover:bg-gray-200'
+                              ? 'bg-green-100 text-green-600 hover:bg-green-200 hover:shadow-md' 
+                              : 'bg-gray-100 text-gray-400 hover:bg-gray-200 hover:shadow-md'
                           }`}
                           title={isDealActive(deal) ? 'Active' : 'Inactive'}
                         >
                           {isDealActive(deal) ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
                         </button>
-                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                        <span className={`px-3 py-1 rounded-full text-xs font-medium transition-transform duration-300 hover:scale-110 inline-block ${
                           isDealActive(deal) 
                             ? 'bg-green-100 text-green-800' 
                             : 'bg-gray-100 text-gray-800'
@@ -196,14 +196,14 @@ export default function AdminDealsPage() {
                       <div className="flex items-center space-x-2">
                         <Link
                           href={`/admin/deals/${deal.id}`}
-                          className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition"
+                          className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-300 hover:scale-110 hover:shadow-md"
                           aria-label="Edit deal"
                         >
                           <Edit className="w-4 h-4" />
                         </Link>
                         <button
                           onClick={() => handleDelete(deal)}
-                          className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition"
+                          className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-all duration-300 hover:scale-110 hover:shadow-md"
                           aria-label="Delete deal"
                         >
                           <Trash2 className="w-4 h-4" />

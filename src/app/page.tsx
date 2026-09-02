@@ -362,13 +362,13 @@ export default function Home() {
           </div>
           {deals.length > 0 ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {deals.map((deal) => (
-                <div key={deal.id} className="relative rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg transition bg-white flex flex-col overflow-hidden">
+              {deals.map((deal, index) => (
+                <div key={deal.id} className="relative rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 bg-white flex flex-col overflow-hidden animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
                   {deal.imageUrl && (
                     <div className="relative h-48 overflow-hidden">
-                      <img src={deal.imageUrl} alt={deal.title} className="w-full h-full object-cover" />
+                      <img src={deal.imageUrl} alt={deal.title} className="w-full h-full object-cover transition-transform duration-500 hover:scale-110" />
                       {deal.bannerText && (
-                        <div className="absolute top-0 right-0 z-10">
+                        <div className="absolute top-0 right-0 z-10 animate-bounce-slow">
                           <div className="text-white text-[10px] font-black px-3 py-1 rounded-bl-xl bg-pink-600">
                             {deal.bannerText}
                           </div>
@@ -377,10 +377,10 @@ export default function Home() {
                     </div>
                   )}
                   <div className="p-6 pb-4 flex-1">
-                    <span className="text-xs font-semibold px-2 py-1 rounded-full bg-purple-100 text-purple-800 mb-3 inline-block">
+                    <span className="text-xs font-semibold px-2 py-1 rounded-full bg-purple-100 text-purple-800 mb-3 inline-block animate-pulse-slow">
                       {deal.type.replace('_', ' ')}
                     </span>
-                    <h3 className="text-base font-black text-slate-900 mb-2 leading-snug" style={{fontFamily:'Montserrat,sans-serif'}}>{deal.title}</h3>
+                    <h3 className="text-base font-black text-slate-900 mb-2 leading-snug transition-colors duration-300 hover:text-blue-600" style={{fontFamily:'Montserrat,sans-serif'}}>{deal.title}</h3>
                     {deal.description && (
                       <p className="text-xs text-slate-500 mb-3 leading-relaxed">{deal.description}</p>
                     )}
@@ -390,7 +390,7 @@ export default function Home() {
                   </div>
                   <div className="px-6 pb-5 pt-3 border-t border-slate-100">
                     <div className="flex items-baseline gap-2">
-                      <span className="text-xl font-black text-green-600" style={{fontFamily:'Montserrat,sans-serif'}}>
+                      <span className="text-xl font-black text-green-600 transition-transform duration-300 hover:scale-110" style={{fontFamily:'Montserrat,sans-serif'}}>
                         {deal.discountType === 'PERCENTAGE' 
                           ? `${deal.discountValue}% OFF`
                           : `KES ${deal.discountValue.toLocaleString()} OFF`
@@ -398,7 +398,7 @@ export default function Home() {
                       </span>
                     </div>
                     <a href="https://wa.me/254716000367" target="_blank" rel="noopener noreferrer"
-                      className="mt-3 w-full py-2 rounded-lg text-xs font-bold text-white flex items-center justify-center gap-2 transition hover:opacity-90"
+                      className="mt-3 w-full py-2 rounded-lg text-xs font-bold text-white flex items-center justify-center gap-2 transition-all duration-300 hover:opacity-90 hover:shadow-lg hover:scale-105"
                       style={{background:'#25D366'}}>
                       <MessageCircle className="w-3.5 h-3.5" /> Claim on WhatsApp
                     </a>
@@ -409,22 +409,22 @@ export default function Home() {
           ) : (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                {emoji:'�',badge:'HOT DEAL',badgeColor:'bg-red-500',title:'Laptop Service & Tune-Up',desc:'Full cleaning, thermal paste, OS optimization &amp; virus removal — all in one visit.',originalPrice:3500,offerPrice:1999,features:['Deep cleaning & dust removal','Thermal paste replacement','Windows optimization','Antivirus removal']},
-                {emoji:'�',badge:'BUNDLE OFFER',badgeColor:'bg-blue-600',title:'CCTV 4-Camera Package',desc:'4 HD cameras, DVR, cables &amp; professional installation included.',originalPrice:45000,offerPrice:35000,features:['4 HD cameras (1080p)','DVR recorder + hard drive','Professional installation','1-year warranty']},
+                {emoji:'💻',badge:'HOT DEAL',badgeColor:'bg-red-500',title:'Laptop Service & Tune-Up',desc:'Full cleaning, thermal paste, OS optimization &amp; virus removal — all in one visit.',originalPrice:3500,offerPrice:1999,features:['Deep cleaning & dust removal','Thermal paste replacement','Windows optimization','Antivirus removal']},
+                {emoji:'📷',badge:'BUNDLE OFFER',badgeColor:'bg-blue-600',title:'CCTV 4-Camera Package',desc:'4 HD cameras, DVR, cables &amp; professional installation included.',originalPrice:45000,offerPrice:35000,features:['4 HD cameras (1080p)','DVR recorder + hard drive','Professional installation','1-year warranty']},
                 {emoji:'🖨️',badge:'SAVE 25%',badgeColor:'bg-green-600',title:'Printer Maintenance Plan',desc:'Monthly servicing — cleaning, alignment &amp; nozzle check for your office.',originalPrice:4000,offerPrice:3000,features:['Monthly servicing visit','Nozzle cleaning & alignment','Ink cartridge check','Priority support']},
               ].map((deal,i)=>(
-                <div key={i} className="relative rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg transition bg-white flex flex-col overflow-hidden">
-                  <div className="absolute top-0 right-0 z-10">
+                <div key={i} className="relative rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 bg-white flex flex-col overflow-hidden animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
+                  <div className="absolute top-0 right-0 z-10 animate-bounce-slow">
                     <div className={`text-white text-[10px] font-black px-3 py-1 rounded-bl-xl ${deal.badgeColor}`}>{deal.badge}</div>
                   </div>
                   <div className="p-6 pb-4 flex-1">
-                    <span className="text-4xl mb-3 block">{deal.emoji}</span>
-                    <h3 className="text-base font-black text-slate-900 mb-2 leading-snug" style={{fontFamily:'Montserrat,sans-serif'}}>{deal.title}</h3>
+                    <span className="text-4xl mb-3 block transition-transform duration-300 hover:scale-110 inline-block">{deal.emoji}</span>
+                    <h3 className="text-base font-black text-slate-900 mb-2 leading-snug transition-colors duration-300 hover:text-blue-600" style={{fontFamily:'Montserrat,sans-serif'}}>{deal.title}</h3>
                     <p className="text-xs text-slate-500 mb-3 leading-relaxed" dangerouslySetInnerHTML={{__html:deal.desc}} />
                     <ul className="space-y-1">
-                      {deal.features.map(f=>(
-                        <li key={f} className="flex items-center gap-2 text-xs text-slate-600">
-                          <CheckCircle className="w-3.5 h-3.5 text-green-500 flex-shrink-0" />{f}
+                      {deal.features.map((f,fi)=>(
+                        <li key={f} className="flex items-center gap-2 text-xs text-slate-600 animate-fade-in-up" style={{ animationDelay: `${fi * 50}ms` }}>
+                          <CheckCircle className="w-3.5 h-3.5 text-green-500 flex-shrink-0 transition-transform duration-300 hover:scale-125" />{f}
                         </li>
                       ))}
                     </ul>
@@ -432,7 +432,7 @@ export default function Home() {
                   <div className="px-6 pb-5 pt-3 border-t border-slate-100">
                     {deal.offerPrice !== null ? (
                       <div className="flex items-baseline gap-2">
-                        <span className="text-xl font-black text-green-600" style={{fontFamily:'Montserrat,sans-serif'}}>
+                        <span className="text-xl font-black text-green-600 transition-transform duration-300 hover:scale-110" style={{fontFamily:'Montserrat,sans-serif'}}>
                           {deal.offerPrice === 0 ? 'FREE' : `KES ${deal.offerPrice.toLocaleString()}`}
                         </span>
                         {deal.originalPrice && <span className="text-xs line-through text-slate-400">KES {deal.originalPrice.toLocaleString()}</span>}
@@ -441,7 +441,7 @@ export default function Home() {
                       <p className="text-sm font-semibold text-slate-600">📞 Call for quote</p>
                     )}
                     <a href="https://wa.me/254716000367" target="_blank" rel="noopener noreferrer"
-                      className="mt-3 w-full py-2 rounded-lg text-xs font-bold text-white flex items-center justify-center gap-2 transition hover:opacity-90"
+                      className="mt-3 w-full py-2 rounded-lg text-xs font-bold text-white flex items-center justify-center gap-2 transition-all duration-300 hover:opacity-90 hover:shadow-lg hover:scale-105"
                       style={{background:'#25D366'}}>
                       <MessageCircle className="w-3.5 h-3.5" /> Claim on WhatsApp
                     </a>

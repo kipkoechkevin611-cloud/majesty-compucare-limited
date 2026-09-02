@@ -204,37 +204,37 @@ export default function NewProductPage() {
             <div>
               <h2 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h2>
               <div className="space-y-4">
-                <div>
+                <div className="animate-fade-in-up" style={{ animationDelay: '0ms' }}>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Product Name *</label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-400"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-400 transition-all duration-300 hover:border-blue-400 focus:shadow-lg"
                     placeholder="Enter product name"
                   />
                 </div>
 
-                <div>
+                <div className="animate-fade-in-up" style={{ animationDelay: '50ms' }}>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Short Description</label>
                   <input
                     type="text"
                     value={formData.shortDescription}
                     onChange={(e) => setFormData({ ...formData, shortDescription: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-400"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-400 transition-all duration-300 hover:border-blue-400 focus:shadow-lg"
                     placeholder="Brief product description (optional)"
                   />
                 </div>
 
-                <div>
+                <div className="animate-fade-in-up" style={{ animationDelay: '100ms' }}>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Description *</label>
                   <textarea
                     required
                     rows={6}
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none text-black placeholder-gray-400"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none text-black placeholder-gray-400 transition-all duration-300 hover:border-blue-400 focus:shadow-lg"
                     placeholder="Enter detailed product description"
                   />
                 </div>
@@ -245,13 +245,13 @@ export default function NewProductPage() {
             <div>
               <h2 className="text-lg font-semibold text-gray-900 mb-4">Category & Brand</h2>
               <div className="grid grid-cols-2 gap-6">
-                <div>
+                <div className="animate-fade-in-up" style={{ animationDelay: '150ms' }}>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Category *</label>
                   <select
                     required
                     value={formData.categoryId}
                     onChange={(e) => setFormData({ ...formData, categoryId: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-400"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-400 transition-all duration-300 hover:border-blue-400 focus:shadow-lg"
                   >
                     <option value="">Select category</option>
                     {categories.length === 0 && <option disabled>No categories found — add via Categories page</option>}
@@ -262,13 +262,13 @@ export default function NewProductPage() {
                     ))}
                   </select>
                 </div>
-                <div>
+                <div className="animate-fade-in-up" style={{ animationDelay: '200ms' }}>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Brand</label>
                   <input
                     type="text"
                     value={formData.brand}
                     onChange={(e) => setFormData({ ...formData, brand: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-400"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-400 transition-all duration-300 hover:border-blue-400 focus:shadow-lg"
                     placeholder="Enter brand name"
                   />
                 </div>
@@ -279,7 +279,7 @@ export default function NewProductPage() {
             <div>
               <h2 className="text-lg font-semibold text-gray-900 mb-4">Pricing & Inventory</h2>
               <div className="grid grid-cols-2 gap-6">
-                <div>
+                <div className="animate-fade-in-up" style={{ animationDelay: '250ms' }}>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Price (KES) *</label>
                   <input
                     type="number"
@@ -288,11 +288,11 @@ export default function NewProductPage() {
                     step="0.01"
                     value={formData.price}
                     onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-400"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-400 transition-all duration-300 hover:border-blue-400 focus:shadow-lg"
                     placeholder="0.00"
                   />
                 </div>
-                <div>
+                <div className="animate-fade-in-up" style={{ animationDelay: '300ms' }}>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Sale Price (KES)</label>
                   <input
                     type="number"
@@ -300,11 +300,11 @@ export default function NewProductPage() {
                     step="0.01"
                     value={formData.salePrice}
                     onChange={(e) => setFormData({ ...formData, salePrice: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-400"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-400 transition-all duration-300 hover:border-blue-400 focus:shadow-lg"
                     placeholder="0.00"
                   />
                 </div>
-                <div>
+                <div className="animate-fade-in-up" style={{ animationDelay: '350ms' }}>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Stock Quantity *</label>
                   <input
                     type="number"
@@ -312,17 +312,17 @@ export default function NewProductPage() {
                     min="0"
                     value={formData.stock}
                     onChange={(e) => setFormData({ ...formData, stock: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-400"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-400 transition-all duration-300 hover:border-blue-400 focus:shadow-lg"
                     placeholder="0"
                   />
                 </div>
-                <div>
+                <div className="animate-fade-in-up" style={{ animationDelay: '400ms' }}>
                   <label className="block text-sm font-medium text-gray-700 mb-2">SKU</label>
                   <input
                     type="text"
                     value={formData.sku}
                     onChange={(e) => setFormData({ ...formData, sku: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-400"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-400 transition-all duration-300 hover:border-blue-400 focus:shadow-lg"
                     placeholder="Enter SKU (optional)"
                   />
                 </div>
@@ -333,26 +333,26 @@ export default function NewProductPage() {
             <div>
               <h2 className="text-lg font-semibold text-gray-900 mb-4">Product Status</h2>
               <div className="grid grid-cols-2 gap-6">
-                <div>
+                <div className="animate-fade-in-up" style={{ animationDelay: '450ms' }}>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Status *</label>
                   <select
                     required
                     value={formData.status}
                     onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-400"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-400 transition-all duration-300 hover:border-blue-400 focus:shadow-lg"
                   >
                     <option value="ACTIVE">Active</option>
                     <option value="DRAFT">Draft</option>
                     <option value="OUT_OF_STOCK">Out of Stock</option>
                   </select>
                 </div>
-                <div className="flex items-center pt-8">
-                  <label className="flex items-center space-x-3">
+                <div className="flex items-center pt-8 animate-fade-in-up" style={{ animationDelay: '500ms' }}>
+                  <label className="flex items-center space-x-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-all duration-300">
                     <input
                       type="checkbox"
                       checked={formData.featured}
                       onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
-                      className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                      className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 transition-all duration-300"
                     />
                     <span className="text-sm font-medium text-gray-700">Featured Product</span>
                   </label>
@@ -361,10 +361,10 @@ export default function NewProductPage() {
             </div>
 
             {/* Product Images */}
-            <div>
+            <div className="animate-fade-in-up" style={{ animationDelay: '550ms' }}>
               <h2 className="text-lg font-semibold text-gray-900 mb-4">Product Images</h2>
               <div 
-                className="border-2 border-dashed border-blue-300 rounded-xl p-12 text-center bg-blue-50/50 hover:bg-blue-50 transition-colors"
+                className="border-2 border-dashed border-blue-300 rounded-xl p-12 text-center bg-blue-50/50 hover:bg-blue-50 transition-all duration-300 hover:border-blue-400 hover:shadow-lg"
                 onDragOver={handleDragOver}
                 onDrop={handleDrop}
               >
@@ -380,7 +380,7 @@ export default function NewProductPage() {
                   htmlFor="image-upload"
                   className="cursor-pointer block"
                 >
-                  <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 transition-transform duration-300 hover:scale-110">
                     <Upload className="w-10 h-10 text-blue-600" />
                   </div>
                   <p className="text-gray-900 font-medium mb-1">Click to upload or drag & drop images</p>
@@ -388,7 +388,7 @@ export default function NewProductPage() {
                 </label>
               </div>
               {uploadError && (
-                <p className="mt-2 text-sm text-red-600">{uploadError}</p>
+                <p className="mt-2 text-sm text-red-600 animate-shake">{uploadError}</p>
               )}
               {imagePreviews.length > 0 && (
                 <div className="mt-6">
@@ -400,24 +400,24 @@ export default function NewProductPage() {
                         setImagePreviews([])
                         setFormData(prev => ({ ...prev, images: [] }))
                       }}
-                      className="text-sm text-red-600 hover:text-red-700"
+                      className="text-sm text-red-600 hover:text-red-700 transition-all duration-300 hover:scale-105"
                     >
                       Clear all
                     </button>
                   </div>
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
                     {imagePreviews.map((preview, index) => (
-                      <div key={index} className="relative group">
+                      <div key={index} className="relative group animate-scale-in" style={{ animationDelay: `${index * 50}ms` }}>
                         <img
                           src={preview}
                           alt={`Preview ${index + 1}`}
-                          className="w-full h-40 object-cover rounded-lg"
+                          className="w-full h-40 object-cover rounded-lg transition-transform duration-300 group-hover:scale-105"
                           onError={(e) => { e.currentTarget.src = '/images/product-fallback.svg'; e.currentTarget.onerror = null; }}
                         />
                         <button
                           type="button"
                           onClick={() => removeImage(index)}
-                          className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 opacity-0 group-hover:opacity-100 transition-opacity"
+                          className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110"
                         >
                           <X className="w-4 h-4" />
                         </button>
@@ -429,17 +429,17 @@ export default function NewProductPage() {
             </div>
 
             {/* Actions */}
-            <div className="flex space-x-4 pt-6 border-t">
+            <div className="flex space-x-4 pt-6 border-t animate-fade-in-up" style={{ animationDelay: '600ms' }}>
               <Link
                 href="/admin/products"
-                className="flex-1 border border-gray-300 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-50 transition flex items-center justify-center"
+                className="flex-1 border border-gray-300 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-all duration-300 hover:shadow-md hover:border-gray-400 flex items-center justify-center"
               >
                 Cancel
               </Link>
               <button
                 type="submit"
                 disabled={loading}
-                className="flex-1 bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center disabled:opacity-50"
+                className="flex-1 bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 hover:shadow-lg hover:scale-105 disabled:opacity-50 disabled:hover:scale-100 disabled:hover:shadow-none flex items-center justify-center"
               >
                 {loading ? (
                   <span className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></span>
