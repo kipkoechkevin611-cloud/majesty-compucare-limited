@@ -16,14 +16,17 @@ export default function ProductsPage() {
   const [pagination, setPagination] = useState<any>(null)
   const [loading, setLoading] = useState(true)
 
-  const uiCategories = [
-    { id: 'all', name: 'All Products', icon: Package },
-    { id: 'laptops', name: 'Laptops', icon: Monitor },
-    { id: 'printers', name: 'Printers', icon: Printer },
-    { id: 'cctv-systems', name: 'CCTV', icon: Video },
-    { id: 'networking', name: 'Networking', icon: Wifi },
-    { id: 'accessories', name: 'Accessories', icon: Smartphone },
-  ]
+  const getCategoryIcon = (slug: string) => {
+    const iconMap: Record<string, any> = {
+      'laptops': Monitor,
+      'printers': Printer,
+      'cctv-systems': Video,
+      'cctv': Video,
+      'networking': Wifi,
+      'accessories': Smartphone,
+    }
+    return iconMap[slug] || Package
+  }
 
   const fetchProducts = async () => {
     setLoading(true)
@@ -106,25 +109,15 @@ export default function ProductsPage() {
             </button>
           </div>
           {showFilters && (
-            <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-semibold mb-1.5 uppercase tracking-wider" style={{color:'var(--text-low)',fontFamily:'Fira Code,monospace'}}>Category</label>
-                <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-lg text-sm outline-none" style={selectSty}>
-                  <option value="all">All Products</option>
-                  {dbCategories.map(cat => <option key={cat.id} value={cat.slug}>{cat.name}</option>)}
-                </select>
-              </div>
-              <div>
-                <label className="block text-xs font-semibold mb-1.5 uppercase tracking-wider" style={{color:'var(--text-low)',fontFamily:'Fira Code,monospace'}}>Price Range</label>
-                <select value={priceRange} onChange={(e) => setPriceRange(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-lg text-sm outline-none" style={selectSty}>
-                  <option value="all">All Prices</option>
-                  <option value="low">Under KES 10,000</option>
-                  <option value="medium">KES 10,000 - 50,000</option>
-                  <option value="high">KES 50,000+</option>
-                </select>
-              </div>
+            <div className="mt-3">
+              <label className="block text-xs font-semibold mb-1.5 uppercase tracking-wider" style={{color:'var(--text-low)',fontFamily:'Fira Code,monospace'}}>Price Range</label>
+              <select value={priceRange} onChange={(e) => setPriceRange(e.target.value)}
+                className="w-full md:w-64 px-4 py-2.5 rounded-lg text-sm outline-none" style={selectSty}>
+                <option value="all">All Prices</option>
+                <option value="low">Under KES 10,000</option>
+                <option value="medium">KES 10,000 - 50,000</option>
+                <option value="high">KES 50,000+</option>
+              </select>
             </div>
           )}
         </div>
@@ -134,16 +127,27 @@ export default function ProductsPage() {
       <section style={{background:'var(--bg-surface2)',borderBottom:'1px solid rgba(0,123,255,0.1)'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex overflow-x-auto gap-2 py-3">
-            {uiCategories.map(({ id, name, icon: Icon }) => (
-              <button key={id} onClick={() => setSelectedCategory(id)}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold whitespace-nowrap transition"
-                style={selectedCategory === id
-                  ? {background:'var(--accent-blue)',color:'#fff',boxShadow:'0 0 10px rgba(0,123,255,0.35)'}
-                  : {background:'rgba(0,123,255,0.08)',color:'var(--text-low)',border:'1px solid rgba(0,123,255,0.15)'}}>
-                <Icon className="w-3.5 h-3.5" />
-                {name}
-              </button>
-            ))}
+            <button key="all" onClick={() => setSelectedCategory('all')}
+              className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold whitespace-nowrap transition"
+              style={selectedCategory === 'all'
+                ? {background:'var(--accent-blue)',color:'#fff',boxShadow:'0 0 10px rgba(0,123,255,0.35)'}
+                : {background:'rgba(0,123,255,0.08)',color:'var(--text-low)',border:'1px solid rgba(0,123,255,0.15)'}}>
+              <Package className="w-3.5 h-3.5" />
+              All Products
+            </button>
+            {dbCategories.map((cat) => {
+              const Icon = getCategoryIcon(cat.slug)
+              return (
+                <button key={cat.id} onClick={() => setSelectedCategory(cat.slug)}
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold whitespace-nowrap transition"
+                  style={selectedCategory === cat.slug
+                    ? {background:'var(--accent-blue)',color:'#fff',boxShadow:'0 0 10px rgba(0,123,255,0.35)'}
+                    : {background:'rgba(0,123,255,0.08)',color:'var(--text-low)',border:'1px solid rgba(0,123,255,0.15)'}}>
+                  <Icon className="w-3.5 h-3.5" />
+                  {cat.name}
+                </button>
+              )
+            })}
           </div>
         </div>
       </section>
