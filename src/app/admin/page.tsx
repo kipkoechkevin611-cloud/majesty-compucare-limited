@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { DollarSign, ShoppingBag, AlertTriangle, Package, Users, RefreshCw, Plus, Eye, BarChart3, Settings, Folder, CheckCircle, Clock, Truck, XCircle, TrendingUp, MapPin, Phone, Mail } from 'lucide-react'
+import { DollarSign, ShoppingBag, AlertTriangle, Package, Users, RefreshCw, Plus, Eye, BarChart3, Settings, Folder, CheckCircle, Clock, Truck, XCircle, TrendingUp, MapPin, Phone, Mail, Tag } from 'lucide-react'
 import Link from 'next/link'
 
 export default function AdminDashboardPage() {
@@ -44,6 +44,7 @@ export default function AdminDashboardPage() {
   const quickActions = [
     { label: 'Add Product',  href: '/admin/products/new', icon: Plus,     bg: 'bg-blue-600 hover:bg-blue-700' },
     { label: 'View Orders',  href: '/admin/orders',       icon: Eye,      bg: 'bg-green-600 hover:bg-green-700' },
+    { label: 'Deals',        href: '/admin/deals',         icon: Tag,      bg: 'bg-pink-600 hover:bg-pink-700' },
     { label: 'Analytics',    href: '/admin/analytics',    icon: BarChart3,bg: 'bg-purple-600 hover:bg-purple-700' },
     { label: 'Categories',   href: '/admin/categories',   icon: Folder,   bg: 'bg-orange-600 hover:bg-orange-700' },
     { label: 'Customers',    href: '/admin/customers',    icon: Users,    bg: 'bg-teal-600 hover:bg-teal-700' },

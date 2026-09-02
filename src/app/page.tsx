@@ -54,6 +54,7 @@ export default function Home() {
   const { addToCart } = useCart()
   const [featuredProducts, setFeaturedProducts] = useState<any[]>([])
   const [categories, setCategories] = useState<any[]>([])
+  const [deals, setDeals] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [addedId, setAddedId] = useState<string | null>(null)
   const [contactForm, setContactForm] = useState({ name: '', email: '', message: '' })
@@ -68,15 +69,20 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [productsRes, categoriesRes] = await Promise.all([
+        const [productsRes, categoriesRes, dealsRes] = await Promise.all([
           fetch('/api/products?featured=true&limit=4'),
           fetch('/api/categories'),
+          fetch('/api/deals'),
         ])
         if (productsRes.ok) {
           const d = await productsRes.json()
           setFeaturedProducts(d.products || d || [])
         }
         if (categoriesRes.ok) setCategories(await categoriesRes.json() || [])
+        if (dealsRes.ok) {
+          const d = await dealsRes.json()
+          setDeals(d.deals || [])
+        }
       } catch (e) { console.error(e) }
       finally { setLoading(false) }
     }
@@ -354,51 +360,96 @@ export default function Home() {
               <p className="mt-1 text-slate-500 text-sm">Limited-time packages for repairs, installations &amp; ICT bundles</p>
             </div>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {emoji:'💻',badge:'HOT DEAL',badgeColor:'bg-red-500',title:'Laptop Service & Tune-Up',desc:'Full cleaning, thermal paste, OS optimization &amp; virus removal — all in one visit.',originalPrice:3500,offerPrice:1999,features:['Deep cleaning & dust removal','Thermal paste replacement','Windows optimization','Antivirus removal']},
-              {emoji:'📷',badge:'BUNDLE OFFER',badgeColor:'bg-blue-600',title:'CCTV 4-Camera Package',desc:'4 HD cameras, DVR, cables &amp; professional installation included.',originalPrice:45000,offerPrice:35000,features:['4 HD cameras (1080p)','DVR recorder + hard drive','Professional installation','1-year warranty']},
-              {emoji:'🖨️',badge:'SAVE 25%',badgeColor:'bg-green-600',title:'Printer Maintenance Plan',desc:'Monthly servicing — cleaning, alignment &amp; nozzle check for your office.',originalPrice:4000,offerPrice:3000,features:['Monthly servicing visit','Nozzle cleaning & alignment','Ink cartridge check','Priority support']},
-              {emoji:'📡',badge:'NEW OFFER',badgeColor:'bg-purple-600',title:'Network Setup — Office',desc:'Professional Wi-Fi &amp; LAN installation with configuration &amp; training.',originalPrice:15000,offerPrice:10000,features:['Router & switch config','Structured cabling','Wi-Fi optimization','Staff training']},
-              {emoji:'💾',badge:'FREE BONUS',badgeColor:'bg-orange-500',title:'Free Data Backup with Repair',desc:'Bring any device for repair and get a FREE data backup — worth KES 1,000.',originalPrice:1000,offerPrice:0,features:['Full data backup','Organized folder structure','External drive transfer','Before-repair safety copy']},
-              {emoji:'🏫',badge:'SCHOOLS',badgeColor:'bg-teal-600',title:'School ICT Lab Package',desc:'Complete computer lab setup — supply, networking, software &amp; staff training.',originalPrice:null,offerPrice:null,features:['Bulk laptop/desktop supply','Network & server setup','Software licensing','Staff IT training']},
-            ].map((deal,i)=>(
-              <div key={i} className="relative rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg transition bg-white flex flex-col overflow-hidden">
-                <div className="absolute top-0 right-0 z-10">
-                  <div className={`text-white text-[10px] font-black px-3 py-1 rounded-bl-xl ${deal.badgeColor}`}>{deal.badge}</div>
-                </div>
-                <div className="p-6 pb-4 flex-1">
-                  <span className="text-4xl mb-3 block">{deal.emoji}</span>
-                  <h3 className="text-base font-black text-slate-900 mb-2 leading-snug" style={{fontFamily:'Montserrat,sans-serif'}}>{deal.title}</h3>
-                  <p className="text-xs text-slate-500 mb-3 leading-relaxed" dangerouslySetInnerHTML={{__html:deal.desc}} />
-                  <ul className="space-y-1">
-                    {deal.features.map(f=>(
-                      <li key={f} className="flex items-center gap-2 text-xs text-slate-600">
-                        <CheckCircle className="w-3.5 h-3.5 text-green-500 flex-shrink-0" />{f}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="px-6 pb-5 pt-3 border-t border-slate-100">
-                  {deal.offerPrice !== null ? (
+          {deals.length > 0 ? (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {deals.map((deal) => (
+                <div key={deal.id} className="relative rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg transition bg-white flex flex-col overflow-hidden">
+                  {deal.imageUrl && (
+                    <div className="relative h-48 overflow-hidden">
+                      <img src={deal.imageUrl} alt={deal.title} className="w-full h-full object-cover" />
+                      {deal.bannerText && (
+                        <div className="absolute top-0 right-0 z-10">
+                          <div className="text-white text-[10px] font-black px-3 py-1 rounded-bl-xl bg-pink-600">
+                            {deal.bannerText}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  <div className="p-6 pb-4 flex-1">
+                    <span className="text-xs font-semibold px-2 py-1 rounded-full bg-purple-100 text-purple-800 mb-3 inline-block">
+                      {deal.type.replace('_', ' ')}
+                    </span>
+                    <h3 className="text-base font-black text-slate-900 mb-2 leading-snug" style={{fontFamily:'Montserrat,sans-serif'}}>{deal.title}</h3>
+                    {deal.description && (
+                      <p className="text-xs text-slate-500 mb-3 leading-relaxed">{deal.description}</p>
+                    )}
+                    {deal.minPurchase && (
+                      <p className="text-xs text-slate-600 mb-2">Minimum purchase: KES {deal.minPurchase.toLocaleString()}</p>
+                    )}
+                  </div>
+                  <div className="px-6 pb-5 pt-3 border-t border-slate-100">
                     <div className="flex items-baseline gap-2">
                       <span className="text-xl font-black text-green-600" style={{fontFamily:'Montserrat,sans-serif'}}>
-                        {deal.offerPrice === 0 ? 'FREE' : `KES ${deal.offerPrice.toLocaleString()}`}
+                        {deal.discountType === 'PERCENTAGE' 
+                          ? `${deal.discountValue}% OFF`
+                          : `KES ${deal.discountValue.toLocaleString()} OFF`
+                        }
                       </span>
-                      {deal.originalPrice && <span className="text-xs line-through text-slate-400">KES {deal.originalPrice.toLocaleString()}</span>}
                     </div>
-                  ) : (
-                    <p className="text-sm font-semibold text-slate-600">📞 Call for quote</p>
-                  )}
-                  <a href="https://wa.me/254716000367" target="_blank" rel="noopener noreferrer"
-                    className="mt-3 w-full py-2 rounded-lg text-xs font-bold text-white flex items-center justify-center gap-2 transition hover:opacity-90"
-                    style={{background:'#25D366'}}>
-                    <MessageCircle className="w-3.5 h-3.5" /> Claim on WhatsApp
-                  </a>
+                    <a href="https://wa.me/254716000367" target="_blank" rel="noopener noreferrer"
+                      className="mt-3 w-full py-2 rounded-lg text-xs font-bold text-white flex items-center justify-center gap-2 transition hover:opacity-90"
+                      style={{background:'#25D366'}}>
+                      <MessageCircle className="w-3.5 h-3.5" /> Claim on WhatsApp
+                    </a>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                {emoji:'�',badge:'HOT DEAL',badgeColor:'bg-red-500',title:'Laptop Service & Tune-Up',desc:'Full cleaning, thermal paste, OS optimization &amp; virus removal — all in one visit.',originalPrice:3500,offerPrice:1999,features:['Deep cleaning & dust removal','Thermal paste replacement','Windows optimization','Antivirus removal']},
+                {emoji:'�',badge:'BUNDLE OFFER',badgeColor:'bg-blue-600',title:'CCTV 4-Camera Package',desc:'4 HD cameras, DVR, cables &amp; professional installation included.',originalPrice:45000,offerPrice:35000,features:['4 HD cameras (1080p)','DVR recorder + hard drive','Professional installation','1-year warranty']},
+                {emoji:'🖨️',badge:'SAVE 25%',badgeColor:'bg-green-600',title:'Printer Maintenance Plan',desc:'Monthly servicing — cleaning, alignment &amp; nozzle check for your office.',originalPrice:4000,offerPrice:3000,features:['Monthly servicing visit','Nozzle cleaning & alignment','Ink cartridge check','Priority support']},
+              ].map((deal,i)=>(
+                <div key={i} className="relative rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg transition bg-white flex flex-col overflow-hidden">
+                  <div className="absolute top-0 right-0 z-10">
+                    <div className={`text-white text-[10px] font-black px-3 py-1 rounded-bl-xl ${deal.badgeColor}`}>{deal.badge}</div>
+                  </div>
+                  <div className="p-6 pb-4 flex-1">
+                    <span className="text-4xl mb-3 block">{deal.emoji}</span>
+                    <h3 className="text-base font-black text-slate-900 mb-2 leading-snug" style={{fontFamily:'Montserrat,sans-serif'}}>{deal.title}</h3>
+                    <p className="text-xs text-slate-500 mb-3 leading-relaxed" dangerouslySetInnerHTML={{__html:deal.desc}} />
+                    <ul className="space-y-1">
+                      {deal.features.map(f=>(
+                        <li key={f} className="flex items-center gap-2 text-xs text-slate-600">
+                          <CheckCircle className="w-3.5 h-3.5 text-green-500 flex-shrink-0" />{f}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="px-6 pb-5 pt-3 border-t border-slate-100">
+                    {deal.offerPrice !== null ? (
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-xl font-black text-green-600" style={{fontFamily:'Montserrat,sans-serif'}}>
+                          {deal.offerPrice === 0 ? 'FREE' : `KES ${deal.offerPrice.toLocaleString()}`}
+                        </span>
+                        {deal.originalPrice && <span className="text-xs line-through text-slate-400">KES {deal.originalPrice.toLocaleString()}</span>}
+                      </div>
+                    ) : (
+                      <p className="text-sm font-semibold text-slate-600">📞 Call for quote</p>
+                    )}
+                    <a href="https://wa.me/254716000367" target="_blank" rel="noopener noreferrer"
+                      className="mt-3 w-full py-2 rounded-lg text-xs font-bold text-white flex items-center justify-center gap-2 transition hover:opacity-90"
+                      style={{background:'#25D366'}}>
+                      <MessageCircle className="w-3.5 h-3.5" /> Claim on WhatsApp
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
