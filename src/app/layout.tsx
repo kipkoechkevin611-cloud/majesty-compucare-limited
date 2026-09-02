@@ -76,13 +76,12 @@ export const metadata: Metadata = {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-32x32.png",
-    apple: "/apple-touch-icon.png",
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/logo.jpeg",
     other: [
-      { rel: "icon", url: "/favicon-16x16.png", sizes: "16x16" },
-      { rel: "icon", url: "/favicon-32x32.png", sizes: "32x32" },
-      { rel: "apple-touch-icon", url: "/apple-touch-icon.png", sizes: "180x180" },
+      { rel: "icon", url: "/favicon.svg", sizes: "any", type: "image/svg+xml" },
+      { rel: "apple-touch-icon", url: "/logo.jpeg", sizes: "180x180" },
       { rel: "manifest", url: "/site.webmanifest" },
     ],
   },
