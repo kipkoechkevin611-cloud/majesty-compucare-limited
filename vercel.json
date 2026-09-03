@@ -1,0 +1,27 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "regions": ["iad1"],
+  "env": {
+    "DATABASE_URL": "@database-url",
+    "NEXTAUTH_SECRET": "@nextauth-secret",
+    "NEXTAUTH_URL": "@nextauth-url",
+    "NEXT_PUBLIC_APP_URL": "@public-app-url",
+    "SMTP_HOST": "@smtp-host",
+    "SMTP_PORT": "@smtp-port",
+    "SMTP_SECURE": "@smtp-secure",
+    "SMTP_USER": "@smtp-user",
+    "SMTP_PASS": "@smtp-pass",
+    "SMTP_FROM": "@smtp-from",
+    "CLOUDINARY_CLOUD_NAME": "@cloudinary-cloud-name",
+    "CLOUDINARY_API_KEY": "@cloudinary-api-key",
+    "CLOUDINARY_API_SECRET": "@cloudinary-api-secret",
+    "MPESA_CONSUMER_KEY": "@mpesa-consumer-key",
+    "MPESA_CONSUMER_SECRET": "@mpesa-consumer-secret",
+    "MPESA_PASSKEY": "@mpesa-passkey",
+    "MPESA_SHORTCODE": "@mpesa-shortcode",
+    "MPESA_CALLBACK_URL": "@mpesa-callback-url",
+    "NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION": "@google-site-verification"
+  }
+}
