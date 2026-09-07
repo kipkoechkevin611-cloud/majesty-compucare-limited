@@ -4,6 +4,14 @@ import { useState, useEffect } from 'react'
 import { Search, SlidersHorizontal, Monitor, Printer, Video, Wifi, Smartphone, Package, PenTool, ShoppingCart } from 'lucide-react'
 import { useCart } from '@/contexts/CartContext'
 import ProductCard from '@/components/ProductCard'
+import { Metadata } from 'next'
+import { mergeMetadata } from '@/lib/seo'
+
+export const metadata: Metadata = mergeMetadata(
+  'Products - Majesty Compucare Limited',
+  'Browse our wide range of ICT products including laptops, desktops, printers, CCTV systems, networking equipment, and accessories in Kenya.',
+  { path: '/products' }
+)
 
 export default function ProductsPage() {
   const { addToCart, getCartCount } = useCart()

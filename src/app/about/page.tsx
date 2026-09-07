@@ -1,4 +1,12 @@
 import { Award, Users, Target, CheckCircle, MapPin, Phone, Mail, Monitor, Printer, Video, Wifi, Smartphone, Package, Wrench, Shield, Database, HardDrive, MessageCircle } from 'lucide-react'
+import { Metadata } from 'next'
+import { mergeMetadata } from '@/lib/seo'
+
+export const metadata: Metadata = mergeMetadata(
+  'About Us - Majesty Compucare Limited',
+  'Learn about Majesty Compucare Limited - Your trusted ICT solutions provider in Kenya with 10+ years of experience serving Nakuru and Kisumu.',
+  { path: '/about' }
+)
 
 export default function AboutPage() {
   const stats = [

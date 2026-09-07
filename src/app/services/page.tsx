@@ -1,4 +1,12 @@
 import { Monitor, Printer, Video, Wifi, Shield, Headphones, Cpu, HardDrive, Database, Wrench, Settings, Smartphone } from 'lucide-react'
+import { Metadata } from 'next'
+import { mergeMetadata } from '@/lib/seo'
+
+export const metadata: Metadata = mergeMetadata(
+  'Our Services - Majesty Compucare Limited',
+  'Professional ICT services including computer repair, printer maintenance, CCTV installation, network setup, and IT support in Nakuru and Kisumu, Kenya.',
+  { path: '/services' }
+)
 
 export default function ServicesPage() {
   const services = [

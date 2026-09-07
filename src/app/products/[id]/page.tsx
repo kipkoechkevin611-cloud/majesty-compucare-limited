@@ -6,6 +6,8 @@ import { useParams } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { Package, ShoppingCart, Heart, Star, CheckCircle, Truck, Shield, RotateCcw, User, Send, ThumbsUp } from 'lucide-react'
 import Link from 'next/link'
+import Head from 'next/head'
+import { siteUrl } from '@/lib/seo'
 
 export default function ProductDetailPage() {
   const params = useParams()
@@ -16,6 +18,8 @@ export default function ProductDetailPage() {
   const [selectedImage, setSelectedImage] = useState(0)
   const [showWishlistSuccess, setShowWishlistSuccess] = useState(false)
   const [product, setProduct] = useState<any>(null)
+  const [seoTitle, setSeoTitle] = useState('')
+  const [seoDescription, setSeoDescription] = useState('')
   const [relatedProducts, setRelatedProducts] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -35,6 +39,9 @@ export default function ProductDetailPage() {
       if (response.ok) {
         const data = await response.json()
         setProduct(data)
+        // Set SEO metadata
+        setSeoTitle(`${data.name} - Majesty Compucare Limited`)
+        setSeoDescription(data.description?.substring(0, 160) || `Buy ${data.name} at Majesty Compucare Limited. Quality ICT products in Kenya.`)
       }
     } catch (error) {
       console.error('Error fetching product:', error)
@@ -127,21 +134,33 @@ export default function ProductDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-      </div>
+      <>
+        <Head>
+          <title>Loading Product - Majesty Compucare Limited</title>
+          <meta name="description" content="Loading product details..." />
+        </Head>
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        </div>
+      </>
     )
   }
 
   if (!product) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <Package className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">Product not found</h2>
-          <Link href="/products" className="text-blue-600 hover:text-blue-700">Back to Products</Link>
+      <>
+        <Head>
+          <title>Product Not Found - Majesty Compucare Limited</title>
+          <meta name="description" content="The requested product could not be found." />
+        </Head>
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <Package className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+            <h2 className="text-xl font-semibold text-gray-900 mb-2">Product not found</h2>
+            <Link href="/products" className="text-blue-600 hover:text-blue-700">Back to Products</Link>
+          </div>
         </div>
-      </div>
+      </>
     )
   }
 
@@ -166,7 +185,22 @@ export default function ProductDetailPage() {
     : 0
 
   return (
-    <div className="flex flex-col">
+    <>
+      <Head>
+        <title>{seoTitle}</title>
+        <meta name="description" content={seoDescription} />
+        <meta property="og:title" content={seoTitle} />
+        <meta property="og:description" content={seoDescription} />
+        <meta property="og:url" content={`${siteUrl}/products/${product.id}`} />
+        <meta property="og:image" content={product.images?.[0] || `${siteUrl}/logo.png`} />
+        <meta property="og:type" content="product" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={seoTitle} />
+        <meta name="twitter:description" content={seoDescription} />
+        <meta name="twitter:image" content={product.images?.[0] || `${siteUrl}/logo.png`} />
+        <link rel="canonical" href={`${siteUrl}/products/${product.id}`} />
+      </Head>
+      <div className="flex flex-col">
       {/* Breadcrumb */}
       <section className="bg-gray-50 py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -461,5 +495,6 @@ export default function ProductDetailPage() {
         </div>
       </section>
     </div>
+    </>
   )
 }
