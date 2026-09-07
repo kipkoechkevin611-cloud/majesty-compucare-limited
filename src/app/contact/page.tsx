@@ -2,14 +2,6 @@
 
 import { useState } from 'react'
 import { MapPin, Phone, Mail, MessageCircle, Clock } from 'lucide-react'
-import { Metadata } from 'next'
-import { mergeMetadata } from '@/lib/seo'
-
-export const metadata: Metadata = mergeMetadata(
-  'Contact Us - Majesty Compucare Limited',
-  'Get in touch with Majesty Compucare Limited. Visit our Nakuru HQ or Kisumu branch, or call us for ICT solutions, computer repair, and IT support services.',
-  { path: '/contact' }
-)
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({

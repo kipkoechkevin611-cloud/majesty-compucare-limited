@@ -6,11 +6,12 @@ import { prisma } from '@/lib/prisma'
 // GET /api/admin/deals/[id] - Get a specific deal
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const deal = await prisma?.deal.findUnique({
-      where: { id: params.id },
+      where: { id },
     })
 
     if (!deal) {
@@ -33,9 +34,10 @@ export async function GET(
 // PUT /api/admin/deals/[id] - Update a deal
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const body = await request.json()
 
     // Validate discount type if provided
@@ -95,7 +97,7 @@ export async function PUT(
     }
 
     const deal = await prisma?.deal.update({
-      where: { id: params.id },
+      where: { id },
       data: updateData,
     })
 
@@ -112,11 +114,12 @@ export async function PUT(
 // DELETE /api/admin/deals/[id] - Delete a deal
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     await prisma?.deal.delete({
-      where: { id: params.id },
+      where: { id },
     })
 
     return NextResponse.json({ success: true })

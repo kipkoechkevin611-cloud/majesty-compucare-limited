@@ -14,7 +14,7 @@ try {
   console.log(JSON.stringify(data[0], null, 2));
   
   console.log('\nAll products:');
-  data.forEach((product, index) => {
+  data.forEach((product: any, index: number) => {
     console.log(`${index + 1}`, product);
   });
   
