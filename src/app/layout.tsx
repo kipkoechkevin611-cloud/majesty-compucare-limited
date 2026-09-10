@@ -76,10 +76,14 @@ export const metadata: Metadata = {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
   },
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32", type: "image/x-icon" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.ico",
     apple: "/logo.jpeg",
     other: [
+      { rel: "icon", url: "/favicon.ico", sizes: "32x32", type: "image/x-icon" },
       { rel: "icon", url: "/favicon.svg", sizes: "any", type: "image/svg+xml" },
       { rel: "apple-touch-icon", url: "/logo.jpeg", sizes: "180x180" },
       { rel: "manifest", url: "/site.webmanifest" },
