@@ -11,6 +11,16 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const session = await getServerSession(authOptions)
+    
+    // Verify user is authenticated and has admin role
+    if (!session?.user || session.user.role !== 'ADMIN') {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      )
+    }
+    
     const { id } = await params
 
     if (!prisma) {
@@ -44,6 +54,16 @@ export async function PUT(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const session = await getServerSession(authOptions)
+    
+    // Verify user is authenticated and has admin role
+    if (!session?.user || session.user.role !== 'ADMIN') {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      )
+    }
+    
     const { id } = await params
 
     const body = await request.json()
@@ -123,6 +143,7 @@ export async function PUT(
         slug,
         description: body.description,
         shortDescription: body.shortDescription || null,
+        longDescription: body.longDescription || null,
         categoryId: body.categoryId,
         brand: body.brand || null,
         price,
@@ -133,6 +154,11 @@ export async function PUT(
         featured: body.featured || false,
         status: body.status || 'ACTIVE',
         specifications: body.specifications || null,
+        warrantyInfo: body.warrantyInfo || null,
+        whatsIncluded: body.whatsIncluded || [],
+        useCases: body.useCases || [],
+        compatibility: body.compatibility || null,
+        idealFor: body.idealFor || [],
       },
       include: {
         category: true,
@@ -167,6 +193,16 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const session = await getServerSession(authOptions)
+    
+    // Verify user is authenticated and has admin role
+    if (!session?.user || session.user.role !== 'ADMIN') {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      )
+    }
+    
     const { id } = await params
 
     // Some environments drop bodies on DELETE. Parse defensively and default to false.

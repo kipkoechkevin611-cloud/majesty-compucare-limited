@@ -22,14 +22,8 @@ async function main() {
   await sharp(base).resize(32, 32, { fit: 'contain', background: '#ffffff' }).png().toFile(path.join(outDir, 'favicon-32x32.png'))
   await sharp(base).resize(16, 16, { fit: 'contain', background: '#ffffff' }).png().toFile(path.join(outDir, 'favicon-16x16.png'))
 
-  // favicon.ico (multi-resolution)
-  const ico = require('sharp-to-ico')
-  if (ico) {
-    await ico.default([base], path.join(outDir, 'favicon.ico'))
-  } else {
-    // fallback: use 32x32 png renamed
-    await sharp(base).resize(32, 32, { fit: 'contain', background: '#ffffff' }).png().toFile(path.join(outDir, 'favicon.ico'))
-  }
+  // favicon.ico (use 32x32 png as fallback)
+  await sharp(base).resize(32, 32, { fit: 'contain', background: '#ffffff' }).png().toFile(path.join(outDir, 'favicon.ico'))
 
   console.log('Favicon assets generated successfully')
 }

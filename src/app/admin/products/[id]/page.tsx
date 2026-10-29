@@ -15,6 +15,7 @@ export default function EditProductPage() {
     name: '',
     description: '',
     shortDescription: '',
+    longDescription: '',
     categoryId: '',
     brand: '',
     price: '',
@@ -24,7 +25,15 @@ export default function EditProductPage() {
     featured: false,
     status: 'ACTIVE',
     images: [] as string[],
+    warrantyInfo: '',
+    whatsIncluded: [] as string[],
+    useCases: [] as string[],
+    compatibility: '',
+    idealFor: [] as string[],
   })
+  const [whatsIncludedInput, setWhatsIncludedInput] = useState('')
+  const [useCasesInput, setUseCasesInput] = useState('')
+  const [idealForInput, setIdealForInput] = useState('')
   const [categories, setCategories] = useState<any[]>([])
   const [imagePreviews, setImagePreviews] = useState<string[]>([])
   const [uploadError, setUploadError] = useState<string | null>(null)
@@ -45,6 +54,7 @@ export default function EditProductPage() {
           name: data.name || '',
           description: data.description || '',
           shortDescription: data.shortDescription || '',
+          longDescription: data.longDescription || '',
           categoryId: data.categoryId || '',
           brand: data.brand || '',
           price: data.price?.toString() || '',
@@ -54,6 +64,11 @@ export default function EditProductPage() {
           featured: data.featured || false,
           status: data.status || 'ACTIVE',
           images: data.images || [],
+          warrantyInfo: data.warrantyInfo || '',
+          whatsIncluded: data.whatsIncluded || [],
+          useCases: data.useCases || [],
+          compatibility: data.compatibility || '',
+          idealFor: data.idealFor || [],
         })
         setImagePreviews(data.images || [])
       }
@@ -196,7 +211,7 @@ export default function EditProductPage() {
                     value={formData.shortDescription}
                     onChange={(e) => setFormData({ ...formData, shortDescription: e.target.value })}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-400"
-                    placeholder="Brief product description (optional)"
+                    placeholder="Brief product description for product cards"
                   />
                 </div>
 
@@ -204,11 +219,22 @@ export default function EditProductPage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">Description *</label>
                   <textarea
                     required
-                    rows={6}
+                    rows={4}
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                    placeholder="Enter detailed product description"
+                    placeholder="Enter product description"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Long Description</label>
+                  <textarea
+                    rows={8}
+                    value={formData.longDescription}
+                    onChange={(e) => setFormData({ ...formData, longDescription: e.target.value })}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                    placeholder="Enter detailed long description with product overview, features, specifications, etc."
                   />
                 </div>
               </div>
@@ -375,6 +401,186 @@ export default function EditProductPage() {
                   ))}
                 </div>
               )}
+            </div>
+
+            <div>
+              <h2 className="text-lg font-semibold text-gray-900 mb-4">Product Details</h2>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Warranty Information</label>
+                  <input
+                    type="text"
+                    value={formData.warrantyInfo}
+                    onChange={(e) => setFormData({ ...formData, warrantyInfo: e.target.value })}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-400"
+                    placeholder="e.g., 1 Year Manufacturer Warranty"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Compatibility</label>
+                  <input
+                    type="text"
+                    value={formData.compatibility}
+                    onChange={(e) => setFormData({ ...formData, compatibility: e.target.value })}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-400"
+                    placeholder="e.g., Compatible with Windows 10/11, macOS"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">What's Included</label>
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      value={whatsIncludedInput}
+                      onChange={(e) => setWhatsIncludedInput(e.target.value)}
+                      className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-400"
+                      placeholder="e.g., Power adapter, USB cable"
+                      onKeyPress={(e) => {
+                        if (e.key === 'Enter' && whatsIncludedInput.trim()) {
+                          e.preventDefault()
+                          setFormData({ ...formData, whatsIncluded: [...formData.whatsIncluded, whatsIncludedInput.trim()] })
+                          setWhatsIncludedInput('')
+                        }
+                      }}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (whatsIncludedInput.trim()) {
+                          setFormData({ ...formData, whatsIncluded: [...formData.whatsIncluded, whatsIncludedInput.trim()] })
+                          setWhatsIncludedInput('')
+                        }
+                      }}
+                      className="px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+                    >
+                      <Plus className="w-5 h-5" />
+                    </button>
+                  </div>
+                  {formData.whatsIncluded.length > 0 && (
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {formData.whatsIncluded.map((item, index) => (
+                        <span
+                          key={index}
+                          className="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 rounded-full text-sm"
+                        >
+                          {item}
+                          <button
+                            type="button"
+                            onClick={() => setFormData({ ...formData, whatsIncluded: formData.whatsIncluded.filter((_, i) => i !== index) })}
+                            className="text-gray-500 hover:text-red-500"
+                          >
+                            <X className="w-3 h-3" />
+                          </button>
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Use Cases</label>
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      value={useCasesInput}
+                      onChange={(e) => setUseCasesInput(e.target.value)}
+                      className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-400"
+                      placeholder="e.g., Office work, Gaming"
+                      onKeyPress={(e) => {
+                        if (e.key === 'Enter' && useCasesInput.trim()) {
+                          e.preventDefault()
+                          setFormData({ ...formData, useCases: [...formData.useCases, useCasesInput.trim()] })
+                          setUseCasesInput('')
+                        }
+                      }}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (useCasesInput.trim()) {
+                          setFormData({ ...formData, useCases: [...formData.useCases, useCasesInput.trim()] })
+                          setUseCasesInput('')
+                        }
+                      }}
+                      className="px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+                    >
+                      <Plus className="w-5 h-5" />
+                    </button>
+                  </div>
+                  {formData.useCases.length > 0 && (
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {formData.useCases.map((item, index) => (
+                        <span
+                          key={index}
+                          className="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 rounded-full text-sm"
+                        >
+                          {item}
+                          <button
+                            type="button"
+                            onClick={() => setFormData({ ...formData, useCases: formData.useCases.filter((_, i) => i !== index) })}
+                            className="text-gray-500 hover:text-red-500"
+                          >
+                            <X className="w-3 h-3" />
+                          </button>
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Ideal For</label>
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      value={idealForInput}
+                      onChange={(e) => setIdealForInput(e.target.value)}
+                      className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder-gray-400"
+                      placeholder="e.g., Business, Students, Designers"
+                      onKeyPress={(e) => {
+                        if (e.key === 'Enter' && idealForInput.trim()) {
+                          e.preventDefault()
+                          setFormData({ ...formData, idealFor: [...formData.idealFor, idealForInput.trim()] })
+                          setIdealForInput('')
+                        }
+                      }}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (idealForInput.trim()) {
+                          setFormData({ ...formData, idealFor: [...formData.idealFor, idealForInput.trim()] })
+                          setIdealForInput('')
+                        }
+                      }}
+                      className="px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+                    >
+                      <Plus className="w-5 h-5" />
+                    </button>
+                  </div>
+                  {formData.idealFor.length > 0 && (
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {formData.idealFor.map((item, index) => (
+                        <span
+                          key={index}
+                          className="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 rounded-full text-sm"
+                        >
+                          {item}
+                          <button
+                            type="button"
+                            onClick={() => setFormData({ ...formData, idealFor: formData.idealFor.filter((_, i) => i !== index) })}
+                            className="text-gray-500 hover:text-red-500"
+                          >
+                            <X className="w-3 h-3" />
+                          </button>
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
 
             <div className="flex space-x-4 pt-6 border-t">

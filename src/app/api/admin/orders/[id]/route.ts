@@ -5,6 +5,16 @@ import { prisma } from '@/lib/prisma'
 
 export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    const session = await getServerSession(authOptions)
+    
+    // Verify user is authenticated and has admin role
+    if (!session?.user || session.user.role !== 'ADMIN') {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      )
+    }
+    
     const { id } = await params
     const body = await request.json()
     const { status, paymentStatus } = body
@@ -33,6 +43,16 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    const session = await getServerSession(authOptions)
+    
+    // Verify user is authenticated and has admin role
+    if (!session?.user || session.user.role !== 'ADMIN') {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      )
+    }
+    
     const { id } = await params
     const order = await prisma?.order.findUnique({
       where: { id },

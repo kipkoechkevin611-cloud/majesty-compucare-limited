@@ -295,8 +295,7 @@ export default function Home() {
                   product={product}
                   onAddToCart={handleAddToCart}
                   added={addedId === product.id}
-                  className="animate-fade-slide-up"
-                  style={{ animationDelay: `${(index % 4) * 100}ms` }}
+                  index={index}
                 />
               ))}
             </div>
@@ -583,6 +582,17 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Floating WhatsApp Button */}
+      <a
+        href="https://wa.me/254716000367"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl"
+        style={{ background: '#25D366', boxShadow: '0 4px 24px rgba(37, 211, 102, 0.45)' }}
+      >
+        <MessageCircle className="w-7 h-7 text-white" />
+      </a>
 
     </div>
   )

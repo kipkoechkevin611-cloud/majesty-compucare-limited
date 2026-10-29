@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Search, SlidersHorizontal, Monitor, Printer, Video, Wifi, Smartphone, Package, PenTool, ShoppingCart } from 'lucide-react'
 import { useCart } from '@/contexts/CartContext'
 import ProductCard from '@/components/ProductCard'
+import ProductCardSkeleton from '@/components/ProductCardSkeleton'
 
 export default function ProductsPage() {
   const { addToCart, getCartCount } = useCart()
@@ -162,8 +163,10 @@ export default function ProductsPage() {
           </div>
 
           {loading ? (
-            <div className="flex justify-center py-16">
-              <div className="animate-spin rounded-full h-12 w-12" style={{border:'2px solid rgba(0,123,255,0.15)',borderTopColor:'var(--accent-blue)'}} />
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <ProductCardSkeleton key={i} />
+              ))}
             </div>
           ) : products.length > 0 ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
@@ -172,8 +175,7 @@ export default function ProductsPage() {
                   key={product.id}
                   product={product}
                   onAddToCart={handleAddToCart}
-                  className="animate-fade-slide-up"
-                  style={{ animationDelay: `${(index % 8) * 75}ms` } as any}
+                  index={index}
                 />
               ))}
             </div>

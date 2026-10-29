@@ -4,6 +4,7 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Chatbot from "@/components/Chatbot";
+import ScrollToTop from "@/components/ScrollToTop";
 import { Providers } from "@/components/Providers";
 import { siteConfig, siteUrl, buildJsonLd } from "@/lib/seo";
 
@@ -113,6 +114,7 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
           <Chatbot />
+          <ScrollToTop />
         </Providers>
       </body>
     </html>

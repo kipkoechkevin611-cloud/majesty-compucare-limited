@@ -26,7 +26,10 @@ export async function GET(
       where: isObjectId
         ? { status: { not: 'DRAFT' }, id: key }
         : { status: { not: 'DRAFT' }, slug: key },
-      include: { category: { select: { name: true, slug: true } } },
+      include: { 
+        category: { select: { name: true, slug: true } },
+        variants: true,
+      },
     })
 
     if (!product) {

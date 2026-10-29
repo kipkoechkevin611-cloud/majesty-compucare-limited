@@ -41,8 +41,8 @@ export default withAuth(
           return !!token
         }
 
-        // Checkout and cart require authentication
-        if (pathname.startsWith('/checkout') || pathname === '/cart') {
+        // Cart is public, checkout requires authentication
+        if (pathname.startsWith('/checkout')) {
           return !!token
         }
 
@@ -58,6 +58,5 @@ export const config = {
     '/api/admin/:path*',
     '/dashboard/:path*',
     '/checkout/:path*',
-    '/cart',
   ],
 }
