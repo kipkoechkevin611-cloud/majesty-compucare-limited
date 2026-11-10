@@ -27,22 +27,25 @@ export async function GET(request: NextRequest) {
     const orderBy: any = { [sortField === 'price' ? 'price' : 'createdAt']: sortDir === 'asc' ? 'asc' : 'desc' }
 
     const [products, total] = await Promise.all([
-      prisma?.product.findMany({
+      prisma.product.findMany({
         where,
         include: { category: { select: { name: true, slug: true } } },
         orderBy,
         skip,
         take: limit,
       }),
-      prisma?.product.count({ where }),
+      prisma.product.count({ where }),
     ])
 
     return NextResponse.json({
-      products: products || [],
-      pagination: { total: total || 0, page, limit, totalPages: Math.ceil((total || 0) / limit) },
+      products,
+      pagination: { total, page, limit, totalPages: Math.ceil(total / limit) },
     })
   } catch (error) {
     console.error('Error fetching products:', error)
-    return NextResponse.json({ error: 'Failed to fetch products' }, { status: 500 })
+    return NextResponse.json(
+      { error: 'Failed to fetch products', details: error instanceof Error ? error.message : 'Unknown error' },
+      { status: 500 }
+    )
   }
 }

@@ -21,7 +21,7 @@ export async function GET(
     
     const { id } = await params
 
-    const category = await prisma?.category.findUnique({
+    const category = await prisma.category.findUnique({
       where: { id },
       include: {
         _count: {
@@ -84,7 +84,7 @@ export async function PUT(
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/(^-|-$)/g, '')
 
-    const category = await prisma?.category.update({
+    const category = await prisma.category.update({
       where: { id },
       data: {
         name: body.name,
@@ -134,7 +134,7 @@ export async function DELETE(
     const { id } = await params
 
     // Check if category has products
-    const category = await prisma?.category.findUnique({
+    const category = await prisma.category.findUnique({
       where: { id },
       include: {
         _count: {
@@ -154,7 +154,7 @@ export async function DELETE(
       )
     }
 
-    await prisma?.category.delete({
+    await prisma.category.delete({
       where: { id },
     })
 

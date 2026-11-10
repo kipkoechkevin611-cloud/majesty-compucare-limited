@@ -33,7 +33,7 @@ export async function GET(request: NextRequest) {
     }
 
     const [orders, total] = await Promise.all([
-      prisma?.order.findMany({
+      prisma.order.findMany({
         where,
         include: {
           user: { select: { name: true, email: true, phone: true } },
@@ -43,10 +43,10 @@ export async function GET(request: NextRequest) {
         skip,
         take: limit,
       }),
-      prisma?.order.count({ where }),
+      prisma.order.count({ where }),
     ])
 
-    const statusCounts = await prisma?.order.groupBy({
+    const statusCounts = await prisma.order.groupBy({
       by: ['status'],
       _count: { status: true },
     })

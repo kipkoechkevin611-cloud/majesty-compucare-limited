@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
     const skip = (page - 1) * limit
 
     const [reviews, total, avgRating] = await Promise.all([
-      prisma?.review.findMany({
+      prisma.review.findMany({
         where: { productId },
         include: {
           user: {
@@ -29,8 +29,8 @@ export async function GET(request: NextRequest) {
         skip,
         take: limit
       }),
-      prisma?.review.count({ where: { productId } }),
-      prisma?.review.aggregate({
+      prisma.review.count({ where: { productId } }),
+      prisma.review.aggregate({
         where: { productId },
         _avg: { rating: true }
       })
@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized - Please sign in to leave a review' }, { status: 401 })
     }
 
-    const user = await prisma?.user.findUnique({ where: { email: session.user.email } })
+    const user = await prisma.user.findUnique({ where: { email: session.user.email } })
     if (!user) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 })
     }
@@ -78,7 +78,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if user already reviewed this product
-    const existingReview = await prisma?.review.findFirst({
+    const existingReview = await prisma.review.findFirst({
       where: { productId, userId: user.id }
     })
 
@@ -87,7 +87,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if user has purchased the product (optional - can be removed if not needed)
-    const hasPurchased = await prisma?.order.findFirst({
+    const hasPurchased = await prisma.order.findFirst({
       where: {
         userId: user.id,
         items: {
@@ -98,7 +98,7 @@ export async function POST(request: NextRequest) {
     })
 
     // Create the review
-    const review = await prisma?.review.create({
+    const review = await prisma.review.create({
       data: {
         productId,
         userId: user.id,

@@ -22,15 +22,15 @@ export async function GET(request: NextRequest) {
       lowStockProducts,
       recentOrders,
     ] = await Promise.all([
-      prisma?.product.count(),
-      prisma?.order.count(),
-      prisma?.user.count({ where: { role: 'CUSTOMER' } }),
-      prisma?.order.aggregate({
+      prisma.product.count(),
+      prisma.order.count(),
+      prisma.user.count({ where: { role: 'CUSTOMER' } }),
+      prisma.order.aggregate({
         _sum: { totalAmount: true },
         where: { status: { in: ['DELIVERED', 'CONFIRMED', 'PROCESSING'] } },
       }),
-      prisma?.product.count({ where: { stock: { lt: 5 } } }),
-      prisma?.order.findMany({
+      prisma.product.count({ where: { stock: { lt: 5 } } }),
+      prisma.order.findMany({
         take: 5,
         orderBy: { createdAt: 'desc' },
         include: {

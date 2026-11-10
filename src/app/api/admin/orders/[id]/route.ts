@@ -28,7 +28,7 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     if (status) data.status = status
     if (paymentStatus) data.paymentStatus = paymentStatus
 
-    const order = await prisma?.order.update({
+    const order = await prisma.order.update({
       where: { id },
       data,
       include: { user: { select: { name: true, email: true } } },
@@ -54,7 +54,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     }
     
     const { id } = await params
-    const order = await prisma?.order.findUnique({
+    const order = await prisma.order.findUnique({
       where: { id },
       include: {
         user: { select: { name: true, email: true, phone: true } },

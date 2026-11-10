@@ -43,7 +43,7 @@ export async function GET(request: NextRequest) {
     }
 
     const [products, total] = await Promise.all([
-      prisma?.product.findMany({
+      prisma.product.findMany({
         where,
         include: {
           category: true,
@@ -52,7 +52,7 @@ export async function GET(request: NextRequest) {
         take: limit,
         orderBy: { createdAt: 'desc' },
       }),
-      prisma?.product.count({ where }),
+      prisma.product.count({ where }),
     ])
 
     return NextResponse.json({
@@ -152,7 +152,7 @@ export async function POST(request: NextRequest) {
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/(^-|-$)/g, '')
 
-    const product = await prisma?.product.create({
+    const product = await prisma.product.create({
       data: {
         name: body.name,
         slug,

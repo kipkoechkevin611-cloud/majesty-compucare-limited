@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter, useParams } from 'next/navigation'
-import { ArrowLeft, Save, X, Upload } from 'lucide-react'
+import { ArrowLeft, Save, X, Upload, Plus } from 'lucide-react'
 import Link from 'next/link'
 import Loading from '@/components/Loading'
 

@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
     since.setDate(since.getDate() - days)
 
     // Fetch orders within the range
-    const orders = await prisma?.order.findMany({
+    const orders = await prisma.order.findMany({
       where: { createdAt: { gte: since } },
       include: {
         items: {

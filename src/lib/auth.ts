@@ -15,12 +15,6 @@ export const authOptions = {
           throw new Error('Invalid credentials')
         }
 
-        // If Prisma is not available, database is not configured
-        if (!prisma) {
-          console.error('Auth: Prisma not initialized — DATABASE_URL missing or invalid')
-          throw new Error('Database not available. Please contact support.')
-        }
-
         const user = await prisma.user.findUnique({
           where: { email: credentials.email },
         })
@@ -72,4 +66,6 @@ export const authOptions = {
     strategy: 'jwt' as const,
   },
   secret: process.env.NEXTAUTH_SECRET || 'your-secret-key-change-in-production',
+  trustHost: true,
+  debug: process.env.NODE_ENV === 'development',
 }

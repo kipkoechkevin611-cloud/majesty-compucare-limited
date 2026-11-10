@@ -13,6 +13,7 @@ const montserrat = Montserrat({
   weight: ["400", "600", "700", "800", "900"],
   variable: "--font-montserrat",
   display: "swap",
+  adjustFontFallback: false,
 });
 
 const roboto = Roboto({
@@ -20,6 +21,7 @@ const roboto = Roboto({
   weight: ["300", "400", "500"],
   variable: "--font-roboto",
   display: "swap",
+  adjustFontFallback: false,
 });
 
 const firaCode = Fira_Code({
@@ -27,6 +29,7 @@ const firaCode = Fira_Code({
   weight: ["400", "500"],
   variable: "--font-fira-code",
   display: "swap",
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
@@ -77,16 +80,13 @@ export const metadata: Metadata = {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-32x32.png",
-    apple: "/apple-touch-icon.png",
-    other: [
-      { rel: "icon", url: "/favicon-16x16.png", sizes: "16x16" },
-      { rel: "icon", url: "/favicon-32x32.png", sizes: "32x32" },
-      { rel: "apple-touch-icon", url: "/apple-touch-icon.png", sizes: "180x180" },
-      { rel: "manifest", url: "/site.webmanifest" },
+    icon: [
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
+    apple: "/apple-touch-icon.png",
   },
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({

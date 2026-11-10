@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
     }
 
     const [customers, total] = await Promise.all([
-      prisma?.user.findMany({
+      prisma.user.findMany({
         where,
         select: {
           id: true,
@@ -39,7 +39,7 @@ export async function GET(request: NextRequest) {
         skip,
         take: limit,
       }),
-      prisma?.user.count({ where }),
+      prisma.user.count({ where }),
     ])
 
     const enriched = (customers || []).map((c) => ({

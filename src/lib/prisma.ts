@@ -4,18 +4,15 @@ const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined
 }
 
-let prismaInstance: PrismaClient | null = null
-
-if (process.env.DATABASE_URL) {
-  try {
-    prismaInstance = globalForPrisma.prisma ?? new PrismaClient()
-    globalForPrisma.prisma = prismaInstance
-  } catch (error) {
-    console.error('Failed to initialize Prisma:', error)
-  }
-} else {
-  console.warn('DATABASE_URL is not set — database features will be unavailable.')
+if (!process.env.DATABASE_URL) {
+  throw new Error('DATABASE_URL is not set in environment variables')
 }
+
+const prismaInstance = globalForPrisma.prisma ?? new PrismaClient({
+  log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
+})
+
+globalForPrisma.prisma = prismaInstance
 
 export const prisma = prismaInstance
 

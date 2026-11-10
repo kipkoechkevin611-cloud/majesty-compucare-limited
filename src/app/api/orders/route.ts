@@ -10,10 +10,10 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const user = await prisma?.user.findUnique({ where: { email: session.user.email } })
+    const user = await prisma.user.findUnique({ where: { email: session.user.email } })
     if (!user) return NextResponse.json({ orders: [] })
 
-    const orders = await prisma?.order.findMany({
+    const orders = await prisma.order.findMany({
       where: { userId: user.id },
       include: {
         items: {
@@ -38,12 +38,12 @@ export async function POST(request: NextRequest) {
     let userId: string | null = null
 
     if (session?.user?.email) {
-      const user = await prisma?.user.findUnique({ where: { email: session.user.email } })
+      const user = await prisma.user.findUnique({ where: { email: session.user.email } })
       userId = user?.id || null
     }
 
     if (!userId && body.email) {
-      const user = await prisma?.user.findUnique({ where: { email: body.email } })
+      const user = await prisma.user.findUnique({ where: { email: body.email } })
       userId = user?.id || null
     }
 
@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
 
     const orderNumber = `ORD-${Date.now().toString(36).toUpperCase()}`
 
-    const order = await prisma?.order.create({
+    const order = await prisma.order.create({
       data: {
         orderNumber,
         userId,

@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
       )
     }
     
-    const categories = await prisma?.category.findMany({
+    const categories = await prisma.category.findMany({
       orderBy: { name: 'asc' },
       include: {
         _count: {
@@ -71,7 +71,7 @@ export async function POST(request: NextRequest) {
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/(^-|-$)/g, '')
 
-    const category = await prisma?.category.create({
+    const category = await prisma.category.create({
       data: {
         name: body.name,
         slug,
