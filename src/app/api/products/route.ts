@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
     const category = searchParams.get('category') || ''
     const featured = searchParams.get('featured') === 'true'
     const page = parseInt(searchParams.get('page') || '1')
-    const limit = parseInt(searchParams.get('limit') || '12')
+    const limit = parseInt(searchParams.get('limit') || '2000')
     const sort = searchParams.get('sort') || 'createdAt_desc'
     const skip = (page - 1) * limit
 

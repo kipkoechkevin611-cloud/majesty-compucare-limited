@@ -29,7 +29,7 @@ export default function ProductsPage() {
   const fetchProducts = async () => {
     setLoading(true)
     try {
-      const params = new URLSearchParams({ limit: '24' })
+      const params = new URLSearchParams({ limit: '2000' })
       if (searchQuery) params.set('search', searchQuery)
       if (selectedCategory !== 'all') params.set('category', selectedCategory)
 
